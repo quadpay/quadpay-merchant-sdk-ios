@@ -24,7 +24,33 @@ Before you can use these you must configure:
 --Locale (US only)
 --Environment (UT, PD)
 
-## Performing a Checkout
+## Performing a checkout
+
+### Opening the QuadPay flow
+
+Create a QuadPayVCViewController
+Call QuadPayVCViewController.startCheckout(...)
+
+### Implement QuadPayCheckoutDelegate
+
+This delegate provides critical lifecycle callbacks for the QuadPay process. See https://docs.quadpay.com/docs/virtual-checkout for more information.
+
+#### OnSuccess
+
+This function is called when a customer has successfully completed the QuadPay flow and is approved to make a transaction. It contains all the information you need to charge the item.
+
+
+#### OnClose
+
+This function is called when the customer closes the QuadPay flow or is declined and will contain a message describing the situation.
+
+
+#### OnError
+
+This function is called in the case an error occurs during the QuadPay workflow.
+
+
+## Virtual Card checkout
 
 ### Opening the QuadPay flow
 
