@@ -19,10 +19,16 @@ Items you will need:
 
 Typically this is done in `didFinishLaunchingWithOptions`:
 
-[[QuadPay sharedInstance] initialize:@"{{PUBLISHABLE_KEY}}"
-  environment:@"production"
-  locale:@"US"
-];
+```
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [[QuadPay sharedInstance] initialize:@"{{PUBLISHABLE_KEY}}"
+      environment:@"production"
+      locale:@"US"
+    ];
+    return YES;
+}
+```
 
 #### 2. Provide a button that will start the QuadPay checkout by calling:
 
