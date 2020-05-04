@@ -28,6 +28,7 @@ Typically this is done in `didFinishLaunchingWithOptions`:
 
 Once presented the customer will be shown the QuadPay checkout flow.
 
+```
 UINavigationController *navController = [
   QuadPay startCheckout
     delegate:self
@@ -45,6 +46,7 @@ UINavigationController *navController = [
     customerCountry:@"US"
 ];
 [self presentViewController:navController animated:YES completion:nil];
+```
 
 #### 3. Implement the QPCheckoutDelegate functions:
 
