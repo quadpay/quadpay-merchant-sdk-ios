@@ -2,9 +2,9 @@
 ## Overview
 Items you will need:
 
--The QuadPay iOS SDK
--The Start Checkout call in your iOS app
--An order confirmation endpoint on your server
+-The QuadPay iOS SDK  
+-The Start Checkout call in your iOS app  
+-An order confirmation endpoint on your server  
 
 
 ## Implementation
