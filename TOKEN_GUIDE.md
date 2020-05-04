@@ -11,11 +11,11 @@ Items you will need:
 
 ### The QuadPay iOS SDK
 
-#### 1. Our SDK is currently only available privately, please inquire about an integration (##sales email?) for more information.
+- Our SDK is currently only available privately, please inquire about an integration (##sales email?) for more information.
 
 ### How to start a QuadPay checkout in your iOS App
 
-#### 1. Initialize the QuadPay SDK:
+#### Initialize the QuadPay SDK
 
 Typically this is done in `didFinishLaunchingWithOptions`:
 
@@ -30,7 +30,7 @@ Typically this is done in `didFinishLaunchingWithOptions`:
 }
 ```
 
-#### 2. Provide a button that will start the QuadPay checkout by calling:
+#### Provide a button that will start the QuadPay checkout by calling
 
 Once presented the customer will be shown the QuadPay checkout flow.
 
@@ -54,7 +54,7 @@ UINavigationController *navController = [
 [self presentViewController:navController animated:YES completion:nil];
 ```
 
-#### 3. Implement the QPCheckoutDelegate functions:
+#### Implement the QPCheckoutDelegate functions
 
 These functions give your application information regarding the result of the QuadPay checkout flow.
 
