@@ -86,7 +86,7 @@ This function is called when the user cancels the QuadPay process or is declined
 
 As soon as your customer has confirmed their order you must exchange the QuadPay token. Tokens have a duration of 24 hours after which they can no longer be exchanged for orders.
 
-The timing of your shipping can be any time *after* you have exchanged the token.
+The timing of your shipping can be any time *after* you have exchanged the token. When submitting the token you will have a chance to finalize the order amount.
 
 #### Post the token
 
@@ -100,6 +100,7 @@ curl -X post https://gateway.quadpay.com/checkout/exchange_token
   -H 'X-QP-Signature: [signature]'
   -d '{
     "token": [token],
+    "orderTotalAmount": [amount],
   }'
 ```
 
