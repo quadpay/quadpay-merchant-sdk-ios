@@ -11,18 +11,20 @@ Items you will need:
 
 ### The QuadPay iOS SDK
 
-- Our SDK is currently only available privately, please inquire about an integration (##sales email?) for more information.
+- Our SDK is currently only available privately, please inquire with your QuadPay account manager.
 
 ### How to start a QuadPay checkout in your iOS App
 
 #### Initialize the QuadPay SDK
+
+Your merchant id will be provided by your QuadPay account manager.
 
 Typically this is done in `didFinishLaunchingWithOptions`:
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[QuadPay sharedInstance] initialize:@"{{PUBLISHABLE_KEY}}"
+    [[QuadPay sharedInstance] initialize:@"{{merchant_id}}"
       environment:@"production"
       locale:@"US"
     ];
@@ -84,7 +86,7 @@ This function is called when the user cancels the QuadPay process or is declined
 
 ### Exchanging QuadPay tokens for confirmed orders
 
-As soon as your customer has confirmed their order you must exchange the QuadPay token. Tokens have a duration of 24 hours after which they can no longer be exchanged for orders.
+As soon as your customer has confirmed their order you must exchange the QuadPay token. Under the default account settings tokens have a duration of 24 hours after which they can no longer be exchanged for orders.
 
 The timing of your shipping can be any time *after* you have exchanged the token. When submitting the token you will have a chance to finalize the order amount.
 
@@ -95,12 +97,14 @@ See https://docs.quadpay.com/docs/custom-integration-guide#signing-requests for 
 Post the token:
 
 ```
-curl -X post https://gateway.quadpay.com/checkout/exchange_token
+curl -X post https://gateway.quadpay.com/checkout/exchange-token
   -H 'content-type: application/json' 
   -H 'X-QP-Signature: [signature]'
   -d '{
     "token": [token],
-    "orderTotalAmount": [amount],
+    "totalOrderAmount": <number>, (optional)
+    "taxAmount": <number>, (optional),
+    "shippingAmount": <number>, (optional)
   }'
 ```
 

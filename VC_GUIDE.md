@@ -11,18 +11,20 @@ Items you will need:
 
 ### The QuadPay iOS SDK
 
-- Our SDK is currently only available privately, please inquire about an integration (##sales email?) for more information.
+- Our SDK is currently only available privately, please inquire with your QuadPay account manager.
 
 ### How to start a QuadPay checkout in your iOS App
 
 #### Initialize the QuadPay SDK
+
+Your merchant id will be provided by your QuadPay account manager.
 
 Typically this is done in `didFinishLaunchingWithOptions`:
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[QuadPay sharedInstance] initialize:@"{{PUBLISHABLE_KEY}}"
+    [[QuadPay sharedInstance] initialize:@"{{{{merchant_id}}}}"
       environment:@"production"
       locale:@"US"
     ];
