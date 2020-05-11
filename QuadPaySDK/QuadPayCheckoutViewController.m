@@ -29,7 +29,7 @@
                                                                              target:self
                                                                              action:@selector(dismiss)];
 
-    NSString* urlString = @"https://www.quadpay.com";
+    NSString* urlString = @"https://master.gateway.quadpay.xyz/virtual?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=94.40";
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
