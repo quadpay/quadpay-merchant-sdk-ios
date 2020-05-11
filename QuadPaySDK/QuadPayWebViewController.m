@@ -23,7 +23,7 @@
     webView.multipleTouchEnabled = NO;
     webView.navigationDelegate = self;
     webView.UIDelegate = self;
-    [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    // [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [self.view addSubview:webView];
     self.webView = webView;
 }
@@ -42,11 +42,11 @@
 
 - (void)dealloc
 {
-    if (self.webView) {
-        [self.webView removeObserver:self
-                          forKeyPath:@"estimatedProgress"
-                             context:nil];
-    }
+    // if (self.webView) {
+    //     [self.webView removeObserver:self
+    //                       forKeyPath:@"estimatedProgress"
+    //                          context:nil];
+    // }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath

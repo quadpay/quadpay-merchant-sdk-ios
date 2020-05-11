@@ -7,7 +7,7 @@ target 'SDKExample' do
 
   # Pods for SDKExample
 
-  pod 'QuadPaySDK',  :path => '../../'
+  pod 'QuadPaySDK',  :path => '../../', :configurations => ['Debug']
 
   target 'SDKExampleTests' do
     inherit! :search_paths

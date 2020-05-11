@@ -13,6 +13,8 @@
 		251EC4AE2469D7B100679E88 /* QuadPayCheckoutDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4AD2469D7B100679E88 /* QuadPayCheckoutDelegate.h */; };
 		251EC4B02469D7EF00679E88 /* QuadPayWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4AF2469D7EF00679E88 /* QuadPayWebViewController.h */; };
 		251EC4B42469D87D00679E88 /* QuadPayCheckoutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4B32469D87D00679E88 /* QuadPayCheckoutViewController.h */; };
+		251EC4B62469DC9100679E88 /* QuadPayWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4B52469DC9100679E88 /* QuadPayWebViewController.m */; };
+		251EC4B82469DC9600679E88 /* QuadPayCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4B72469DC9500679E88 /* QuadPayCheckoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		251EC4AD2469D7B100679E88 /* QuadPayCheckoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuadPayCheckoutDelegate.h; sourceTree = "<group>"; };
 		251EC4AF2469D7EF00679E88 /* QuadPayWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadPayWebViewController.h; sourceTree = "<group>"; };
 		251EC4B32469D87D00679E88 /* QuadPayCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadPayCheckoutViewController.h; sourceTree = "<group>"; };
+		251EC4B52469DC9100679E88 /* QuadPayWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadPayWebViewController.m; sourceTree = "<group>"; };
+		251EC4B72469DC9500679E88 /* QuadPayCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadPayCheckoutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 		251EC48B2469D64300679E88 /* QuadPaySDK */ = {
 			isa = PBXGroup;
 			children = (
+				251EC4B72469DC9500679E88 /* QuadPayCheckoutViewController.m */,
+				251EC4B52469DC9100679E88 /* QuadPayWebViewController.m */,
 				251EC4B32469D87D00679E88 /* QuadPayCheckoutViewController.h */,
 				251EC4AF2469D7EF00679E88 /* QuadPayWebViewController.h */,
 				251EC48C2469D64300679E88 /* QuadPaySDK.h */,
@@ -206,6 +212,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				251EC4B82469DC9600679E88 /* QuadPayCheckoutViewController.m in Sources */,
+				251EC4B62469DC9100679E88 /* QuadPayWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
