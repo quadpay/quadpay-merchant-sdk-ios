@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <QuadPaySDK/QuadPaySDK.h>
+#import <QuadPaySDK/QuadPayCheckoutViewController.h>
+#import <QuadPaySDK/QuadPayCheckoutDelegate.h>
 
 @interface QuadPaySDKTests : XCTestCase
 
@@ -16,6 +19,7 @@
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    QuadPayCheckoutViewController* view;
 }
 
 - (void)tearDown {

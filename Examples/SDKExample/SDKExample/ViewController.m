@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <QuadPaySDK/QuadPayCheckoutViewController.h>
 
 @interface ViewController ()
 
@@ -19,5 +20,9 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)checkoutButtonPressed:(UIButton *)sender {
+    NSLog(@"Button Pressed");
+    QuadPayCheckoutViewController* view;
+}
 
 @end

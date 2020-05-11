@@ -16,9 +16,9 @@
 		251EC3E424699E5E00679E88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC3E324699E5E00679E88 /* main.m */; };
 		251EC3EE24699E5E00679E88 /* SDKExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC3ED24699E5E00679E88 /* SDKExampleTests.m */; };
 		251EC3F924699E5F00679E88 /* SDKExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC3F824699E5F00679E88 /* SDKExampleUITests.m */; };
-		77B24937024CD3B90E2CFAAA /* Pods_SDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4D3D711217979E7A8857AA /* Pods_SDKExample.framework */; };
-		D4171B5647AAD0F78D859EB7 /* Pods_SDKExample_SDKExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED3FF0957C53E20A5A89331 /* Pods_SDKExample_SDKExampleUITests.framework */; };
-		DD9610DAFDA25C2099608C0F /* Pods_SDKExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4FB830D82BE007979CB69C /* Pods_SDKExampleTests.framework */; };
+		4E3E0A169DA244CDEAB47A78 /* Pods_SDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49B5D91CEC7C84AB5A1D7A4 /* Pods_SDKExample.framework */; };
+		56FD4C0073797A94A7894D14 /* Pods_SDKExample_SDKExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A5CF50EB35ECA0D03D8D07 /* Pods_SDKExample_SDKExampleUITests.framework */; };
+		D079594638B223FFB9C52045 /* Pods_SDKExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F755FAFAD5DE2DA377C90D1 /* Pods_SDKExampleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0ED3FF0957C53E20A5A89331 /* Pods_SDKExample_SDKExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKExample_SDKExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1517BCB8908BDDBE4E146EFF /* Pods-SDKExample-SDKExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKExample-SDKExampleUITests.release.xcconfig"; path = "Target Support Files/Pods-SDKExample-SDKExampleUITests/Pods-SDKExample-SDKExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1971D769640E3BD2F5EC4A24 /* Pods-SDKExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKExampleTests.release.xcconfig"; path = "Target Support Files/Pods-SDKExampleTests/Pods-SDKExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		251EC3CE24699E5D00679E88 /* SDKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,12 +59,13 @@
 		251EC3F424699E5F00679E88 /* SDKExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SDKExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		251EC3F824699E5F00679E88 /* SDKExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDKExampleUITests.m; sourceTree = "<group>"; };
 		251EC3FA24699E5F00679E88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C4FB830D82BE007979CB69C /* Pods_SDKExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F755FAFAD5DE2DA377C90D1 /* Pods_SDKExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FD8A23DBFF87655FCC349B /* Pods-SDKExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SDKExampleTests/Pods-SDKExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8BE8DD819D2E62CC21772BFA /* Pods-SDKExample-SDKExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKExample-SDKExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SDKExample-SDKExampleUITests/Pods-SDKExample-SDKExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		99A5CF50EB35ECA0D03D8D07 /* Pods_SDKExample_SDKExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKExample_SDKExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CD2ED1C6E100433B8BB934 /* Pods-SDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKExample.debug.xcconfig"; path = "Target Support Files/Pods-SDKExample/Pods-SDKExample.debug.xcconfig"; sourceTree = "<group>"; };
 		BEEDA95B5BF642780AD58AA7 /* Pods-SDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKExample.release.xcconfig"; path = "Target Support Files/Pods-SDKExample/Pods-SDKExample.release.xcconfig"; sourceTree = "<group>"; };
-		FA4D3D711217979E7A8857AA /* Pods_SDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D49B5D91CEC7C84AB5A1D7A4 /* Pods_SDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B24937024CD3B90E2CFAAA /* Pods_SDKExample.framework in Frameworks */,
+				4E3E0A169DA244CDEAB47A78 /* Pods_SDKExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD9610DAFDA25C2099608C0F /* Pods_SDKExampleTests.framework in Frameworks */,
+				D079594638B223FFB9C52045 /* Pods_SDKExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4171B5647AAD0F78D859EB7 /* Pods_SDKExample_SDKExampleUITests.framework in Frameworks */,
+				56FD4C0073797A94A7894D14 /* Pods_SDKExample_SDKExampleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +99,9 @@
 		1EC5DFB114A12BF4510DFD7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA4D3D711217979E7A8857AA /* Pods_SDKExample.framework */,
-				0ED3FF0957C53E20A5A89331 /* Pods_SDKExample_SDKExampleUITests.framework */,
-				5C4FB830D82BE007979CB69C /* Pods_SDKExampleTests.framework */,
+				D49B5D91CEC7C84AB5A1D7A4 /* Pods_SDKExample.framework */,
+				99A5CF50EB35ECA0D03D8D07 /* Pods_SDKExample_SDKExampleUITests.framework */,
+				3F755FAFAD5DE2DA377C90D1 /* Pods_SDKExampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,6 +188,7 @@
 				251EC3CA24699E5D00679E88 /* Sources */,
 				251EC3CB24699E5D00679E88 /* Frameworks */,
 				251EC3CC24699E5D00679E88 /* Resources */,
+				79623828CB4B03D9434B195B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,6 +226,7 @@
 				251EC3F024699E5F00679E88 /* Sources */,
 				251EC3F124699E5F00679E88 /* Frameworks */,
 				251EC3F224699E5F00679E88 /* Resources */,
+				FD3FD4CD83CDCA3018BF33F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -306,6 +308,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		79623828CB4B03D9434B195B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDKExample/Pods-SDKExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDKExample/Pods-SDKExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDKExample/Pods-SDKExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		97E145F87AE022B844107FEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +389,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD3FD4CD83CDCA3018BF33F4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDKExample-SDKExampleUITests/Pods-SDKExample-SDKExampleUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDKExample-SDKExampleUITests/Pods-SDKExample-SDKExampleUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDKExample-SDKExampleUITests/Pods-SDKExample-SDKExampleUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
