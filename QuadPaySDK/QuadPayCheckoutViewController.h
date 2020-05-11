@@ -24,16 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
  Initializer. See properties for more details. UseVCN is NO as default
 
  @param delegate A delegate object which responds to the checkout events created by the view controller.
- @param checkout A checkout object which contains information about the customer and the purchase.
- @param useVCN A boolean which determines whether the checkout flow should use virtual card network to handle the checkout
- @param getReasonCodes A boolean which determines whether to return the reason why the checkout was canceled
  @return The newly created checkout view controller.
  */
 - (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
-                        checkout:(NSString *)checkout
-                          useVCN:(BOOL)useVCN
-                  getReasonCodes:(BOOL)getReasonCodes
-NS_SWIFT_NAME(init(delegate:checkout:useVCN:getReasonCodes:)) NS_DESIGNATED_INITIALIZER;
+NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
 /**
  Convenience constructor starts the checkout process and notifies delegate regarding checkout events, useVCN is NO as default
