@@ -1,6 +1,6 @@
 #import "QuadPayWebViewController.h"
 
-@interface QuadPayWebViewController ()
+@interface QuadPayWebViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong, readwrite) WKWebView *webView;
 
@@ -8,14 +8,14 @@
 
 @implementation QuadPayWebViewController
 
-#pragma mark - Life Cycle
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-
     WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+    WKUserContentController *controller = [WKUserContentController new];
+    [controller addScriptMessageHandler:self name:@"four_eyes"];
+    configuration.userContentController = controller;
     configuration.applicationNameForUserAgent = @"QuadPay-iOS-SDK-0001"; // TODO: Version number
     WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:configuration];
     webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -26,6 +26,11 @@
     // [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [self.view addSubview:webView];
     self.webView = webView;
+}
+
+- (void)userContentController:(WKUserContentController *)userContentController
+      didReceiveScriptMessage:(WKScriptMessage *)message {
+    [self.messageDelegate vc:self didReceiveScriptMessage:[NSString stringWithFormat:@"%@", message.body]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -71,8 +76,6 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-#pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {

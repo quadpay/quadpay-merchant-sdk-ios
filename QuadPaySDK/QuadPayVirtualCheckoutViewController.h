@@ -1,16 +1,16 @@
 #import "QuadPayWebViewController.h"
-#import "QuadPayCheckoutDelegate.h"
+#import "QuadPayVirtualCheckoutDelegate.h"
 #import "QuadPayMessageReceiverDelegate.h"
 #import "QuadPayCard.h"
 #import "QuadPayCardholder.h"
 
-@protocol QuadPayCheckoutDelegate;
+@protocol QuadPayVirtualCheckoutDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayCheckoutViewController : QuadPayWebViewController <QuadPayMessageReceiverDelegate>
+@interface QuadPayVirtualCheckoutViewController : QuadPayWebViewController <QuadPayMessageReceiverDelegate>
 
-@property (nonatomic, weak) id<QuadPayCheckoutDelegate> delegate;
+@property (nonatomic, weak) id<QuadPayVirtualCheckoutDelegate> delegate;
 
 @property (nonatomic, copy, readonly) NSString *checkoutARI;
 
@@ -20,11 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
                          bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
-- (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
+- (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
 
-+ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate
++ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate
 NS_SWIFT_NAME(start(delegate:));
 
 @end

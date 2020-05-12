@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
-#import <QuadPaySDK/QuadPayCheckoutViewController.h>
-#import <QuadPayCheckoutDelegate.h>
+#import <QuadPaySDK/QuadPayVirtualCheckoutViewController.h>
+#import <QuadPaySDK/QuadPayCheckoutDelegate.h>
+#import <QuadPaySDK/QuadPayCard.h>
+#import <QuadPaySDK/QuadPayCardholder.h>
 
-@interface ViewController () <QuadPayCheckoutDelegate>
+@interface ViewController () <QuadPayVirtualCheckoutDelegate>
 
 @end
 
@@ -22,73 +24,62 @@
 }
 
 - (IBAction)checkoutButtonPressed:(UIButton *)sender {
-    NSLog(@"Button Pressed");
-    QuadPayCheckoutViewController* view = [QuadPayCheckoutViewController startCheckout:self];
+    //NSLog(@"Button Pressed");
+    QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self];
     [self presentViewController:view animated:YES completion:nil];
+//    [self showUserCancelledAlert];
 }
 
-- (void)checkout:(nonnull QuadPayCheckoutViewController *)checkoutViewController completedWithToken:(nonnull NSString *)checkoutToken {
+- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSError *)error {
+    NSLog(@"QuadPay checkout encountered an error");
+}
+
+- (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason {
+    NSLog([NSString stringWithFormat:@"User cancelled QuadPay checkout with reason %@", reason]);
+    [viewController dismissViewControllerAnimated:true completion:^ {
+        [self showUserCancelledAlert];
+    }];
+}
+
+- (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController {
+    NSLog(@"User cancelled QuadPay checkout");
+    [viewController dismissViewControllerAnimated:true completion:^ {
+        [self showUserCancelledAlert];
+    }];
+}
+
+- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder {
+    NSLog([NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
+    [viewController dismissViewControllerAnimated:true completion:^ {
+        [self showCheckoutSuccessAlert:card cardholder:cardholder];
+    }];
+}
+
+
+- (void)showUserCancelledAlert {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"User Cancelled"
+                                   message:@"The user has cancelled the QuadPay checkout!"
+                                   preferredStyle:UIAlertControllerStyleAlert];
+     
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {}];
+     
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showCheckoutSuccessAlert:(QuadPayCard*) card cardholder:(QuadPayCardholder*) cardholder {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Succeeded"
+                                                                   message:[NSString stringWithFormat:
+                                                                            @"QuadPay checkout succeeded, card issued: %@", card.number]
+                                   preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {}];
+
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)checkout:(nonnull QuadPayCheckoutViewController *)checkoutViewController didFailWithError:(nonnull NSError *)error {
-    
-}
-
-- (void)checkoutCancelled:(nonnull QuadPayCheckoutViewController *)checkoutViewController {
-    
-}
-
-- (void)checkoutCancelled:(nonnull QuadPayCheckoutViewController *)checkoutViewController checkoutCanceledWithReason:(nonnull NSString *)reasonCode {
-    
-}
-
-- (void)vcnCheckout:(nonnull QuadPayCheckoutViewController *)checkoutViewController completedWithCreditCard:(nonnull NSString *)creditCard {
-    
-}
-
-//- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-//
-//}
-//
-//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
-//
-//}
-//
-//- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-//
-//}
-
-//- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
-//
-//}
-//
-//- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
-//
-//}
-//
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-//
-//}
-//
-//- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-//
-//}
-//
-//- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
-//
-//}
-//
-//- (void)setNeedsFocusUpdate {
-//
-//}
-
-//- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
-//
-//}
-
-//- (void)updateFocusIfNeeded {
-//
-//}
 
 @end

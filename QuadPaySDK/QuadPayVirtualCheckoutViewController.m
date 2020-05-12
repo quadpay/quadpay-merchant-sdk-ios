@@ -1,14 +1,14 @@
-#import "QuadPayCheckoutViewController.h"
+#import "QuadPayVirtualCheckoutViewController.h"
 
-@interface QuadPayCheckoutViewController ()
+@interface QuadPayVirtualCheckoutViewController ()
 
 @property (nonatomic, copy, readwrite) NSString *checkoutARI;
 
 @end
 
-@implementation QuadPayCheckoutViewController
+@implementation QuadPayVirtualCheckoutViewController
 
-- (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
+- (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
 {    
     if (self = [super initWithNibName:nil bundle:nil]) {
         _delegate = delegate;
@@ -17,14 +17,28 @@
     return self;
 }
 
-+ (QuadPayCheckoutViewController *)startCheckout:(nonnull id<QuadPayCheckoutDelegate>)delegate
++ (QuadPayVirtualCheckoutViewController *)startCheckout:(nonnull id<QuadPayVirtualCheckoutDelegate>)delegate
 {
     return [[self alloc] initWithDelegate:delegate];
 }
 
-- (void)vc:(QuadPayCheckoutViewController *)vc didReceiveScriptMessage:(NSString *)message {
-    NSLog(@"QuadPayCheckoutViewController.didRxScriptMessage: %@", message);
-    [_delegate checkoutSuccessful:vc token:message];
+- (void)vc:(QuadPayVirtualCheckoutViewController *)vc didReceiveScriptMessage:(NSString *)message {
+    NSLog(@"QuadPayVirtualCheckoutViewController.didRxScriptMessage: %@", message);
+    // TODO: Decoding logic
+    if ([message isEqualToString:@"User Cancelled"]) {
+        [_delegate checkoutCancelled:self reason:message];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+        id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"%@", jsonOutput);
+        
+        QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
+        QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
+
+        [_delegate checkoutSuccessful:vc card:card cardholder:cardholder];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad
