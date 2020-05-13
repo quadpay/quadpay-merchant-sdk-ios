@@ -40,11 +40,6 @@
     [self.webView loadRequest:request];
 }
 
-- (void)loadRedirectURL:(NSURL *)redirectURL
-{
-  [self.webView loadRequest:[NSURLRequest requestWithURL:redirectURL]];
-}
-
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     decisionHandler(WKNavigationActionPolicyAllow);
@@ -55,46 +50,10 @@
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
-                                                                             message:nil
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction *action) {
-                                                          completionHandler(NO);
-                                                      }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-                                                          completionHandler(YES);
-                                                      }]];
-    [self presentViewController:alertController animated:YES completion:^{}];
-}
-
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self loadErrorPage:error];
     [self.delegate didFailWithError:self error:error];
-}
-
-- (void)webView:(WKWebView *)webView checkIfURL:(NSString *)URLString isPopupWithCompletion:(void(^)(BOOL isPopup))completion
-{
-    NSString *JSCodeFormat = @"javascript: (function () {"
-    "var anchors = document.getElementsByTagName('a');"
-    "for (var i = 0; i < anchors.length; i++) {"
-    "if (anchors[i].target == '_blank' && anchors[i].href == '%@') {"
-    "return true;"
-    "}"
-    "}"
-    "return false;"
-    "})();"
-    ;
-    NSString *JSCode = [NSString stringWithFormat:JSCodeFormat, URLString];
-    [webView evaluateJavaScript:JSCode completionHandler:^(id result, NSError *error) {
-        completion([result boolValue]);
-    }];
 }
 
 @end
