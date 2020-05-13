@@ -7,10 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <QuadPaySDK/QuadPayVirtualCheckoutViewController.h>
-#import <QuadPaySDK/QuadPayCheckoutDelegate.h>
-#import <QuadPaySDK/QuadPayCard.h>
-#import <QuadPaySDK/QuadPayCardholder.h>
+#import <QuadPaySDK/QuadPaySDK.h>
 
 @interface ViewController () <QuadPayVirtualCheckoutDelegate>
 
@@ -27,7 +24,6 @@
     //NSLog(@"Button Pressed");
     QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self];
     [self presentViewController:view animated:YES completion:nil];
-//    [self showUserCancelledAlert];
 }
 
 - (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSError *)error {

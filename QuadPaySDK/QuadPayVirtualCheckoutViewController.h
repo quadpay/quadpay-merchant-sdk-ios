@@ -3,6 +3,7 @@
 #import "QuadPayMessageReceiverDelegate.h"
 #import "QuadPayCard.h"
 #import "QuadPayCardholder.h"
+#import "QuadPayCheckoutDetails.h"
 
 @protocol QuadPayVirtualCheckoutDelegate;
 
@@ -11,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QuadPayVirtualCheckoutViewController : QuadPayWebViewController <QuadPayMessageReceiverDelegate>
 
 @property (nonatomic, weak) id<QuadPayVirtualCheckoutDelegate> delegate;
-
-@property (nonatomic, copy, readonly) NSString *checkoutARI;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
@@ -23,9 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
+- (void)setDetails:(QuadPayCheckoutDetails*)newDetails
+NS_SWIFT_NAME(setDetails(details:));
 
-+ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate
-NS_SWIFT_NAME(start(delegate:));
++ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate details:(QuadPayCheckoutDetails*) details
+NS_SWIFT_NAME(start(delegate:details:));
 
 @end
 

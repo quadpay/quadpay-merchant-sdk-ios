@@ -2,14 +2,12 @@
 
 @interface QuadPayCheckoutViewController ()
 
-@property (nonatomic, copy, readwrite) NSString *checkoutARI;
-
 @end
 
 @implementation QuadPayCheckoutViewController
 
 - (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
-{    
+{
     if (self = [super initWithNibName:nil bundle:nil]) {
         _delegate = delegate;
         self.messageDelegate = self;
@@ -22,9 +20,9 @@
     return [[self alloc] initWithDelegate:delegate];
 }
 
-- (void)vc:(QuadPayCheckoutViewController *)vc didReceiveScriptMessage:(NSString *)message {
+- (void)viewController:(QuadPayCheckoutViewController *)viewController didReceiveScriptMessage:(NSString *)message {
     NSLog(@"QuadPayCheckoutViewController.didRxScriptMessage: %@", message);
-    [_delegate checkoutSuccessful:vc token:message];
+    [_delegate checkoutSuccessful:viewController token:message];
 }
 
 - (void)viewDidLoad

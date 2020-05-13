@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<QuadPayCheckoutDelegate> delegate;
 
-@property (nonatomic, copy, readonly) NSString *checkoutARI;
-
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;

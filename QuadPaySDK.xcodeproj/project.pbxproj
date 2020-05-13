@@ -25,6 +25,7 @@
 		251EC4C8246B19ED00679E88 /* QuadPayVirtualCheckoutDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4C7246B19ED00679E88 /* QuadPayVirtualCheckoutDelegate.h */; };
 		251EC4CB246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4C9246B1C6400679E88 /* QuadPayVirtualCheckoutViewController.m */; };
 		251EC4CC246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4CA246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.h */; };
+		251EC4CE246C9E3900679E88 /* QuadPayCheckoutDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4CD246C9E3900679E88 /* QuadPayCheckoutDetails.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		251EC4C7246B19ED00679E88 /* QuadPayVirtualCheckoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadPayVirtualCheckoutDelegate.h; sourceTree = "<group>"; };
 		251EC4C9246B1C6400679E88 /* QuadPayVirtualCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadPayVirtualCheckoutViewController.m; sourceTree = "<group>"; };
 		251EC4CA246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadPayVirtualCheckoutViewController.h; sourceTree = "<group>"; };
+		251EC4CD246C9E3900679E88 /* QuadPayCheckoutDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuadPayCheckoutDetails.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				251EC4C1246B14CE00679E88 /* QuadPayCard.m */,
 				251EC4BD246B127F00679E88 /* QuadPayCardholder.h */,
 				251EC4BF246B129100679E88 /* QuadPayCustomer.h */,
+				251EC4CD246C9E3900679E88 /* QuadPayCheckoutDetails.h */,
 			);
 			path = QuadPaySDK;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */,
 				251EC4CC246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.h in Headers */,
 				251EC4B02469D7EF00679E88 /* QuadPayWebViewController.h in Headers */,
+				251EC4CE246C9E3900679E88 /* QuadPayCheckoutDetails.h in Headers */,
 				251EC4AE2469D7B100679E88 /* QuadPayCheckoutDelegate.h in Headers */,
 				251EC4BA2469FC5300679E88 /* QuadPayMessageReceiverDelegate.h in Headers */,
 				251EC4BC246B125700679E88 /* QuadPayCard.h in Headers */,

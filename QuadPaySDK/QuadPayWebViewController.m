@@ -30,7 +30,7 @@
 
 - (void)userContentController:(WKUserContentController *)userContentController
       didReceiveScriptMessage:(WKScriptMessage *)message {
-    [self.messageDelegate vc:self didReceiveScriptMessage:[NSString stringWithFormat:@"%@", message.body]];
+    [self.messageDelegate viewController:self didReceiveScriptMessage:[NSString stringWithFormat:@"%@", message.body]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

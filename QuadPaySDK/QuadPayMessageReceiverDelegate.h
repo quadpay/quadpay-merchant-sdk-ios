@@ -4,7 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol QuadPayMessageReceiverDelegate <NSObject>
 
-- (void)vc:(QuadPayCheckoutViewController *)vc didReceiveScriptMessage:(NSString *)message;
+- (void)viewController:(UIViewController *)viewController didReceiveScriptMessage:(NSString *)message;
 
 @end
 
