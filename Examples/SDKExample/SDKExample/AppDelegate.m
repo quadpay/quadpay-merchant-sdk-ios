@@ -2,7 +2,6 @@
 //  AppDelegate.m
 //  SDKExample
 //
-
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
@@ -18,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[QuadPay sharedInstance] initialize:@"SDKExampleMerchant" environment:@"sandbox" locale:@"US"];
     return YES;
 }
 

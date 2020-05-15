@@ -9,11 +9,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(QuadPayCard *)card cardholder:(QuadPayCardholder *)cardholder;
 
-- (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController;
-
 - (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason;
 
-- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(NSError *)error;
+- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(NSString *)error;
 
 @end
 

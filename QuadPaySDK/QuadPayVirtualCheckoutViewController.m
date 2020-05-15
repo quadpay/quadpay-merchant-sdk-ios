@@ -28,21 +28,66 @@ QuadPayCheckoutDetails* details;
 }
 
 - (void)viewController:(UIViewController *)viewController didReceiveScriptMessage:(NSString *)message {
-    NSLog(@"QuadPayVirtualCheckoutViewController.didRxScriptMessage: %@", message);
-    // TODO: Decoding logic
-    if ([message isEqualToString:@"User Cancelled"]) {
-        [_delegate checkoutCancelled:self reason:message];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-        id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSLog(@"%@", jsonOutput);
-        
-        QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
-        QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 
-        [_delegate checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:card cardholder:cardholder];
-        [self dismissViewControllerAnimated:YES completion:nil];
+    // Could not decode message...
+    if (jsonOutput == NULL || error != NULL) {
+        [self->_delegate didFailWithError:self error:@"Received non-JSON message"];
+        return;
+    }
+
+    NSString* messageType = [jsonOutput objectForKey:@"objectType"];
+
+    // It's JSON but not a QP message
+    if (messageType == NULL) {
+        [self->_delegate didFailWithError:self error:@"Received non-QP message"];
+        return;
+    }
+    
+    typedef void (^CaseBlock)(void);
+    NSDictionary *messageBlocks = @{
+        @"userCancelledMessage": ^{
+            [self->_delegate checkoutCancelled:self reason:@"User Cancelled"];
+        },
+        @"virtualCheckoutSuccessResponse": ^{
+            QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
+            QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
+            [self->_delegate checkoutSuccessful:self card:card cardholder:cardholder];
+        },
+    };
+    CaseBlock block = messageBlocks[messageType];
+    if (block) {
+        block();
+    } else {
+        // It looks like a QP message but we can't figure out which type
+        [self->_delegate didFailWithError:self error:@"Could not interpret QPMessage"];
+    }
+}
+
+- (void)viewController:(UIViewController *)viewController didReceiveScriptMessageOld:(NSString *)message {
+    NSLog(@"QuadPayVirtualCheckoutViewController.didRxScriptMessage: %@", message);
+    //TODO: DECODING LOGIC
+    @try {
+        if ([message isEqualToString:@"User Cancelled"]) {
+            [_delegate checkoutCancelled:self reason:message];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else if ([message isEqualToString:@"Simulate Error"]) {
+            [[NSException exceptionWithName:@"TestException" reason:@"Testing Exception" userInfo:NULL] raise];
+        } else {
+            NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+            id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"%@", jsonOutput);
+            
+            QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
+            QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
+
+            [_delegate checkoutSuccessful:self card:card cardholder:cardholder];
+        }
+    }
+    @catch(NSException* exception) {
+        [_delegate didFailWithError:self error:[NSString stringWithFormat:@"An error has occurred (%@)", [exception description]]];
     }
 }
 
@@ -55,6 +100,7 @@ QuadPayCheckoutDetails* details;
                                                                              action:@selector(dismiss)];
     NSString* urlString = [self createVirtualCheckoutURL];
     NSURL *url = [NSURL URLWithString:urlString];
+    NSLog([NSString stringWithFormat:@"Opening URL: %@", [url absoluteString]]);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -63,7 +109,7 @@ QuadPayCheckoutDetails* details;
     if (details == NULL) {
         @throw [NSException exceptionWithName:@"DetailsNullException" reason:@"Checkout details cannot be null" userInfo:NULL];
     }
-    NSString * base = [NSString stringWithFormat:@"https://master.gateway.quadpay.xyz/virtual?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=%@", details.amount];
+    NSString * base = [NSString stringWithFormat:@"%@virtual?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=%@", [[QuadPay sharedInstance] getBaseUrl], details.amount];
 
     if (details.merchantReference) {
         base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantReference=%@", details.merchantReference]];

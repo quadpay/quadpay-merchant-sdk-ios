@@ -2,7 +2,6 @@
 //  ViewController.h
 //  SDKExample
 //
-
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 

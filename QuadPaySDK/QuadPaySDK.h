@@ -15,6 +15,7 @@ FOUNDATION_EXPORT double QuadPaySDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char QuadPaySDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <QuadPaySDK/PublicHeader.h>
+#import <QuadPaySDK/QuadPay.h>
 #import <QuadPaySDK/QuadPayVirtualCheckoutViewController.h>
 #import <QuadPaySDK/QuadPayCheckoutViewController.h>
 #import <QuadPaySDK/QuadPayVirtualCheckoutDelegate.h>

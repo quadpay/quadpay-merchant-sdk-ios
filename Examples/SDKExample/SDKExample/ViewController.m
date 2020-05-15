@@ -2,7 +2,6 @@
 //  ViewController.m
 //  SDKExample
 //
-
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
@@ -21,24 +20,21 @@
 }
 
 - (IBAction)checkoutButtonPressed:(UIButton *)sender {
-    //NSLog(@"Button Pressed");
-    QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self];
+    QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
+    details.amount = [NSDecimalNumber decimalNumberWithString:@"94.40" locale:NULL];
+    details.customerPhoneNumber = @"+14076901147";
+    details.customerEmail = @"sdk_example@quadpay.com";
+
+    QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self details:details];
     [self presentViewController:view animated:YES completion:nil];
 }
 
-- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSError *)error {
+- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSString *)error {
     NSLog(@"QuadPay checkout encountered an error");
 }
 
 - (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason {
-    NSLog([NSString stringWithFormat:@"User cancelled QuadPay checkout with reason %@", reason]);
-    [viewController dismissViewControllerAnimated:true completion:^ {
-        [self showUserCancelledAlert];
-    }];
-}
-
-- (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController {
-    NSLog(@"User cancelled QuadPay checkout");
+    NSLog([NSString stringWithFormat:@"$$$$$$$ User cancelled QuadPay checkout with reason %@", reason]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         [self showUserCancelledAlert];
     }];

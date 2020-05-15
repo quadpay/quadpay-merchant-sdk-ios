@@ -1,3 +1,4 @@
+#import "QuadPay.h"
 #import "QuadPayWebViewController.h"
 #import "QuadPayVirtualCheckoutDelegate.h"
 #import "QuadPayMessageReceiverDelegate.h"

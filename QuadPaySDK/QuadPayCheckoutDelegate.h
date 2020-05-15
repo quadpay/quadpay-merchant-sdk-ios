@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController reason:(NSString *)reason;
 
-- (void)didFailWithError:(QuadPayCheckoutViewController*)viewController error:(NSError *)error;
+- (void)didFailWithError:(QuadPayCheckoutViewController*)viewController error:(NSString *)error;
 
 @end
 
