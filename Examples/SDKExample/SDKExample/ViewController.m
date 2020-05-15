@@ -16,10 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (IBAction)checkoutButtonPressed:(UIButton *)sender {
+    /*
+        This action handler is where the QuadPay checkout is started
+     */
     QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
     details.amount = [NSDecimalNumber decimalNumberWithString:@"94.40" locale:NULL];
     details.customerPhoneNumber = @"+14076901147";
@@ -34,15 +36,21 @@
 }
 
 - (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason {
-    NSLog([NSString stringWithFormat:@"$$$$$$$ User cancelled QuadPay checkout with reason %@", reason]);
+    NSLog(@"%@", [NSString stringWithFormat:@"User cancelled QuadPay checkout with reason %@", reason]);
     [viewController dismissViewControllerAnimated:true completion:^ {
+        /*
+            Your code to handle cancellation (if any), this demo just shows an alert!
+         */
         [self showUserCancelledAlert];
     }];
 }
 
 - (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder {
-    NSLog([NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
+    NSLog(@"%@", [NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
+        /*
+            Your code to handle order creation with the provided card details, this demo just shows an alert!
+         */
         [self showCheckoutSuccessAlert:card cardholder:cardholder];
     }];
 }

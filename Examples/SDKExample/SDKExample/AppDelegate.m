@@ -17,7 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    /*
+        Don't forget to initialize the QuadPay client with your details!
+     */
     [[QuadPay sharedInstance] initialize:@"SDKExampleMerchant" environment:@"sandbox" locale:@"US"];
+
     return YES;
 }
 

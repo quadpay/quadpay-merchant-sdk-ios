@@ -4,7 +4,6 @@
 //
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
-
 #import <XCTest/XCTest.h>
 #import "QuadPay.h"
 #import "QuadPayVirtualCheckoutViewController.h"
