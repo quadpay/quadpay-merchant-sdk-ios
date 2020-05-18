@@ -13,9 +13,9 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
-        NSString* _messageName = dict[@"objectType"];
-        assert([_messageName isEqualToString:@"ExceptionMessage"]);
-        _message = dict[@"message"];
+        NSString* _messageName = dict[@"messageType"];
+        NSAssert([_messageName isEqualToString:@"ExceptionMessage"], @"Correct message type");
+        _message = dict[@"message"][@"message"];
     }
     return self;
 }

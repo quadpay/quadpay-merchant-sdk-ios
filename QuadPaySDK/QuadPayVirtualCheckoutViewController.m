@@ -38,7 +38,7 @@
         return;
     }
 
-    NSString* messageType = [jsonOutput objectForKey:@"objectType"];
+    NSString* messageType = [jsonOutput objectForKey:@"messageType"];
 
     // It's JSON but not a QP message
     if (messageType == NULL) {
@@ -74,31 +74,6 @@
     } else {
         // It looks like a QP message but we can't figure out which type
         [self->_delegate didFailWithError:self error:@"Could not interpret QPMessage"];
-    }
-}
-
-- (void)viewController:(UIViewController *)viewController didReceiveScriptMessageOld:(NSString *)message {
-    NSLog(@"QuadPayVirtualCheckoutViewController.didRxScriptMessage: %@", message);
-    //TODO: DECODING LOGIC
-    @try {
-        if ([message isEqualToString:@"User Cancelled"]) {
-            [_delegate checkoutCancelled:self reason:message];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else if ([message isEqualToString:@"Simulate Error"]) {
-            [[NSException exceptionWithName:@"TestException" reason:@"Testing Exception" userInfo:NULL] raise];
-        } else {
-            NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-            id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"%@", jsonOutput);
-            
-            QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
-            QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
-
-            [_delegate checkoutSuccessful:self card:card cardholder:cardholder];
-        }
-    }
-    @catch(NSException* exception) {
-        [_delegate didFailWithError:self error:[NSString stringWithFormat:@"An error has occurred (%@)", [exception description]]];
     }
 }
 

@@ -53,7 +53,7 @@
         return;
     }
 
-    NSString* messageType = [jsonOutput objectForKey:@"objectType"];
+    NSString* messageType = [jsonOutput objectForKey:@"messageType"];
 
     // It's JSON but not a QP message
     if (messageType == NULL) {

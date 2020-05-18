@@ -14,7 +14,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
     WKUserContentController *controller = [WKUserContentController new];
-    [controller addScriptMessageHandler:self name:@"four_eyes"];
+    [controller addScriptMessageHandler:self name:@"quadpay"];
     configuration.userContentController = controller;
     configuration.applicationNameForUserAgent = @"QuadPay-iOS-SDK-0001"; // TODO: Version number
     WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:configuration];

@@ -19,6 +19,12 @@
 
 @implementation QuadPaySDKVirtualCheckoutTests
 
+- (NSString*) dictToJson:(NSDictionary*)dict {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+};
+
 - (void)setUp {
     [[QuadPay sharedInstance] initialize:@"unitTestMerchantId" environment:@"sandbox" locale:@"US"];
 
@@ -59,7 +65,14 @@
 - (void)test_when_receive_exceptionmessage_should_delegate_failure{
     didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect DidFail Callback"];
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"ExceptionMessage\"}"];
+    NSDictionary* message = @{
+        @"messageType": @"ExceptionMessage",
+        @"message": @{
+                @"message": @"An internal error has occurred",
+        }
+    };
+    
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -69,7 +82,14 @@
 - (void)test_when_receive_cancelledmessage_should_delegate_cancelled{
     checkoutCancelledWasCalled = [self expectationWithDescription:@"Expect Cancelled Callback"];
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"UserCancelledMessage\"}"];
+    NSDictionary* message = @{
+        @"messageType": @"UserCancelledMessage",
+        @"message": @{
+                @"reason": @"No reason at all!",
+        }
+    };
+    
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -78,7 +98,14 @@
 - (void)test_when_receive_success_message_should_delegate_success{
     checkoutSucceededWasCalled = [self expectationWithDescription:@"Expect Success Callback"];
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"VirtualCheckoutSuccessfulMessage\"}"];
+    NSDictionary* message = @{
+        @"messageType": @"VirtualCheckoutSuccessfulMessage",
+        @"message": @{
+                @"card": @"sampledata",
+        }
+    };
+
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -86,8 +113,13 @@
 
 - (void)test_when_receive_badmessage_should_delegate_failure{
     didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect Failure Callback"];
-
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"VirtualCheckoutSuccessfulMessage\",\"crad\":\"junkdata\"}"];
+    NSDictionary* message = @{
+        @"messageType": @"VirtualCheckoutSuccessfulMessage",
+        @"message": @{
+                @"crad": @"junkdata",
+        }
+    };
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];

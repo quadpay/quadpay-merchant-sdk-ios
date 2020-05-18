@@ -13,9 +13,9 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
-        NSString* _messageName = dict[@"objectType"];
-        assert([_messageName isEqualToString:@"UserCancelledMessage"]);
-        _reason = dict[@"reason"];
+        NSString* _messageName = dict[@"messageType"];
+        NSAssert([_messageName isEqualToString:@"UserCancelledMessage"], @"Correct message type");
+        _reason = dict[@"message"][@"reason"];
     }
     return self;
 }

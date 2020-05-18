@@ -13,12 +13,10 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
-        NSString* _messageName = dict[@"objectType"];
-        assert([_messageName isEqualToString:@"CheckoutSuccessfulMessage"]);
-        _token = dict[@"token"];
-        if (_token == nil) {
-            [[NSException exceptionWithName:@"DecodeError" reason:@"Could not decode message from gateway (token)" userInfo:NULL] raise];
-        }
+        NSString* _messageName = dict[@"messageType"];
+        NSAssert([_messageName isEqualToString:@"CheckoutSuccessfulMessage"], @"Correct message type");
+        _token = dict[@"message"][@"token"];
+        NSAssert(_token != nil, @"Token must not be nil");
     }
     return self;
 }
