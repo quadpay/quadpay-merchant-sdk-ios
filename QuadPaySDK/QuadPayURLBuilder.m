@@ -19,7 +19,7 @@
 
 + (NSString *) buildCheckoutURL:(QuadPayCheckoutDetails*) details {
     NSString* base = [[QuadPay sharedInstance] getBaseUrl];
-    base = [base stringByAppendingString:@"mobile/standard/authorize?"];
+    base = [base stringByAppendingString:@"mobile/authorize?"];
     NSString* params = [QuadPayURLBuilder assembleParams:details];
     return [base stringByAppendingString:params];
 }

@@ -1,22 +1,20 @@
 //
-//  UserCancelled.m
+//  CheckoutCancelledMessage.m
 //  QuadPaySDK
 //
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "UserCancelledMessage.h"
+#import "CheckoutCancelledMessage.h"
 
-@implementation UserCancelledMessage
+@implementation CheckoutCancelledMessage
 
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
-        NSAssert([_messageName isEqualToString:@"UserCancelledMessage"], @"Correct message type");
-        _signature = dict[@"signature"];
-        NSAssert(_signature != nil, @"Signature must not be nil");
+        NSAssert([_messageName isEqualToString:@"CheckoutCancelledMessage"], @"Correct message type");
 
         _reason = dict[@"message"][@"reason"];        
     }

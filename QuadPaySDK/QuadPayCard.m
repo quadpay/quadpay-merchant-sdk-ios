@@ -18,10 +18,17 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
-        _cvc = dict[@"card"][@"cvc"];
-        _expirationMonth = dict[@"card"][@"expirationMonth"];
-        _expirationYear = dict[@"card"][@"expirationYear"];
-        _number = dict[@"card"][@"number"];
+        _cvc = dict[@"cvc"];
+        _expirationMonth = dict[@"expirationMonth"];
+        _expirationYear = dict[@"expirationYear"];
+        _number = dict[@"number"];
+        _brand = dict[@"brand"];
+        
+        NSAssert(_cvc != NULL, @"cvc cannot be null");
+        NSAssert(_expirationMonth != NULL, @"exp month cannot be null");
+        NSAssert(_expirationYear != NULL, @"exp year cannot be null");
+        NSAssert(_number != NULL, @"number cannot be null");
+        NSAssert(_brand != NULL, @"brand cannot be null");
     }
     return self;
 }

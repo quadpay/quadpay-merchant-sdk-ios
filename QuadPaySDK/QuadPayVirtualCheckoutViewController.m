@@ -27,18 +27,9 @@
     details = newDetails;
 }
 
-- (void)viewController:(UIViewController *)viewController didReceiveScriptMessage:(NSString *)message {
-    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error = nil;
-    id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+- (void)viewController:(UIViewController *)viewController didReceiveScriptMessage:(nonnull NSDictionary *)message {
 
-    // Could not decode message...
-    if (jsonOutput == NULL || error != NULL) {
-        [self->_delegate didFailWithError:self error:@"Received non-JSON message"];
-        return;
-    }
-
-    NSString* messageType = [jsonOutput objectForKey:@"messageType"];
+    NSString* messageType = [message objectForKey:@"messageType"];
 
     // It's JSON but not a QP message
     if (messageType == NULL) {
@@ -49,16 +40,17 @@
     // Code blocks to handle each message type - decode message and delegate to handler
     typedef void (^CaseBlock)(void);
     NSDictionary *messageBlocks = @{
-        @"UserCancelledMessage": ^{
-            [self->_delegate checkoutCancelled:self reason:@"User Cancelled"];
+        @"CheckoutCancelledMessage": ^{
+            CheckoutCancelledMessage* quadpayMessage = [[CheckoutCancelledMessage alloc] initWithDict:message];
+            [self->_delegate checkoutCancelled:self reason:quadpayMessage.reason];
         },
         @"VirtualCheckoutSuccessfulMessage": ^{
-            QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
-            QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
-            [self->_delegate checkoutSuccessful:self card:card cardholder:cardholder];
+            VirtualCheckoutSuccessfulMessage* quadpayMessage = [[VirtualCheckoutSuccessfulMessage alloc] initWithDict:message];
+            [self->_delegate checkoutSuccessful:self card:quadpayMessage.card cardholder:quadpayMessage.cardholder];
         },
         @"ExceptionMessage": ^{
-            [self->_delegate didFailWithError:self error:@"An internal error has occurred"];
+            ExceptionMessage* quadpayMessage = [[ExceptionMessage alloc] initWithDict:message];
+            [self->_delegate didFailWithError:self error:quadpayMessage.message];
         }
     };
 

@@ -34,8 +34,8 @@
 		251EC4DB2472EE9C00679E88 /* CheckoutSuccessfulMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4DA2472EE9C00679E88 /* CheckoutSuccessfulMessage.m */; };
 		251EC4DE2472EFDC00679E88 /* ExceptionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4DC2472EFDC00679E88 /* ExceptionMessage.m */; };
 		251EC4DF2472EFDC00679E88 /* ExceptionMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4DD2472EFDC00679E88 /* ExceptionMessage.h */; };
-		251EC4E62472F46300679E88 /* UserCancelledMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4E42472F46300679E88 /* UserCancelledMessage.h */; };
-		251EC4E72472F46300679E88 /* UserCancelledMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4E52472F46300679E88 /* UserCancelledMessage.m */; };
+		251EC4E62472F46300679E88 /* CheckoutCancelledMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4E42472F46300679E88 /* CheckoutCancelledMessage.h */; };
+		251EC4E72472F46300679E88 /* CheckoutCancelledMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4E52472F46300679E88 /* CheckoutCancelledMessage.m */; };
 		251EC4EA247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4E8247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h */; };
 		251EC4EB247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4E9247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m */; };
 		251EC4EE2473262200679E88 /* QuadPayURLBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4EC2473262200679E88 /* QuadPayURLBuilder.h */; };
@@ -83,8 +83,8 @@
 		251EC4DA2472EE9C00679E88 /* CheckoutSuccessfulMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutSuccessfulMessage.m; sourceTree = "<group>"; };
 		251EC4DC2472EFDC00679E88 /* ExceptionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionMessage.m; sourceTree = "<group>"; };
 		251EC4DD2472EFDC00679E88 /* ExceptionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionMessage.h; sourceTree = "<group>"; };
-		251EC4E42472F46300679E88 /* UserCancelledMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCancelledMessage.h; sourceTree = "<group>"; };
-		251EC4E52472F46300679E88 /* UserCancelledMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCancelledMessage.m; sourceTree = "<group>"; };
+		251EC4E42472F46300679E88 /* CheckoutCancelledMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutCancelledMessage.h; sourceTree = "<group>"; };
+		251EC4E52472F46300679E88 /* CheckoutCancelledMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutCancelledMessage.m; sourceTree = "<group>"; };
 		251EC4E8247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCheckoutSuccessfulMessage.h; sourceTree = "<group>"; };
 		251EC4E9247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCheckoutSuccessfulMessage.m; sourceTree = "<group>"; };
 		251EC4EC2473262200679E88 /* QuadPayURLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadPayURLBuilder.h; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 			children = (
 				251EC4E8247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h */,
 				251EC4E9247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m */,
-				251EC4E42472F46300679E88 /* UserCancelledMessage.h */,
-				251EC4E52472F46300679E88 /* UserCancelledMessage.m */,
+				251EC4E42472F46300679E88 /* CheckoutCancelledMessage.h */,
+				251EC4E52472F46300679E88 /* CheckoutCancelledMessage.m */,
 				251EC4DD2472EFDC00679E88 /* ExceptionMessage.h */,
 				251EC4DC2472EFDC00679E88 /* ExceptionMessage.m */,
 				251EC4DA2472EE9C00679E88 /* CheckoutSuccessfulMessage.m */,
@@ -202,7 +202,7 @@
 				251EC4CE246C9E3900679E88 /* QuadPayCheckoutDetails.h in Headers */,
 				251EC4AE2469D7B100679E88 /* QuadPayCheckoutDelegate.h in Headers */,
 				251EC4BA2469FC5300679E88 /* QuadPayMessageReceiverDelegate.h in Headers */,
-				251EC4E62472F46300679E88 /* UserCancelledMessage.h in Headers */,
+				251EC4E62472F46300679E88 /* CheckoutCancelledMessage.h in Headers */,
 				251EC4BC246B125700679E88 /* QuadPayCard.h in Headers */,
 				251EC4B42469D87D00679E88 /* QuadPayCheckoutViewController.h in Headers */,
 				251EC4C8246B19ED00679E88 /* QuadPayVirtualCheckoutDelegate.h in Headers */,
@@ -308,7 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				251EC4E72472F46300679E88 /* UserCancelledMessage.m in Sources */,
+				251EC4E72472F46300679E88 /* CheckoutCancelledMessage.m in Sources */,
 				251EC4CB246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.m in Sources */,
 				251EC4DE2472EFDC00679E88 /* ExceptionMessage.m in Sources */,
 				251EC4D3246F0AB700679E88 /* QuadPay.m in Sources */,

@@ -1,22 +1,17 @@
 //
-//  UserCancelledMessage.h
+//  CheckoutCancelledMessage.h
 //  QuadPaySDK
 //
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
-#ifndef UserCancelledMessage_h
-#define UserCancelledMessage_h
+#ifndef CheckoutCancelledMessage_h
+#define CheckoutCancelledMessage_h
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserCancelledMessage : NSObject
-
-/**
- A backend-verifiable signature that the message originated from QuadPay
-*/
-@property (nonatomic, copy, nonnull) NSString* signature;
+@interface CheckoutCancelledMessage : NSObject
 
 /**
  A string describing the reason for cancellation
@@ -35,4 +30,4 @@ NS_SWIFT_NAME(init(dict:));
 
 NS_ASSUME_NONNULL_END
 
-#endif /* UserCancelledMessage_h */
+#endif /* CheckoutCancelledMessage_h */

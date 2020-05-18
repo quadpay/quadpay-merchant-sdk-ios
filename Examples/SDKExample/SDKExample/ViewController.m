@@ -32,7 +32,8 @@
 }
 
 - (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSString *)error {
-    NSLog(@"QuadPay checkout encountered an error");
+    [viewController dismissViewControllerAnimated:true completion:^ {}];
+    NSLog(@"%@", [NSString stringWithFormat:@"QuadPay checkout encountered an error %@", error]);
 }
 
 - (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason {

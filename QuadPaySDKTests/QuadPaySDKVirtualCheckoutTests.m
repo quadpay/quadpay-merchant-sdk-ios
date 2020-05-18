@@ -43,25 +43,6 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)test_when_nonJSONmessage_should_delegate_failure{
-    didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect DidFail Callback"];
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"User Cancelled"];
-    [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
-        XCTAssertTrue(error == NULL);
-    }];
-    XCTAssertTrue([errorWhenFailed isEqualToString:@"Received non-JSON message"]);
-}
-
-- (void)test_when_receive_nonQPmessage_should_delegate_failure{
-    didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect DidFail Callback"];
-
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"obj\":\"type\"}"];
-    [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
-        XCTAssertTrue(error == NULL);
-    }];
-    XCTAssertTrue([errorWhenFailed isEqualToString:@"Received non-QP message"]);
-}
-
 - (void)test_when_receive_exceptionmessage_should_delegate_failure{
     didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect DidFail Callback"];
 
@@ -72,7 +53,7 @@
         }
     };
     
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:message];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -83,13 +64,13 @@
     checkoutCancelledWasCalled = [self expectationWithDescription:@"Expect Cancelled Callback"];
 
     NSDictionary* message = @{
-        @"messageType": @"UserCancelledMessage",
+        @"messageType": @"CheckoutCancelledMessage",
         @"message": @{
                 @"reason": @"No reason at all!",
         }
     };
     
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:message];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -101,11 +82,24 @@
     NSDictionary* message = @{
         @"messageType": @"VirtualCheckoutSuccessfulMessage",
         @"message": @{
-                @"card": @"sampledata",
+                @"card": @{
+                        @"number": @"1234123412341234",
+                        @"cvc": @"112",
+                        @"expirationMonth": @11,
+                        @"expirationYear": @2022,
+                        @"brand": @"Visa"
+                },
+                @"cardholder": @{
+                        @"name": @"QuadPay",
+                        @"address1": @"123 any street",
+                        @"city": @"New York",
+                        @"state": @"NY",
+                        @"postalCode": @"11001"
+                }
         }
     };
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:message];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -116,10 +110,10 @@
     NSDictionary* message = @{
         @"messageType": @"VirtualCheckoutSuccessfulMessage",
         @"message": @{
-                @"crad": @"junkdata",
+                @"card": @"invalid card data",
         }
     };
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:message];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];

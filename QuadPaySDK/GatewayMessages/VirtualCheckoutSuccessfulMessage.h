@@ -16,11 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VirtualCheckoutSuccessfulMessage : NSObject
 
 /**
- A backend-verifiable signature that the message originated from QuadPay
-*/
-@property (nonatomic, copy, nonnull) NSString* signature;
-
-/**
  The card details for the order
 */
 @property (nonatomic, copy, nonnull) QuadPayCard* card;

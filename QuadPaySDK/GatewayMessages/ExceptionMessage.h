@@ -14,11 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ExceptionMessage : NSObject
 
 /**
- A backend-verifiable signature that the message originated from QuadPay
-*/
-@property (nonatomic, copy, nonnull) NSString* signature;
-
-/**
  A string describing the exception
 */
 @property (nonatomic, copy, nonnull) NSString* message;

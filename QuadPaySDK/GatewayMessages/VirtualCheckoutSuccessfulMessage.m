@@ -15,8 +15,11 @@
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
         NSAssert([_messageName isEqualToString:@"VirtualCheckoutSuccessfulMessage"], @"Correct message type");
-        _signature = dict[@"signature"];
-        NSAssert(_signature != nil, @"Signature must not be nil");
+
+        NSDictionary* cardData = [[dict objectForKey:@"message"] objectForKey:@"card"];
+        NSDictionary* cardholderData = [[dict objectForKey:@"message"] objectForKey:@"cardholder"];
+        _card = [[QuadPayCard alloc] initWithDict:cardData];
+        _cardholder = [[QuadPayCardholder alloc] initWithDict:cardholderData];
     }
     return self;
 }

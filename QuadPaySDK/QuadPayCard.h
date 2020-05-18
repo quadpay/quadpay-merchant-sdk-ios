@@ -36,6 +36,11 @@ Card expiration year. Required
 @property (nonatomic, copy, readonly, nonnull) NSString *expirationYear;
 
 /**
+Card brand. Required
+*/
+@property (nonatomic, copy, readonly, nonnull) NSString *brand;
+
+/**
  Initializer. See properties for more details.
  @param dict Data dictionary.
  @return The initialized credit card info.
