@@ -3,6 +3,7 @@
 #import "QuadPayMessageReceiverDelegate.h"
 #import "QuadPayCard.h"
 #import "QuadPayCardholder.h"
+#import "QuadPayCheckoutDetails.h"
 
 @protocol QuadPayCheckoutDelegate;
 
@@ -22,8 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
 
-+ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate
-NS_SWIFT_NAME(start(delegate:));
+- (void)setDetails:(QuadPayCheckoutDetails*)newDetails
+NS_SWIFT_NAME(setDetails(details:));
+
++ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(QuadPayCheckoutDetails*) details
+NS_SWIFT_NAME(start(delegate:details:));
 
 @end
 

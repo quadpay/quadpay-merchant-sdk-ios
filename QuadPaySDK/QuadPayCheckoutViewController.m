@@ -4,7 +4,9 @@
 
 @end
 
-@implementation QuadPayCheckoutViewController
+@implementation QuadPayCheckoutViewController {
+    QuadPayCheckoutDetails* details;
+}
 
 - (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
 {
@@ -15,14 +17,14 @@
     return self;
 }
 
-+ (QuadPayCheckoutViewController *)startCheckout:(nonnull id<QuadPayCheckoutDelegate>)delegate
-{
-    return [[self alloc] initWithDelegate:delegate];
++ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(QuadPayCheckoutDetails *)details {
+    QuadPayCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
+    [vc setDetails:details];
+    return vc;
 }
 
-- (void)viewController:(QuadPayCheckoutViewController *)viewController didReceiveScriptMessage:(NSString *)message {
-    NSLog(@"QuadPayCheckoutViewController.didRxScriptMessage: %@", message);
-    [_delegate checkoutSuccessful:viewController token:message];
+- (void)setDetails:(QuadPayCheckoutDetails *)newDetails {
+    details = newDetails;
 }
 
 - (void)viewDidLoad
@@ -40,6 +42,46 @@
     [self.webView loadRequest:request];
 }
 
+- (void)viewController:(UIViewController *)viewController didReceiveScriptMessage:(NSString *)message {
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    id jsonOutput = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+
+    // Could not decode message...
+    if (jsonOutput == NULL || error != NULL) {
+        [self->_delegate didFailWithError:self error:@"Received non-JSON message"];
+        return;
+    }
+
+    NSString* messageType = [jsonOutput objectForKey:@"objectType"];
+
+    // It's JSON but not a QP message
+    if (messageType == NULL) {
+        [self->_delegate didFailWithError:self error:@"Received non-QP message"];
+        return;
+    }
+    
+    typedef void (^CaseBlock)(void);
+    NSDictionary *messageBlocks = @{
+        @"UserCancelledMessage": ^{
+            [self->_delegate checkoutCancelled:self reason:@"User Cancelled"];
+        },
+        @"CheckoutSuccessfulMessage": ^{
+            [self->_delegate checkoutSuccessful:self token:jsonOutput[@"token"]];
+        },
+        @"ExceptionMessage": ^{
+            [self->_delegate didFailWithError:self error:@"An internal error has occurred"];
+        }
+    };
+    CaseBlock block = messageBlocks[messageType];
+    if (block) {
+        block();
+    } else {
+        // It looks like a QP message but we can't figure out which type
+        [self->_delegate didFailWithError:self error:@"Could not interpret QPMessage"];
+    }
+}
+
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     decisionHandler(WKNavigationActionPolicyAllow);
@@ -53,7 +95,7 @@
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self loadErrorPage:error];
-    [self.delegate didFailWithError:self error:error];
+    [self.delegate didFailWithError:self error:[error description]];
 }
 
 @end

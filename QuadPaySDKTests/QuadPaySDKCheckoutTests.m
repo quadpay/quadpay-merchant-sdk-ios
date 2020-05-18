@@ -6,25 +6,26 @@
 //
 #import <XCTest/XCTest.h>
 #import "QuadPay.h"
-#import "QuadPayVirtualCheckoutViewController.h"
+#import "QuadPayCheckoutViewController.h"
 
-@interface QuadPaySDKVirtualCheckoutTests : XCTestCase <QuadPayVirtualCheckoutDelegate> {
+@interface QuadPaySDKCheckoutTests : XCTestCase <QuadPayCheckoutDelegate> {
     XCTestExpectation *checkoutCancelledWasCalled;
     XCTestExpectation *checkoutSucceededWasCalled;
     XCTestExpectation *didFailWithErrorWasCalled;
     NSString *errorWhenFailed;
-    QuadPayVirtualCheckoutViewController *checkoutVC;
+    NSString *tokenReceived;
+    QuadPayCheckoutViewController *checkoutVC;
 }
 @end
 
-@implementation QuadPaySDKVirtualCheckoutTests
+@implementation QuadPaySDKCheckoutTests
 
 - (void)setUp {
     [[QuadPay sharedInstance] initialize:@"unitTestMerchantId" environment:@"sandbox" locale:@"US"];
 
     // Minimum viable calls to start a checkout
     QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
-    QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self details:details];
+    QuadPayCheckoutViewController* view = [QuadPayCheckoutViewController startCheckout:self details:details];
     XCTAssertTrue(view != NULL);
 
     // Cause WebView to init and base urls to be opened and tested
@@ -75,22 +76,24 @@
     }];
 }
 
-- (void)test_when_receive_success_message_should_delegate_success{
+- (void)test_when_receive_success_should_have_token{
     checkoutSucceededWasCalled = [self expectationWithDescription:@"Expect Success Callback"];
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"VirtualCheckoutSuccessfulMessage\"}"];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"CheckoutSuccessfulMessage\",\"token\":\"testToken\"}"];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
+        XCTAssertTrue([self->tokenReceived isEqualToString:@"testToken"]);
     }];
 }
 
-- (void)checkoutCancelled:(nonnull QuadPayVirtualCheckoutViewController *)viewController reason:(nonnull NSString *)reason {
+- (void)checkoutCancelled:(nonnull QuadPayCheckoutViewController *)viewController reason:(nonnull NSString *)reason {
     [checkoutCancelledWasCalled fulfill];
 }
-- (void)checkoutSuccessful:(nonnull QuadPayVirtualCheckoutViewController *)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder {
+- (void)checkoutSuccessful:(nonnull QuadPayCheckoutViewController *)viewController token:(NSString*)token {
+    tokenReceived = token;
     [checkoutSucceededWasCalled fulfill];
 }
-- (void)didFailWithError:(nonnull QuadPayVirtualCheckoutViewController *)viewController error:(nonnull NSString *)error {
+- (void)didFailWithError:(nonnull QuadPayCheckoutViewController *)viewController error:(nonnull NSString *)error {
     errorWhenFailed = error;
     [didFailWithErrorWasCalled fulfill];
 }

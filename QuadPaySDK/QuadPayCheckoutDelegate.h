@@ -6,8 +6,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)checkoutSuccessful:(QuadPayCheckoutViewController*)viewController token:(NSString *) token;
 
-- (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController;
-
 - (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController reason:(NSString *)reason;
 
 - (void)didFailWithError:(QuadPayCheckoutViewController*)viewController error:(NSString *)error;

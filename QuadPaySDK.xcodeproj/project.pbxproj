@@ -29,6 +29,7 @@
 		251EC4D0246F01C100679E88 /* QuadPayCheckoutDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4CF246F01C100679E88 /* QuadPayCheckoutDetails.m */; };
 		251EC4D3246F0AB700679E88 /* QuadPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4D1246F0AB700679E88 /* QuadPay.m */; };
 		251EC4D4246F0AB700679E88 /* QuadPay.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4D2246F0AB700679E88 /* QuadPay.h */; };
+		251EC4D62472E51D00679E88 /* QuadPaySDKCheckoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4D52472E51D00679E88 /* QuadPaySDKCheckoutTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		251EC4CF246F01C100679E88 /* QuadPayCheckoutDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadPayCheckoutDetails.m; sourceTree = "<group>"; };
 		251EC4D1246F0AB700679E88 /* QuadPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadPay.m; sourceTree = "<group>"; };
 		251EC4D2246F0AB700679E88 /* QuadPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadPay.h; sourceTree = "<group>"; };
+		251EC4D52472E51D00679E88 /* QuadPaySDKCheckoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadPaySDKCheckoutTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		251EC4962469D64300679E88 /* QuadPaySDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				251EC4D52472E51D00679E88 /* QuadPaySDKCheckoutTests.m */,
 				251EC4972469D64300679E88 /* QuadPaySDKVirtualCheckoutTests.m */,
 				251EC4992469D64300679E88 /* Info.plist */,
 			);
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				251EC4D62472E51D00679E88 /* QuadPaySDKCheckoutTests.m in Sources */,
 				251EC4982469D64300679E88 /* QuadPaySDKVirtualCheckoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

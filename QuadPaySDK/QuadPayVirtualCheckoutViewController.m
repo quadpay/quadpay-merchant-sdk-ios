@@ -4,9 +4,9 @@
 
 @end
 
-@implementation QuadPayVirtualCheckoutViewController
-
-QuadPayCheckoutDetails* details;
+@implementation QuadPayVirtualCheckoutViewController {
+    QuadPayCheckoutDetails* details;
+}
 
 - (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
 {    
@@ -48,14 +48,17 @@ QuadPayCheckoutDetails* details;
     
     typedef void (^CaseBlock)(void);
     NSDictionary *messageBlocks = @{
-        @"userCancelledMessage": ^{
+        @"UserCancelledMessage": ^{
             [self->_delegate checkoutCancelled:self reason:@"User Cancelled"];
         },
-        @"virtualCheckoutSuccessResponse": ^{
+        @"VirtualCheckoutSuccessfulMessage": ^{
             QuadPayCard* card = [[QuadPayCard alloc] initWithDict:jsonOutput];
             QuadPayCardholder* cardholder = [[QuadPayCardholder alloc] initWithDict: jsonOutput];
             [self->_delegate checkoutSuccessful:self card:card cardholder:cardholder];
         },
+        @"ExceptionMessage": ^{
+            [self->_delegate didFailWithError:self error:@"An internal error has occurred"];
+        }
     };
     CaseBlock block = messageBlocks[messageType];
     if (block) {
