@@ -5,6 +5,7 @@
 #import "QuadPayCard.h"
 #import "QuadPayCardholder.h"
 #import "QuadPayCheckoutDetails.h"
+#import "QuadPayURLBuilder.h"
 
 @protocol QuadPayVirtualCheckoutDelegate;
 

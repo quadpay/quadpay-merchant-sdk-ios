@@ -84,7 +84,7 @@
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(dismiss)];
-    NSString* urlString = [self createVirtualCheckoutURL];
+    NSString* urlString = [QuadPayURLBuilder buildVirtualCheckoutURL:details];
     NSURL *url = [NSURL URLWithString:urlString];
     NSLog(@"%@", [NSString stringWithFormat:@"Opening URL: %@", [url absoluteString]]);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -95,7 +95,7 @@
     if (details == NULL) {
         @throw [NSException exceptionWithName:@"DetailsNullException" reason:@"Checkout details cannot be null" userInfo:NULL];
     }
-    NSString * base = [NSString stringWithFormat:@"%@virtual?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=%@", [[QuadPay sharedInstance] getBaseUrl], details.amount];
+    NSString * base = [NSString stringWithFormat:@"%@mobile/virtual/authorize?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=%@", [[QuadPay sharedInstance] getBaseUrl], details.amount];
 
     if (details.merchantReference) {
         base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantReference=%@", details.merchantReference]];

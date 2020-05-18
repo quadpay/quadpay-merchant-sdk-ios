@@ -7,8 +7,8 @@ Pod::Spec.new do |s|
   s.license						= { :type => "mit", :file => "LICENSE" }
   s.source						= { :git => 'https://github.com/quadpay/quadpay-merchant-sdk-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target		= '9.0'
-  s.source_files				    = 'QuadPaySDK/*.{h,m}'
-  s.public_header_files	    = 'QuadPaySDK/*.h'
+  s.source_files				    = 'QuadPaySDK/**/*.{h,m}'
+  s.public_header_files	    = 'QuadPaySDK/**./*.h'
   s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit'
 end
  

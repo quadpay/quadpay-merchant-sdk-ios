@@ -35,8 +35,7 @@
                                                                              target:self
                                                                              action:@selector(dismiss)];
 
-    //NSString* urlString = @"https://safe-badlands-22675.herokuapp.com/";
-    NSString* urlString = @"https://master.gateway.quadpay.xyz/virtual?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=94.40";
+    NSString* urlString = [QuadPayURLBuilder buildCheckoutURL:details];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];

@@ -24,7 +24,7 @@
      */
     QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
     details.amount = [NSDecimalNumber decimalNumberWithString:@"94.40" locale:NULL];
-    details.customerPhoneNumber = @"+14076901147";
+    details.customerPhoneNumber = @"+11231234";
     details.customerEmail = @"sdk_example@quadpay.com";
 
     QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self details:details];
