@@ -60,7 +60,7 @@
 - (void)test_when_receive_exceptionmessage_should_delegate_failure{
     didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect DidFail Callback"];
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"ExceptionMessage\"}"];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"ExceptionMessage\",\"message\":\"An internal error has occurred\"}"];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -70,7 +70,7 @@
 - (void)test_when_receive_cancelledmessage_should_delegate_cancelled{
     checkoutCancelledWasCalled = [self expectationWithDescription:@"Expect Cancelled Callback"];
 
-    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"UserCancelledMessage\"}"];
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"UserCancelledMessage\",\"reason\":\"closed\"}"];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
     }];
@@ -83,6 +83,15 @@
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
         XCTAssertTrue([self->tokenReceived isEqualToString:@"testToken"]);
+    }];
+}
+
+- (void)test_when_receive_badmessage_should_delegate_failure{
+    didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect Failure Callback"];
+
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"CheckoutSuccessfulMessage\",\"torken\":\"testToken\"}"];
+    [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
+        XCTAssertTrue(error == NULL);
     }];
 }
 

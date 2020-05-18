@@ -84,6 +84,15 @@
     }];
 }
 
+- (void)test_when_receive_badmessage_should_delegate_failure{
+    didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect Failure Callback"];
+
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:@"{\"objectType\":\"VirtualCheckoutSuccessfulMessage\",\"crad\":\"junkdata\"}"];
+    [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
+        XCTAssertTrue(error == NULL);
+    }];
+}
+
 - (void)checkoutCancelled:(nonnull QuadPayVirtualCheckoutViewController *)viewController reason:(nonnull NSString *)reason {
     [checkoutCancelledWasCalled fulfill];
 }

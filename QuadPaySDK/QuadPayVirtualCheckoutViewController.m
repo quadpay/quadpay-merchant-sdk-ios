@@ -46,6 +46,7 @@
         return;
     }
     
+    // Code blocks to handle each message type - decode message and delegate to handler
     typedef void (^CaseBlock)(void);
     NSDictionary *messageBlocks = @{
         @"UserCancelledMessage": ^{
@@ -60,9 +61,16 @@
             [self->_delegate didFailWithError:self error:@"An internal error has occurred"];
         }
     };
+
+    // Call the chosen block -- wrapped in t/c to handle any decoding or delegation errors
     CaseBlock block = messageBlocks[messageType];
     if (block) {
-        block();
+        @try {
+            block();
+        }
+        @catch(NSException* e) {
+            [self->_delegate didFailWithError:self error:[e description]];
+        }
     } else {
         // It looks like a QP message but we can't figure out which type
         [self->_delegate didFailWithError:self error:@"Could not interpret QPMessage"];
@@ -103,7 +111,7 @@
                                                                              action:@selector(dismiss)];
     NSString* urlString = [self createVirtualCheckoutURL];
     NSURL *url = [NSURL URLWithString:urlString];
-    NSLog([NSString stringWithFormat:@"Opening URL: %@", [url absoluteString]]);
+    NSLog(@"%@", [NSString stringWithFormat:@"Opening URL: %@", [url absoluteString]]);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -163,7 +171,7 @@
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self loadErrorPage:error];
-    [self.delegate didFailWithError:self error:error];
+    [self.delegate didFailWithError:self error:[error description]];
 }
 
 @end

@@ -61,21 +61,32 @@
         return;
     }
     
+    // Code blocks to handle each message type - decode message and delegate to handler
     typedef void (^CaseBlock)(void);
     NSDictionary *messageBlocks = @{
         @"UserCancelledMessage": ^{
-            [self->_delegate checkoutCancelled:self reason:@"User Cancelled"];
+            UserCancelledMessage* message = [[UserCancelledMessage alloc] initWithDict:jsonOutput];
+            [self->_delegate checkoutCancelled:self reason:message.reason];
         },
         @"CheckoutSuccessfulMessage": ^{
-            [self->_delegate checkoutSuccessful:self token:jsonOutput[@"token"]];
+            CheckoutSuccessfulMessage* message = [[CheckoutSuccessfulMessage alloc] initWithDict:jsonOutput];
+            [self->_delegate checkoutSuccessful:self token:message.token];
         },
         @"ExceptionMessage": ^{
-            [self->_delegate didFailWithError:self error:@"An internal error has occurred"];
+            ExceptionMessage* message = [[ExceptionMessage alloc] initWithDict:jsonOutput];
+            [self->_delegate didFailWithError:self error:message.message];
         }
     };
+    
+    // Call the chosen block -- wrapped in t/c to handle any decoding or delegation errors
     CaseBlock block = messageBlocks[messageType];
     if (block) {
-        block();
+        @try {
+            block();
+        }
+        @catch(NSException* e) {
+            [self->_delegate didFailWithError:self error:[e description]];
+        }
     } else {
         // It looks like a QP message but we can't figure out which type
         [self->_delegate didFailWithError:self error:@"Could not interpret QPMessage"];

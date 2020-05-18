@@ -4,6 +4,9 @@
 #import "QuadPayCard.h"
 #import "QuadPayCardholder.h"
 #import "QuadPayCheckoutDetails.h"
+#import "CheckoutSuccessfulMessage.h"
+#import "ExceptionMessage.h"
+#import "UserCancelledMessage.h"
 
 @protocol QuadPayCheckoutDelegate;
 
