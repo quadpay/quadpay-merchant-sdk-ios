@@ -18,9 +18,6 @@ Integration documentation
 
 Please find integration documentation at https://docs.quadpay.com/docs/mobile-sdk-ios
 
-## [TBD] Using the widget
-
-In development.
 
 Example
 =======
