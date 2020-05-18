@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CheckoutSuccessfulMessage : NSObject
 
 /**
+ A backend-verifiable signature that the message originated from QuadPay
+*/
+@property (nonatomic, copy, nonnull) NSString* signature;
+
+/**
  The checkout token that can be used to confirm this checkout into an order
 */
 @property (nonatomic, copy, nonnull) NSString* token;
@@ -21,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Initializer. See properties for more details.
  @param dict Data dictionary.
- @return The initialized credit card info.
+ @return The initialized message
  */
 - (instancetype)initWithDict: (NSDictionary *)dict
 NS_SWIFT_NAME(init(dict:));

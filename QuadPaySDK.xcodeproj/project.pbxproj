@@ -36,6 +36,8 @@
 		251EC4DF2472EFDC00679E88 /* ExceptionMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4DD2472EFDC00679E88 /* ExceptionMessage.h */; };
 		251EC4E62472F46300679E88 /* UserCancelledMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4E42472F46300679E88 /* UserCancelledMessage.h */; };
 		251EC4E72472F46300679E88 /* UserCancelledMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4E52472F46300679E88 /* UserCancelledMessage.m */; };
+		251EC4EA247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4E8247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h */; };
+		251EC4EB247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4E9247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		251EC4DD2472EFDC00679E88 /* ExceptionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionMessage.h; sourceTree = "<group>"; };
 		251EC4E42472F46300679E88 /* UserCancelledMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCancelledMessage.h; sourceTree = "<group>"; };
 		251EC4E52472F46300679E88 /* UserCancelledMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCancelledMessage.m; sourceTree = "<group>"; };
+		251EC4E8247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCheckoutSuccessfulMessage.h; sourceTree = "<group>"; };
+		251EC4E9247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCheckoutSuccessfulMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,8 @@
 		251EC4D72472ED6700679E88 /* GatewayMessages */ = {
 			isa = PBXGroup;
 			children = (
+				251EC4E8247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h */,
+				251EC4E9247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m */,
 				251EC4E42472F46300679E88 /* UserCancelledMessage.h */,
 				251EC4E52472F46300679E88 /* UserCancelledMessage.m */,
 				251EC4DD2472EFDC00679E88 /* ExceptionMessage.h */,
@@ -181,6 +187,7 @@
 			files = (
 				251EC4DF2472EFDC00679E88 /* ExceptionMessage.h in Headers */,
 				251EC4D4246F0AB700679E88 /* QuadPay.h in Headers */,
+				251EC4EA247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h in Headers */,
 				251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */,
 				251EC4D92472ED8400679E88 /* CheckoutSuccessfulMessage.h in Headers */,
 				251EC4CC246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.h in Headers */,
@@ -305,6 +312,7 @@
 				251EC4B62469DC9100679E88 /* QuadPayWebViewController.m in Sources */,
 				251EC4DB2472EE9C00679E88 /* CheckoutSuccessfulMessage.m in Sources */,
 				251EC4C5246B14F800679E88 /* QuadPayCustomer.m in Sources */,
+				251EC4EB247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

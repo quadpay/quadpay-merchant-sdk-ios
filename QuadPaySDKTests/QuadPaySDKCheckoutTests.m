@@ -68,6 +68,7 @@
 
     NSDictionary* message = @{
         @"messageType": @"ExceptionMessage",
+        @"signature": @"asdfasdf",
         @"message": @{
                 @"message": @"An internal error has occurred",
         }
@@ -85,6 +86,7 @@
 
     NSDictionary* message = @{
         @"messageType": @"UserCancelledMessage",
+        @"signature": @"asdfasdf",
         @"message": @{
                 @"reason": @"closed",
         }
@@ -101,6 +103,7 @@
 
     NSDictionary* message = @{
         @"messageType": @"CheckoutSuccessfulMessage",
+        @"signature": @"asdfasdf",
         @"message": @{
                 @"token": @"testToken",
         }
@@ -118,8 +121,25 @@
 
     NSDictionary* message = @{
         @"messageType": @"CheckoutSuccessfulMessage",
+        @"signature": @"asdfasdf",
         @"message": @{
                 @"torken": @"testToken",
+        }
+    };
+
+    [checkoutVC viewController:checkoutVC didReceiveScriptMessage:[self dictToJson:message]];
+    [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
+        XCTAssertTrue(error == NULL);
+    }];
+}
+
+- (void)test_when_receive_unsignedmessage_should_delegate_failure{
+    didFailWithErrorWasCalled = [self expectationWithDescription:@"Expect Failure Callback"];
+
+    NSDictionary* message = @{
+        @"messageType": @"CheckoutSuccessfulMessage",
+        @"message": @{
+                @"token": @"testToken",
         }
     };
 
