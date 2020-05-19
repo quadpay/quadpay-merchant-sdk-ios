@@ -28,7 +28,8 @@
     if (details == NULL) {
         @throw [NSException exceptionWithName:@"DetailsNullException" reason:@"Checkout details cannot be null" userInfo:NULL];
     }
-    NSString * base = [NSString stringWithFormat:@"MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=%@", details.amount];
+    NSString* merchantId = [[QuadPay sharedInstance] merchantId];
+    NSString * base = [NSString stringWithFormat:@"MerchantId=%@&Order.Amount=%@", merchantId, details.amount];
 
     if (details.merchantReference) {
         base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantReference=%@", details.merchantReference]];
