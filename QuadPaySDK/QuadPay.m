@@ -33,9 +33,9 @@ static QuadPay *__sharedInstance = nil;
         return @"https://master.gateway.quadpay.xyz/";
     }
     if ([_environment isEqualToString:@"sandbox"]) {
-        return @"https://master.gateway.quadpay.xyz/";
+        return @"https://sandbox.gateway.quadpay.com/";
     }
-    if ([_environment isEqualToString:@"ci"]) {
+    if ([_environment isEqualToString:@"development"]) {
         return @"https://master.gateway.quadpay.xyz/";
     }
     [[NSException exceptionWithName:@"QuadPayException" reason:@"Must have environment" userInfo:NULL] raise];
