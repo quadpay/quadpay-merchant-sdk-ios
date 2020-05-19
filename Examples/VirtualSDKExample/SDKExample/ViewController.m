@@ -8,7 +8,7 @@
 #import "ViewController.h"
 #import <QuadPaySDK/QuadPaySDK.h>
 
-@interface ViewController () <QuadPayCheckoutDelegate>
+@interface ViewController () <QuadPayVirtualCheckoutDelegate>
 
 @end
 
@@ -27,16 +27,16 @@
     details.customerPhoneNumber = @"+1231231234";
     details.customerEmail = @"sdk_example@quadpay.com";
 
-    QuadPayCheckoutViewController* view = [QuadPayCheckoutViewController startCheckout:self details:details];
+    QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self details:details];
     [self presentViewController:view animated:YES completion:nil];
 }
 
-- (void)didFailWithError:(QuadPayCheckoutViewController*)viewController error:(nonnull NSString *)error {
+- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSString *)error {
     [viewController dismissViewControllerAnimated:true completion:^ {}];
     NSLog(@"%@", [NSString stringWithFormat:@"QuadPay checkout encountered an error %@", error]);
 }
 
-- (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController reason:(NSString *)reason {
+- (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason {
     NSLog(@"%@", [NSString stringWithFormat:@"User cancelled QuadPay checkout with reason %@", reason]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
@@ -46,13 +46,13 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayCheckoutViewController*)viewController token:(NSString*)token {
-    NSLog(@"%@", [NSString stringWithFormat:@"Confirmation token %@", token]);
+- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder {
+    NSLog(@"%@", [NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
-            Pass this token to your backend to complete the order!
+            Your code to handle order creation with the provided card details, this demo just shows an alert!
          */
-        [self showCheckoutSuccessAlert];
+        [self showCheckoutSuccessAlert:card cardholder:cardholder];
     }];
 }
 
@@ -69,9 +69,10 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)showCheckoutSuccessAlert {
+- (void)showCheckoutSuccessAlert:(QuadPayCard*) card cardholder:(QuadPayCardholder*) cardholder {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Succeeded"
-                                                                   message: @"QuadPay checkout succeeded"
+                                                                   message:[NSString stringWithFormat:
+                                                                            @"QuadPay checkout succeeded, card issued: %@", card.number]
                                    preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
