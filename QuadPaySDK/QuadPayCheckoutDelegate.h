@@ -4,7 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol QuadPayCheckoutDelegate <NSObject>
 
-- (void)checkoutSuccessful:(QuadPayCheckoutViewController*)viewController token:(NSString *) token;
+- (void)checkoutSuccessful:(QuadPayCheckoutViewController*)viewController orderId:(NSString *) orderId;
 
 - (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController reason:(NSString *)reason;
 

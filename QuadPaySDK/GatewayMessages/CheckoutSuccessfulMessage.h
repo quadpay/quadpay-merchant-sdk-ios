@@ -14,14 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CheckoutSuccessfulMessage : NSObject
 
 /**
- A backend-verifiable signature that the message originated from QuadPay
+ The checkout order id used to confirm the order from a backend server
 */
-@property (nonatomic, copy, nonnull) NSString* signature;
-
-/**
- The checkout token that can be used to confirm this checkout into an order
-*/
-@property (nonatomic, copy, nonnull) NSString* token;
+@property (nonatomic, copy, nonnull) NSString* orderId;
 
 /**
  Initializer. See properties for more details.

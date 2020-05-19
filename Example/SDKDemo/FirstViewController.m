@@ -47,8 +47,8 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayCheckoutViewController*)viewController token:(NSString*)token {
-    NSLog(@"%@", [NSString stringWithFormat:@"Confirmation token %@", token]);
+- (void) checkoutSuccessful:(QuadPayCheckoutViewController*)viewController orderId:(NSString*)orderId {
+    NSLog(@"%@", [NSString stringWithFormat:@"Confirmation orderId %@", orderId]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
             Pass this token to your backend to complete the order!

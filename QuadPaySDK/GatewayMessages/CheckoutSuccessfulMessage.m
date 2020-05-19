@@ -15,11 +15,9 @@
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
         NSAssert([_messageName isEqualToString:@"CheckoutSuccessfulMessage"], @"Correct message type");
-        _signature = dict[@"signature"];
-        NSAssert(_signature != nil, @"Signature must not be nil");
 
-        _token = dict[@"message"][@"token"];
-        NSAssert(_token != nil, @"Token must not be nil");        
+        _orderId = dict[@"message"][@"orderId"];
+        NSAssert(_orderId != nil, @"Order id must not be nil");
     }
     return self;
 }

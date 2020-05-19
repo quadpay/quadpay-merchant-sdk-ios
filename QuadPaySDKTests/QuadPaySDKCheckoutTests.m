@@ -13,7 +13,7 @@
     XCTestExpectation *checkoutSucceededWasCalled;
     XCTestExpectation *didFailWithErrorWasCalled;
     NSString *errorWhenFailed;
-    NSString *tokenReceived;
+    NSString *orderIdReceived;
     QuadPayCheckoutViewController *checkoutVC;
 }
 @end
@@ -80,14 +80,14 @@
         @"messageType": @"CheckoutSuccessfulMessage",
         @"signature": @"asdfasdf",
         @"message": @{
-                @"token": @"testToken",
+                @"orderId": @"test-order-id-1234",
         }
     };
 
     [checkoutVC viewController:checkoutVC didReceiveScriptMessage:message];
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         XCTAssertTrue(error == NULL);
-        XCTAssertTrue([self->tokenReceived isEqualToString:@"testToken"]);
+        XCTAssertTrue([self->orderIdReceived isEqualToString:@"test-order-id-1234"]);
     }];
 }
 
@@ -127,8 +127,8 @@
 - (void)checkoutCancelled:(nonnull QuadPayCheckoutViewController *)viewController reason:(nonnull NSString *)reason {
     [checkoutCancelledWasCalled fulfill];
 }
-- (void)checkoutSuccessful:(nonnull QuadPayCheckoutViewController *)viewController token:(NSString*)token {
-    tokenReceived = token;
+- (void)checkoutSuccessful:(nonnull QuadPayCheckoutViewController *)viewController orderId:(NSString*)orderId {
+    orderIdReceived = orderId;
     [checkoutSucceededWasCalled fulfill];
 }
 - (void)didFailWithError:(nonnull QuadPayCheckoutViewController *)viewController error:(nonnull NSString *)error {

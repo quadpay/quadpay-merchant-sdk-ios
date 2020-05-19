@@ -59,7 +59,7 @@
         },
         @"CheckoutSuccessfulMessage": ^{
             CheckoutSuccessfulMessage* quadpayMessage = [[CheckoutSuccessfulMessage alloc] initWithDict:message];
-            [self->_delegate checkoutSuccessful:self token:quadpayMessage.token];
+            [self->_delegate checkoutSuccessful:self orderId:quadpayMessage.orderId];
         },
         @"ExceptionMessage": ^{
             ExceptionMessage* quadpayMessage = [[ExceptionMessage alloc] initWithDict:message];
