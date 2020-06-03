@@ -26,6 +26,14 @@
     QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
     details.amount = [NSDecimalNumber decimalNumberWithString:@"94.40" locale:NULL];
     details.customerPhoneNumber = @"+1231231234";
+    details.customerCity = @"New York";
+    details.customerState = @"NY";
+    details.customerAddressLine1 = @"240 Meeker Ave";
+    details.customerAddressLine2 = @"Apt 35";
+    details.customerPostalCode = @"11211";
+    details.customerCountry = @"US";
+    details.customerFirstName = @"Quincy";
+    details.customerLastName = @"Payman";
     details.customerEmail = @"sdk_example@quadpay.com";
 
     QuadPayCheckoutViewController* view = [QuadPayCheckoutViewController startCheckout:self details:details];

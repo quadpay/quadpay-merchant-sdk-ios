@@ -78,7 +78,6 @@
                                                                              action:@selector(dismiss)];
     NSString* urlString = [QuadPayURLBuilder buildVirtualCheckoutURL:details];
     NSURL *url = [NSURL URLWithString:urlString];
-    NSLog(@"%@", [NSString stringWithFormat:@"Opening URL: %@", [url absoluteString]]);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -132,13 +131,36 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
 {
-    decisionHandler(WKNavigationResponsePolicyAllow);
+    if ([navigationResponse.response isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse * response = (NSHTTPURLResponse *)navigationResponse.response;
+        if (response.statusCode != 200) {
+            decisionHandler(WKNavigationResponsePolicyCancel);
+        } else {
+            decisionHandler(WKNavigationResponsePolicyAllow);
+        }
+    } else {
+        decisionHandler(WKNavigationResponsePolicyAllow);
+    }
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self loadErrorPage:error];
     [self.delegate didFailWithError:self error:[error description]];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation;
+{
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+    if (error) {
+        NSString* errorMessage = [NSString stringWithFormat:@"WebView.didFailProvisionalNavigation %@", [error localizedDescription]];
+        [self.delegate didFailWithError:self error:errorMessage];
+    } else {
+        [self.delegate didFailWithError:self error:@"QuadPay webview failed to load."];
+    }
 }
 
 @end

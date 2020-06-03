@@ -30,9 +30,9 @@
 
 - (void)userContentController:(WKUserContentController *)userContentController
       didReceiveScriptMessage:(WKScriptMessage *)message {
-    for(NSString *key in [message.body allKeys]) {
-      NSLog(@"%@ %@", key, [message.body objectForKey:key]);
-    }
+    // for(NSString *key in [message.body allKeys]) {
+    //   NSLog(@"%@ %@", key, [message.body objectForKey:key]);
+    // }
     [self.messageDelegate viewController:self didReceiveScriptMessage:(NSDictionary*)message.body];
 }
 
