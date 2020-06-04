@@ -23,6 +23,7 @@
     /*
         This action handler is where the QuadPay checkout is started
      */
+
     QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
     details.amount = [NSDecimalNumber decimalNumberWithString:@"94.40" locale:NULL];
     details.customerPhoneNumber = @"+1231231234";

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nonnull) NSString* environment;
 @property (nonatomic, copy, nonnull) NSString* locale;
 
-+ (id)sharedInstance;
++ (instancetype)sharedInstance;
 
 - (void)initialize:(NSString *)merchantId environment:(NSString* )environment locale:(NSString *)locale;
 
