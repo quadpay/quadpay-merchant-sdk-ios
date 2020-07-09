@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name						= 'QuadPaySDK'
   s.authors						= "QuadPay, Inc."
-  s.version						= '0.0.9'
+  s.version						= '0.1.0'
   s.summary						= 'Integrate QuadPay into your iOS app'
   s.homepage					= 'https://github.com/quadpay/quadpay-merchant-sdk-ios'
   s.license						= { :type => "mit", :file => "LICENSE" }
