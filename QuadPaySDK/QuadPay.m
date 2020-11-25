@@ -29,7 +29,7 @@ static QuadPay *__sharedInstance = nil;
 }
 
 - (NSString *)getBaseUrl {
-    if ([_environment isEqualToString:@"prod"]) {
+    if ([_environment isEqualToString:@"production"]) {
         return @"https://gateway.quadpay.com/";
     }
     if ([_environment isEqualToString:@"sandbox"]) {
