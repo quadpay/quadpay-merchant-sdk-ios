@@ -8,6 +8,7 @@
 #define CheckoutSuccessfulMessage_h
 
 #import <Foundation/Foundation.h>
+#import "QuadPayCustomer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
  The checkout order id used to confirm the order from a backend server
 */
 @property (nonatomic, copy, nonnull) NSString* orderId;
+
+/**
+ The QuadPay customer data
+*/
+@property (nonatomic, copy, nonnull) QuadPayCustomer* customer;
 
 /**
  Initializer. See properties for more details.

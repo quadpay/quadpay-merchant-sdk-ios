@@ -18,8 +18,10 @@
 
         NSDictionary* cardData = [[dict objectForKey:@"message"] objectForKey:@"card"];
         NSDictionary* cardholderData = [[dict objectForKey:@"message"] objectForKey:@"cardholder"];
+        NSDictionary* customerData = [[dict objectForKey:@"message"] objectForKey:@"customer"];
         _card = [[QuadPayCard alloc] initWithDict:cardData];
         _cardholder = [[QuadPayCardholder alloc] initWithDict:cardholderData];
+        _customer = [[QuadPayCustomer alloc] initWithDict:customerData];
     }
     return self;
 }

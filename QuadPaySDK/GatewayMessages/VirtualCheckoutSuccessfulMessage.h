@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "QuadPayCard.h"
 #import "QuadPayCardholder.h"
+#import "QuadPayCustomer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
  The card holder details for the order
 */
 @property (nonatomic, copy, nonnull) QuadPayCardholder* cardholder;
+
+/**
+ The QuadPay customer data
+*/
+@property (nonatomic, copy, nonnull) QuadPayCustomer* customer;
 
 /**
  Initializer. See properties for more details.

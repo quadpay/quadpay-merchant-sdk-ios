@@ -66,15 +66,25 @@
     }];
 }
 
+- (void) checkoutSuccessful:(QuadPayCheckoutViewController*)viewController orderId:(NSString*)orderId customer:(QuadPayCustomer*)customer {
+    NSLog(@"%@", [NSString stringWithFormat:@"Confirmation orderId %@, customer: %@", orderId, [customer toString]]);
+    [viewController dismissViewControllerAnimated:true completion:^ {
+        /*
+         Pass this token to your backend to complete the order!
+         */
+        [self showCheckoutSuccessAlert];
+    }];
+}
+
 
 - (void)showUserCancelledAlert {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"User Cancelled"
-                                   message:@"The user has cancelled the QuadPay checkout!"
-                                   preferredStyle:UIAlertControllerStyleAlert];
-     
+                                                                   message:@"The user has cancelled the QuadPay checkout!"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-       handler:^(UIAlertAction * action) {}];
-     
+                                                          handler:^(UIAlertAction * action) {}];
+    
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -82,11 +92,11 @@
 - (void)showCheckoutSuccessAlert {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Succeeded"
                                                                    message: @"QuadPay checkout succeeded"
-                                   preferredStyle:UIAlertControllerStyleAlert];
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-       handler:^(UIAlertAction * action) {}];
-
+                                                          handler:^(UIAlertAction * action) {}];
+    
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
 }

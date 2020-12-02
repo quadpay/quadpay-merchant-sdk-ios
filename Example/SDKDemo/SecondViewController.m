@@ -54,13 +54,13 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder {
+- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer {
     NSLog(@"%@", [NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
             Your code to handle order creation with the provided card details, this demo just shows an alert!
          */
-        [self showCheckoutSuccessAlert:card cardholder:cardholder];
+        [self showCheckoutSuccessAlert:card cardholder:cardholder customer:customer];
     }];
 }
 
@@ -77,7 +77,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)showCheckoutSuccessAlert:(QuadPayCard*) card cardholder:(QuadPayCardholder*) cardholder {
+- (void)showCheckoutSuccessAlert:(QuadPayCard*) card cardholder:(QuadPayCardholder*) cardholder customer:(QuadPayCustomer*) customer {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Succeeded"
                                                                    message:[NSString stringWithFormat:
                                                                             @"QuadPay checkout succeeded, card issued: %@", card.number]
@@ -85,9 +85,11 @@
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
        handler:^(UIAlertAction * action) {}];
-
+ 
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
+    NSLog([NSString stringWithFormat:
+           @"QuadPay checkout succeeded, card issued: %@, customer: %@", card.number, [customer toString]]);
 }
 
 @end
