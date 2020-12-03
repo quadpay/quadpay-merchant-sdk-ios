@@ -18,6 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Cardholder's name as printed on card. Required
  */
+@property (nonatomic, copy, readonly, nonnull) NSString *firstName;
+
+/**
+ Cardholder's name as printed on card. Required
+ */
+@property (nonatomic, copy, readonly, nonnull) NSString *lastName;
+
+/**
+ Cardholder's name as printed on card. Required
+ */
 @property (nonatomic, copy, readonly, nonnull) NSString *name;
 
 /**
@@ -44,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
  Cardholder's postal code. Required
  */
 @property (nonatomic, copy, readonly, nonnull) NSString *postalCode;
+
+/**
+ Cardholder's name as printed on card. Required
+ */
+@property (nonatomic, copy, readonly, nonnull) NSString *country;
 
 
 /**
