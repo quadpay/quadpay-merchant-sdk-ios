@@ -72,6 +72,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic, copy, nullable) NSString* customerCountry;
 
+/**
+ Merchant Fee for Payment Plan. Optional
+*/
+@property (nonatomic, copy, nullable) NSString* merchantFeeForPaymentPlan;
+
 @end
 
 NS_ASSUME_NONNULL_END
