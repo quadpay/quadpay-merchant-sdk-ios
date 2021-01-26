@@ -64,6 +64,9 @@
     if (details.customerCountry) {
         base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.Country=%@", details.customerCountry]];
     }
+    if (details.merchantFeeForPaymentPlan) {
+        base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantFeeForPaymentPlan=%@", details.merchantFeeForPaymentPlan]];
+    }
     return base;
 }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -109,7 +109,6 @@
 				D3BA219A3883EFC91F38F3F3 /* Pods-SDKDemoTests.debug.xcconfig */,
 				2F5B8916E41978389150BB7B /* Pods-SDKDemoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -596,7 +595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F52B2ZHLGH;
+				DEVELOPMENT_TEAM = VZ56G7337J;
 				INFOPLIST_FILE = SDKDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -614,7 +613,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F52B2ZHLGH;
+				DEVELOPMENT_TEAM = VZ56G7337J;
 				INFOPLIST_FILE = SDKDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

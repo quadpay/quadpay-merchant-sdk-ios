@@ -11,7 +11,7 @@
 @implementation QuadPayCustomer
 
 - (NSString*)toString {
-  return [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@",
+  return [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@, %@, %@, %@, %@",
           _firstName, _lastName, _address1, _address2, _postalCode, _city, _state, _country, _email, _phoneNumber];
 }
 

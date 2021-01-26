@@ -11,7 +11,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    if (@available(iOS 11.0, *)) {
+        // 'automaticallyAdjustsScrollViewInsets' is deprecated: first deprecated in iOS 11.0 - Use UIScrollView's contentInsetAdjustmentBehavior instead
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
     WKUserContentController *controller = [WKUserContentController new];
     [controller addScriptMessageHandler:self name:@"quadpay"];

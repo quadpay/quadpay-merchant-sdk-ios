@@ -88,7 +88,7 @@
  
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
-    NSLog([NSString stringWithFormat:
+    NSLog(@"%@", [NSString stringWithFormat:
            @"QuadPay checkout succeeded, card issued: %@, customer: %@", card.number, [customer toString]]);
 }
 
