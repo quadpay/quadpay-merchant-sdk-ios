@@ -82,48 +82,6 @@
     [self.webView loadRequest:request];
 }
 
-- (NSString *)createVirtualCheckoutURL {
-    if (details == NULL) {
-        @throw [NSException exceptionWithName:@"DetailsNullException" reason:@"Checkout details cannot be null" userInfo:NULL];
-    }
-    NSString * base = [NSString stringWithFormat:@"%@mobile/virtual/authorize?MerchantId=44444444-4444-4444-4444-444444444444&Order.Amount=%@", [[QuadPay sharedInstance] getBaseUrl], details.amount];
-
-    if (details.merchantReference) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantReference=%@", details.merchantReference]];
-    }
-    if (details.customerEmail) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.Email=%@", details.customerEmail]];
-    }
-    if (details.customerFirstName) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.FirstName=%@", details.customerFirstName]];
-    }
-    if (details.customerLastName) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.LastName=%@", details.customerLastName]];
-    }
-    if (details.customerPhoneNumber) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.Phone=%@", details.customerPhoneNumber]];
-    }
-    if (details.customerAddressLine1) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.Line1=%@", details.customerAddressLine1]];
-    }
-    if (details.customerAddressLine2) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.Line2=%@", details.customerAddressLine2]];
-    }
-    if (details.customerCity) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.City=%@", details.customerCity]];
-    }
-    if (details.customerState) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.State=%@", details.customerState]];
-    }
-    if (details.customerPostalCode) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.PostalCode=%@", details.customerPostalCode]];
-    }
-    if (details.customerCountry) {
-        base = [base stringByAppendingString:[NSString stringWithFormat:@"&Order.BillingAddress.Country=%@", details.customerCountry]];
-    }
-    return base;
-}
-
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     decisionHandler(WKNavigationActionPolicyAllow);
