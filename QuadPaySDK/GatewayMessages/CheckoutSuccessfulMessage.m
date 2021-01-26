@@ -14,7 +14,9 @@
 {
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
-        NSAssert([_messageName isEqualToString:@"CheckoutSuccessfulMessage"], @"Correct message type");
+        if (![_messageName isEqualToString:@"CheckoutSuccessfulMessage"]) {
+            @throw [NSException exceptionWithName:@"MessageTypeException" reason:@"Incorrect Message Type" userInfo:@{@"Message Name": _messageName, @"Expected Message Type": @"CheckoutSuccessfulMessage"}];
+        }
 
         NSDictionary* customerData = [[dict objectForKey:@"message"] objectForKey:@"customer"];
         

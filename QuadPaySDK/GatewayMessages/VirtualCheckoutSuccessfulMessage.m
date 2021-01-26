@@ -14,7 +14,9 @@
 {
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
-        NSAssert([_messageName isEqualToString:@"VirtualCheckoutSuccessfulMessage"], @"Correct message type");
+        if (![_messageName isEqualToString:@"VirtualCheckoutSuccessfulMessage"]) {
+            @throw [NSException exceptionWithName:@"MessageTypeException" reason:@"Incorrect Message Type" userInfo:@{@"Message Name": _messageName, @"Expected Message Type": @"VirtualCheckoutSuccessfulMessage"}];
+        }
 
         NSDictionary* cardData = [[dict objectForKey:@"message"] objectForKey:@"card"];
         NSDictionary* cardholderData = [[dict objectForKey:@"message"] objectForKey:@"cardholder"];

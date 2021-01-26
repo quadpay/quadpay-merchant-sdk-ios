@@ -14,7 +14,9 @@
 {
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
-        NSAssert([_messageName isEqualToString:@"CheckoutCancelledMessage"], @"Correct message type");
+        if (![_messageName isEqualToString:@"CheckoutCancelledMessage"]) {
+            @throw [NSException exceptionWithName:@"MessageTypeException" reason:@"Incorrect Message Type" userInfo:@{@"Message Name": _messageName, @"Expected Message Type": @"CheckoutCancelledMessage"}];
+        }
 
         _reason = dict[@"message"][@"reason"];        
     }
