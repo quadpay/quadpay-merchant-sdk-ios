@@ -14,7 +14,10 @@
 {
     if (self = [super init]) {
         NSString* _messageName = dict[@"messageType"];
-        NSAssert([_messageName isEqualToString:@"ExceptionMessage"], @"Correct message type");
+        if (![_messageName isEqualToString:@"ExceptionMessage"]) {
+            @throw [NSException exceptionWithName:@"MessageTypeException" reason:@"Incorrect Message Type" userInfo:@{@"Message Name": _messageName, @"Expected Message Type": @"ExceptionMessage"}];
+        }
+
 
         _message = dict[@"message"][@"message"];
     }
