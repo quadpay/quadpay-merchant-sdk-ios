@@ -22,7 +22,7 @@
         
         _orderId = dict[@"message"][@"orderId"];
         _customer = [[QuadPayCustomer alloc] initWithDict:customerData];
-        
+
         NSAssert(_orderId != nil, @"Order id must not be nil");
     }
     return self;
