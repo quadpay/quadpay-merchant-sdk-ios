@@ -26,10 +26,11 @@
 };
 
 - (void)setUp {
-    [[QuadPay sharedInstance] initialize:@"unitTestMerchantId" environment:@"sandbox" locale:@"US"];
+    [[QuadPay sharedInstance] initialize:@"5898b9a9-46bb-4647-92ed-52643d019d8c" environment:@"sandbox" locale:@"US"];
 
     // Minimum viable calls to start a checkout
     QuadPayCheckoutDetails* details = [QuadPayCheckoutDetails alloc];
+    [details setAmount:[NSDecimalNumber decimalNumberWithString:@"100"]];
     QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self details:details];
     XCTAssertTrue(view != NULL);
 
@@ -94,7 +95,20 @@
                         @"address1": @"123 any street",
                         @"city": @"New York",
                         @"state": @"NY",
-                        @"postalCode": @"11001"
+                        @"postalCode": @"11001",
+                        @"country": @"US"
+                },
+                @"customer": @{
+                    @"firstName": @"Juliette",
+                    @"lastName": @"Quadrilateral",
+                    @"address1": @"240 Meeker Ave",
+                    @"address2": @"Apt 35",
+                    @"city": @"New York",
+                    @"state": @"NY",
+                    @"postalCode": @"11211",
+                    @"country": @"US",
+                    @"email": @"sdk_test@quadpay.com",
+                    @"phoneNumber": @"+1231231234",
                 }
         }
     };
@@ -122,12 +136,14 @@
 - (void)checkoutCancelled:(nonnull QuadPayVirtualCheckoutViewController *)viewController reason:(nonnull NSString *)reason {
     [checkoutCancelledWasCalled fulfill];
 }
-- (void)checkoutSuccessful:(nonnull QuadPayVirtualCheckoutViewController *)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder {
+- (void)checkoutSuccessful:(nonnull QuadPayVirtualCheckoutViewController *)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer {
     [checkoutSucceededWasCalled fulfill];
 }
 - (void)didFailWithError:(nonnull QuadPayVirtualCheckoutViewController *)viewController error:(nonnull NSString *)error {
     errorWhenFailed = error;
+    // Fulfill and remove. Subsequent messages to nil are ignored.
     [didFailWithErrorWasCalled fulfill];
+    didFailWithErrorWasCalled = nil;
 }
 
 @end
