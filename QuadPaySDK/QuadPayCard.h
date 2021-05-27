@@ -28,12 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Card expiration month. Required
  */
-@property (nonatomic, copy, readonly, nonnull) NSString *expirationMonth;
+@property (nonatomic, copy, readonly, nonnull) NSNumber *expirationMonth;
 
 /**
 Card expiration year. Required
 */
-@property (nonatomic, copy, readonly, nonnull) NSString *expirationYear;
+@property (nonatomic, copy, readonly, nonnull) NSNumber *expirationYear;
 
 /**
 Card brand. Required
