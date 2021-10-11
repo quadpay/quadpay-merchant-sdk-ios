@@ -34,7 +34,7 @@ static QuadPay *__sharedInstance = nil;
             return @"https://gateway.quadpay.com/";
         }
         if ([_locale isEqualToString:@"MX"]) {
-            return @"https://checkout.mx.zip.co/";
+            return @"https://gateway.mx.zip.co/";
         }
         return @"https://gateway.quadpay.com/";
     }
@@ -43,7 +43,7 @@ static QuadPay *__sharedInstance = nil;
             return @"https://sandbox.gateway.quadpay.com/";
         }
         if ([_locale isEqualToString:@"MX"]) {
-            return @"https://checkout.sand.mx.zip.co/";
+            return @"https://gateway.sand.mx.zip.co/";
         }
         return @"https://sandbox.gateway.quadpay.com/";
     }
@@ -52,7 +52,7 @@ static QuadPay *__sharedInstance = nil;
             return @"https://master.gateway.quadpay.xyz/";
         }
         if ([_locale isEqualToString:@"MX"]) {
-            return @"https://checkout.dev.mx.zip.co/";
+            return @"https://gateway.dev.mx.zip.co/";
         }
         return @"https://master.gateway.quadpay.xyz/";
     }
