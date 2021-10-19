@@ -19,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             environment:"development",
             locale:"US"
         );
+        
+        let instance = QuadPay.sharedInstance();
+        
+        NSLog("MerchantId: \(instance.merchantId)");
+        NSLog("Environment: \(instance.environment)");
+        NSLog("Locale: \(instance.locale)");
+        NSLog("BaseUrl: \(instance.getBaseUrl())");
 //        QuadPay.sharedInstance().initialize("asdf", environment: "asdf", locale: "asdf")
         return true
     }

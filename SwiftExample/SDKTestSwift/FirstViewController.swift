@@ -17,7 +17,7 @@ class FirstViewController: UIViewController, QuadPayCheckoutDelegate {
         self.present(alert, animated: true);
     }
     
-    func checkoutSuccessful(_ viewController: QuadPayCheckoutViewController, orderId: String) {
+    func checkoutSuccessful(_ viewController: QuadPayCheckoutViewController, orderId: String, customer: QuadPayCustomer) {
         viewController.dismiss();
         let alert = UIAlertController(title: "Checkout Successful", message: orderId, preferredStyle: .alert);
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil));
