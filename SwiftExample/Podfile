@@ -6,7 +6,10 @@ target 'SDKTestSwift' do
   use_frameworks!
 
   # Pods for SDKTestSwift
-  pod 'QuadPaySDK',  :path => '../', :configurations => ['Debug']
+  # For local SDK
+  # pod 'QuadPaySDK',  :path => '../', :configurations => ['Debug']
+  # For deployed SDK
+  pod 'QuadPaySDK', '~> 0.3.6', :configurations => ['Debug']
 
   target 'SDKTestSwiftTests' do
     inherit! :search_paths

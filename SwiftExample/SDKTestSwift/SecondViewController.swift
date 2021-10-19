@@ -10,7 +10,7 @@ import UIKit
 import QuadPaySDK
 
 class SecondViewController: UIViewController, QuadPayVirtualCheckoutDelegate {
-    func checkoutSuccessful(_ viewController: QuadPayVirtualCheckoutViewController, card: QuadPayCard, cardholder: QuadPayCardholder) {
+    func checkoutSuccessful(_ viewController: QuadPayVirtualCheckoutViewController, card: QuadPayCard, cardholder: QuadPayCardholder, customer: QuadPayCustomer) {
         viewController.dismiss();
         let alert = UIAlertController(title: "Virtual Checkout Success", message: card.number, preferredStyle: .alert);
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil));
