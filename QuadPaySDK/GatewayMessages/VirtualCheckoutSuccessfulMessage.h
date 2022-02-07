@@ -27,9 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nonnull) QuadPayCardholder* cardholder;
 
 /**
- The QuadPay customer data
+ The Zip customer data
 */
 @property (nonatomic, copy, nonnull) QuadPayCustomer* customer;
+
+/**
+ The Zip OrderId
+*/
+@property (nonatomic, copy, nonnull) NSString* orderId;
 
 /**
  Initializer. See properties for more details.
