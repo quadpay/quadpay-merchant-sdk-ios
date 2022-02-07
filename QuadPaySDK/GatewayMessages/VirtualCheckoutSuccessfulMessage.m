@@ -25,7 +25,7 @@
         _card = [[QuadPayCard alloc] initWithDict:cardData];
         _cardholder = [[QuadPayCardholder alloc] initWithDict:cardholderData];
         _customer = [[QuadPayCustomer alloc] initWithDict:customerData];
-        _orderId = [[NSString alloc] orderId];
+        _orderId = orderId;
     }
     return self;
 }
