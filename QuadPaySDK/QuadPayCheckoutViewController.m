@@ -58,7 +58,7 @@
             [self->_delegate checkoutCancelled:self reason:quadpayMessage.reason];
         },
         @"CheckoutSuccessfulMessage": ^{
-            CheckoutSuccessfulMessage* quadpayMessage = [[CheckoutSuccessfulMessage alloc] initWithDict:message];
+            CheckoutSuccessfulMessage* quadpayMessage = [[CheckoutSuccessfulMessage alloc] :message];
             [self->_delegate checkoutSuccessful:self orderId:quadpayMessage.orderId customer:quadpayMessage.customer];
         },
         @"ExceptionMessage": ^{
