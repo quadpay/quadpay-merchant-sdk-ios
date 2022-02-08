@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         QuadPay.sharedInstance().initialize(
-            "44444444-4444-4444-4444-444444444444",
+            "331da80f-8f33-4a5e-8d16-569157c07118",
             environment:"development",
             locale:"US"
         );

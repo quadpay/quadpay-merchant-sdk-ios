@@ -12,7 +12,13 @@ import QuadPaySDK
 class SecondViewController: UIViewController, QuadPayVirtualCheckoutDelegate {
     func checkoutSuccessful(_ viewController: QuadPayVirtualCheckoutViewController, card: QuadPayCard, cardholder: QuadPayCardholder, customer: QuadPayCustomer, orderId: String) {
         viewController.dismiss();
-        let alert = UIAlertController(title: "Virtual Checkout Success", message: card.number, preferredStyle: .alert);
+        
+        let message = """
+            Card Number: \(card.number) \
+            Order ID: \(orderId)
+        """;
+        
+        let alert = UIAlertController(title: "Virtual Checkout Success", message: message, preferredStyle: .alert);
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil));
         self.present(alert, animated: true);
         // Use card + cardholder details here
@@ -45,8 +51,8 @@ class SecondViewController: UIViewController, QuadPayVirtualCheckoutDelegate {
         NSLog("Button touched");
         let details = QuadPayCheckoutDetails();
         details.amount = NSDecimalNumber(string: "123.54", locale: nil);
-        details.customerEmail = "test-swift@quadpay.com";
-        details.customerPhoneNumber = "+11231231234";
+        details.customerEmail = "alex.lane+score-889@quadpay.com";
+        details.customerPhoneNumber = "+17702410014";
         details.merchantReference = "qptest-234-1234";
         details.customerFirstName = "Test";
         details.customerLastName = "Client";
