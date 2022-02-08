@@ -109,8 +109,8 @@
                     @"country": @"US",
                     @"email": @"sdk_test@quadpay.com",
                     @"phoneNumber": @"+1231231234",
-                }
-                @"orderId": @"19d1228b-a022-456a-a927-102b39b96e54"
+                },
+                @"orderId": @"19d1228b-a022-456a-a927-102b39b96e54",
         }
     };
 
