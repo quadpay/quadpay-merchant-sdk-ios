@@ -51,8 +51,8 @@ class SecondViewController: UIViewController, QuadPayVirtualCheckoutDelegate {
         NSLog("Button touched");
         let details = QuadPayCheckoutDetails();
         details.amount = NSDecimalNumber(string: "123.54", locale: nil);
-        details.customerEmail = "alex.lane+score-889@quadpay.com";
-        details.customerPhoneNumber = "+17702410014";
+        details.customerEmail = "test-swift@quadpay.com";
+        details.customerPhoneNumber = "+11231231234";
         details.merchantReference = "qptest-234-1234";
         details.customerFirstName = "Test";
         details.customerLastName = "Client";
