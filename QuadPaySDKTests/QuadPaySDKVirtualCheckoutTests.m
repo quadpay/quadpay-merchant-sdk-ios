@@ -109,7 +109,8 @@
                     @"country": @"US",
                     @"email": @"sdk_test@quadpay.com",
                     @"phoneNumber": @"+1231231234",
-                }
+                },
+                @"orderId": @"19d1228b-a022-456a-a927-102b39b96e54",
         }
     };
 
@@ -136,7 +137,7 @@
 - (void)checkoutCancelled:(nonnull QuadPayVirtualCheckoutViewController *)viewController reason:(nonnull NSString *)reason {
     [checkoutCancelledWasCalled fulfill];
 }
-- (void)checkoutSuccessful:(nonnull QuadPayVirtualCheckoutViewController *)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer {
+- (void)checkoutSuccessful:(nonnull QuadPayVirtualCheckoutViewController *)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer orderId:(nonnull NSString*)orderId {
     [checkoutSucceededWasCalled fulfill];
 }
 - (void)didFailWithError:(nonnull QuadPayVirtualCheckoutViewController *)viewController error:(nonnull NSString *)error {
