@@ -21,17 +21,28 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.spacing = 8
+        stack.spacing = 100
         stack.isLayoutMarginsRelativeArrangement = true
         
         
         let priceBreakdown1 = PriceBreakdownView()
+    
         //priceBreakdown1.introText = ".payInTitle"
-        priceBreakdown1.totalAmount = 100
+        priceBreakdown1.totalAmount = 50
         priceBreakdown1.delegate = self
         priceBreakdown1.moreInfoOptions = MoreInfoOptions()
         
+
         stack.addArrangedSubview(priceBreakdown1)
+        
+//        
+//        let priceBreakdown2 = PriceBreakdownView()
+//        //priceBreakdown1.introText = ".payInTitle"
+//        priceBreakdown2.totalAmount = 100
+//        priceBreakdown2.delegate = self
+//        priceBreakdown2.moreInfoOptions = MoreInfoOptions()
+//        
+//        stack.addArrangedSubview(priceBreakdown2)
         
         //NSLayoutConstraint.activate(stackConstraints)
 

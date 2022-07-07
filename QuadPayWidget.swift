@@ -102,7 +102,8 @@ public final class PriceBreakdownView: UIView {
   private let linkTextView = LinkTextView()
 
   private var infoLink: String {
-    return "https://static.afterpay.com/modal/en_US.html"
+      //return "https://static.afterpay.com/modal/en_US.html"
+    return "https://laitangzip.github.io/"
   }
 
     public init() {
