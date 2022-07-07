@@ -27,6 +27,7 @@
     webView.multipleTouchEnabled = NO;
     webView.navigationDelegate = self;
     webView.UIDelegate = self;
+
     // [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [self.view addSubview:webView];
     self.webView = webView;
@@ -38,6 +39,9 @@
     //   NSLog(@"%@ %@", key, [message.body objectForKey:key]);
     // }
     [self.messageDelegate viewController:self didReceiveScriptMessage:(NSDictionary*)message.body];
+    
+
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -87,6 +91,13 @@
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self loadErrorPage:error];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSString *cssString = @"body { font-family: Helvetica; font-size: 50px }"; // 1
+    NSString *javascriptString = @"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style)"; // 2
+    NSString *javascriptWithCSSString = [NSString stringWithFormat:javascriptString, cssString]; // 3
+    [webView stringByEvaluatingJavaScriptFromString:javascriptWithCSSString]; // 4
 }
 
 @end
