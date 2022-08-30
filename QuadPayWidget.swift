@@ -17,7 +17,6 @@ public protocol PriceBreakdownViewDelegate: AnyObject {
 
 }
 
-
 /// A view that displays informative text, the Afterpay badge and an info link. The info link will
 /// launch externally by default but can launch modally in app by implementing
 /// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
@@ -27,33 +26,61 @@ public final class PriceBreakdownView: UIView {
   /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
   /// externally.
   public weak var delegate: PriceBreakdownViewDelegate?
-
-  /// The total amount of the product or cart being viewed as a Swift Decimal. This Decimal
-  /// conversion should be done from a lossless source. e.g. a String.
-  public var totalAmount: Decimal = .zero {
-    didSet {
-      updateAttributedText()
-    }
+  
+  public var displayMode:String = ""{
+      didSet{
+          updateAttributedText()
+      }
   }
-
-  public var showWithText: Bool = true {
-    didSet {
-      updateAttributedText()
-    }
+    
+  public var logoOption: String = ""{
+      didSet{
+          updateAttributedText()
+      }
   }
-
-  public var showInterestFreeText: Bool = true {
-    didSet {
-      updateAttributedText()
-    }
+    
+  public var logoSize = ""{
+      didSet{
+          updateAttributedText()
+      }
+  }
+  
+    public var size = "100%"{
+      didSet{
+          updateAttributedText()
+      }
+  }
+  
+  public var min = 35 {
+      didSet{
+          updateAttributedText()
+      }
+  }
+  
+  public var max = 1500{
+      didSet{
+          updateAttributedText()
+      }
+  }
+  
+  public var totalAmount: Float = .zero {
+      didSet {
+        updateAttributedText()
+      }
+  }
+  
+  public var priceColor: String = ""{
+      didSet{
+          updateAttributedText()
+      }
   }
 
   public var textColor: UIColor = {
-    if #available(iOS 13.0, *) {
-      return .label
-    } else {
-      return .black
-    }
+      if #available(iOS 13.0, *) {
+        return .label
+      } else {
+        return .black
+      }
   }()
 
   public var linkColor: UIColor = {
@@ -101,120 +128,139 @@ public final class PriceBreakdownView: UIView {
 
   private let linkTextView = LinkTextView()
 
-  private var infoLink: String {
-      //return "https://static.afterpay.com/modal/en_US.html"
-    return "https://laitangzip.github.io/"
-  }
+    private var infoLink: String {
+        return "https://static.afterpay.com/modal/en_US.html"
+      //return "https://laitangzip.github.io/"
+    }
 
-    public init() {
+      public init() {
 
-      super.init(frame: .zero)
+        super.init(frame: .zero)
+
+        sharedInit()
+      }
+
+
+    required init?(coder: NSCoder) {
+      super.init(coder: coder)
 
       sharedInit()
     }
 
+    private func sharedInit() {
+      linkTextView.linkHandler = { [weak self] url in
+        if let viewController = self?.delegate?.viewControllerForPresentation() {
+          let infoWebViewController = InfoWebViewController(infoURL: url)
+          let navigationController = UINavigationController(rootViewController: infoWebViewController)
+          viewController.present(navigationController, animated: true, completion: nil)
+        } else {
+          UIApplication.shared.open(url)
+        }
+      }
 
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
+      addSubview(linkTextView)
 
-    sharedInit()
-  }
+      NSLayoutConstraint.activate([
+        linkTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
+        linkTextView.topAnchor.constraint(equalTo: topAnchor),
+        linkTextView.trailingAnchor.constraint(equalTo: trailingAnchor),
+        linkTextView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      ])
 
-  private func sharedInit() {
-    linkTextView.linkHandler = { [weak self] url in
-      if let viewController = self?.delegate?.viewControllerForPresentation() {
-        let infoWebViewController = InfoWebViewController(infoURL: url)
-        let navigationController = UINavigationController(rootViewController: infoWebViewController)
-        viewController.present(navigationController, animated: true, completion: nil)
-      } else {
-        UIApplication.shared.open(url)
+    }
+
+    @objc private func configurationDidChange() {
+      DispatchQueue.main.async {
+        self.updateAttributedText()
       }
     }
 
-    addSubview(linkTextView)
+    private func updateAttributedText() {
+      var widget_Text = "4 easy payments of"
+        
+      let logoView =  ZipPayLogo()
+      logoView.logoOptionName = logoOption
 
-    NSLayoutConstraint.activate([
-      linkTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      linkTextView.topAnchor.constraint(equalTo: topAnchor),
-      linkTextView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      linkTextView.bottomAnchor.constraint(equalTo: bottomAnchor),
-    ])
+      let font: UIFont = fontProvider(traitCollection)
+      var fontHeight = (font.ascender - font.descender)
+      let sizePercentage =  Int(size.replacingOccurrences(of: "%", with: "")) ?? 100
+      fontHeight = fontHeight * CGFloat(sizePercentage)/CGFloat(100)
+      let logoHeight =  CGFloat(logoType.heightMultiplier)
 
-//    let selector = #selector(configurationDidChange)
-//    let name: NSNotification.Name = NSNotification.Name("ConfigurationUpdated")
-//    notificationCenter.addObserver(self, selector: selector, name: name, object: nil)
-  }
+      let logoRatio = logoView.ratio ?? 1
 
-  @objc private func configurationDidChange() {
-    DispatchQueue.main.async {
-      self.updateAttributedText()
-    }
-  }
+      let widthFittingFont = logoHeight / logoRatio
+      let width = widthFittingFont > logoView.minimumWidth ? widthFittingFont : logoView.minimumWidth
+        let logoSize = CGSize(width: width * 2.4, height: width * logoRatio * 2.4)
 
-  private func updateAttributedText() {
-      let logoView =  ZipPayLogo();
-//    if logoType == .lockup {
-//      logoView = LockupView(colorScheme: logoColorScheme)
-//    } else {
-//      logoView = BadgeView(colorScheme: logoColorScheme)
-//    }
+      logoView.frame = CGRect(origin: .zero, size: logoSize)
 
-    let font: UIFont = fontProvider(traitCollection)
-    let fontHeight = font.ascender - font.descender
-    let logoHeight = fontHeight * CGFloat(logoType.heightMultiplier)
+      let textAttributes: [NSAttributedString.Key: Any] = [
+        .font: font.withSize(fontHeight),
+        .foregroundColor: textColor as UIColor,
+      ]
 
-    let logoRatio = logoView.ratio ?? 1
+      let colortest = UIColor(hex: priceColor)
+        
+      let amountAttribute: [NSAttributedString.Key: Any] = [
+        .font: font.withSize(fontHeight),
+        .foregroundColor: colortest
+      ]
+        
+      linkTextView.linkTextAttributes = [
+        .underlineStyle: NSUnderlineStyle.single.rawValue,
+        .foregroundColor: linkColor,
+      ]
 
-    let widthFittingFont = logoHeight / logoRatio
-    let width = widthFittingFont > logoView.minimumWidth ? widthFittingFont : logoView.minimumWidth
-    let size = CGSize(width: width, height: width * logoRatio)
+      let attributedString = NSMutableAttributedString()
+    
+      let badge: NSAttributedString = {
+        let attachment = NSTextAttachment()
+        attachment.image = logoView.image
 
-    logoView.frame = CGRect(origin: .zero, size: size)
+        let centerY = fontHeight / 2
+        let yPos = centerY - (logoView.frame.height / 2) + (font.descender * CGFloat(logoType.descenderMultiplier))
 
-    let textAttributes: [NSAttributedString.Key: Any] = [
-      .font: font,
-      .foregroundColor: textColor as UIColor,
-    ]
-
-    linkTextView.linkTextAttributes = [
-      .underlineStyle: NSUnderlineStyle.single.rawValue,
-      .foregroundColor: linkColor,
-    ]
-
-    let attributedString = NSMutableAttributedString()
-
-    let badge: NSAttributedString = {
-      let attachment = NSTextAttachment()
-      attachment.image = logoView.image
-
-      let centerY = fontHeight / 2
-      let yPos = centerY - (logoView.frame.height / 2) + (font.descender * CGFloat(logoType.descenderMultiplier))
-
-      attachment.bounds = CGRect(origin: .init(x: 0, y: yPos), size: logoView.bounds.size)
-      attachment.isAccessibilityElement = true
-      attachment.accessibilityLabel = logoView.accessibilityLabel
-      return .init(attachment: attachment)
-    }()
+        attachment.bounds = CGRect(origin: .init(x: 0, y: yPos), size: logoView.bounds.size)
+        attachment.isAccessibilityElement = true
+        attachment.accessibilityLabel = logoView.accessibilityLabel
+        return .init(attachment: attachment)
+      }()
 
     let space = NSAttributedString(string: " ", attributes: textAttributes)
 
-//    let priceBreakdown = PriceBreakdown(
-//      totalAmount: totalAmount,
-//      introText: introText,
-//      showInterestFreeText: showInterestFreeText,
-//      showWithText: showWithText
-//    )
-//    let breakdown = NSAttributedString(string: priceBreakdown.string, attributes: textAttributes)
-    let breakdown = NSAttributedString(string: "some string", attributes: textAttributes)
-
-//    let badgePlacement = priceBreakdown.badgePlacement
-//    var badgeAndBreakdown = [badge, space, breakdown]
-//    badgeAndBreakdown = badgePlacement == .start ? badgeAndBreakdown : badgeAndBreakdown.reversed()
+    let formatter = NumberFormatter()
+      formatter.maximumFractionDigits = 2
+      formatter.minimumFractionDigits = 0
+      formatter.currencyCode="USD"
+      formatter.numberStyle = .currency
+    
+    var amountString :String
+    
+    if(Int(totalAmount)<min){
+      widget_Text = "4 payments on order over"
+        amountString = formatter.string(for:min) ?? "?"
+    }else if(Int(totalAmount)>max){
+      widget_Text = " 4 payments on order up to"
+        amountString = formatter.string(for:max) ?? "?"
+    }else{
+      widget_Text = "4 easy payments of"
+      amountString = formatter.string(for: totalAmount/4) ?? "?"
+    }
+    
+    let widgetText = NSAttributedString(string: widget_Text, attributes: textAttributes)
+    
+    let with = NSAttributedString(string:"with", attributes: textAttributes)
+    
+    let amount = NSAttributedString(string: amountString, attributes: amountAttribute)
+    var badgeAndBreakdown = [space]
+    if(displayMode=="logoFirst"){
+        badgeAndBreakdown = [badge,space, widgetText, space, amount]
+    }else{
+        badgeAndBreakdown = [widgetText, space, amount,space, with, space, badge]
+    }
+    
       
-          var badgeAndBreakdown = [badge, space, breakdown]
-          badgeAndBreakdown = [badge, space, breakdown]
-      
-
     let linkConfig = moreInfoOptions.modalLinkStyle.styleConfig
     let linkStyleAttributes = textAttributes.merging(linkConfig.attributes) { $1 }
     let linkAttributes = linkStyleAttributes.merging([.link: infoLink]) { $1 }
@@ -232,7 +278,7 @@ public final class PriceBreakdownView: UIView {
         attachment.image = image.withRenderingMode(renderMode)
         attachment.bounds = CGRect(
           origin: .init(x: 0, y: font.descender * 0.6),
-          size: CGSize(width: attachmentHeight * imageRatio, height: attachmentHeight)
+          size: CGSize(width: attachmentHeight * imageRatio * 150/100, height: attachmentHeight * 150/100)
         )
         return .init(attachment: attachment)
       }
@@ -267,4 +313,32 @@ public final class PriceBreakdownView: UIView {
     }
   }
 
+}
+
+extension UIColor {
+    public convenience init(hex:String) {
+        let r,g,b,a : CGFloat
+        
+        if hex.hasPrefix("#"){
+            let start  = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+            
+            if hexColor.count == 8 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber : UInt64 = 0
+                
+                if scanner.scanHexInt64(&hexNumber){
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat((hexNumber & 0x000000ff)) / 255
+                    
+                    self.init(red:r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+        self.init(ciColor: .black)
+        return
+    }
 }

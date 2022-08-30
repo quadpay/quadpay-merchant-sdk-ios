@@ -18,32 +18,38 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         let view = UIView()
         
         view.backgroundColor = .white
+        
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 100
         stack.isLayoutMarginsRelativeArrangement = true
         
-        
         let priceBreakdown1 = PriceBreakdownView()
-    
-        //priceBreakdown1.introText = ".payInTitle"
-        priceBreakdown1.totalAmount = 50
-        priceBreakdown1.delegate = self
-        priceBreakdown1.moreInfoOptions = MoreInfoOptions()
-        
 
+        priceBreakdown1.totalAmount = 35
+        priceBreakdown1.logoOption = "logo_main"
+        priceBreakdown1.displayMode = "logoFirst"
+        priceBreakdown1.min = 45
+        priceBreakdown1.size="150%"
+        
         stack.addArrangedSubview(priceBreakdown1)
+
+        let priceBreakdown2 = PriceBreakdownView()
+        priceBreakdown2.totalAmount = 7000
+        priceBreakdown2.delegate = self
+        priceBreakdown2.logoOption = "logo_main"
+        priceBreakdown2.priceColor = "#ff3700ff"
+        priceBreakdown2.size = "80%"
+        stack.addArrangedSubview(priceBreakdown2)
         
-//        
-//        let priceBreakdown2 = PriceBreakdownView()
-//        //priceBreakdown1.introText = ".payInTitle"
-//        priceBreakdown2.totalAmount = 100
-//        priceBreakdown2.delegate = self
-//        priceBreakdown2.moreInfoOptions = MoreInfoOptions()
-//        
-//        stack.addArrangedSubview(priceBreakdown2)
-        
+        let priceBreakdown3 = PriceBreakdownView()
+        priceBreakdown3.totalAmount = 700
+        priceBreakdown3.delegate = self
+        priceBreakdown3.logoOption = "logo_main"
+        priceBreakdown3.priceColor = "#ff3700ff"
+        stack.addArrangedSubview(priceBreakdown3)
+//
         //NSLayoutConstraint.activate(stackConstraints)
 
         
@@ -72,8 +78,7 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
 //        ])
 //
 //        child.didMove(toParent: self)
-        
-
+    
         
         self.view = view
     }
