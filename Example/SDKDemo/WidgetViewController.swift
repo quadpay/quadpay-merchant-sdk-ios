@@ -18,29 +18,33 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         let view = UIView()
         
         view.backgroundColor = .white
-        
+       
         let stack = UIStackView()
+     
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.spacing = 100
+        stack.spacing = 20
         stack.isLayoutMarginsRelativeArrangement = true
-        
+      
         let priceBreakdown1 = PriceBreakdownView()
 
         priceBreakdown1.totalAmount = 35
-        priceBreakdown1.logoOption = "logo_main"
         priceBreakdown1.displayMode = "logoFirst"
         priceBreakdown1.min = 45
-        priceBreakdown1.size="150%"
-        
+        priceBreakdown1.size="100%"
+        priceBreakdown1.logoSize="50%"
+        priceBreakdown1.alignment = "left"
         stack.addArrangedSubview(priceBreakdown1)
-
+        
         let priceBreakdown2 = PriceBreakdownView()
         priceBreakdown2.totalAmount = 7000
         priceBreakdown2.delegate = self
-        priceBreakdown2.logoOption = "logo_main"
+        priceBreakdown2.logoOption = "secondary"
         priceBreakdown2.priceColor = "#ff3700ff"
-        priceBreakdown2.size = "80%"
+        priceBreakdown2.size = "120%"
+        priceBreakdown2.logoSize="120%"
+        priceBreakdown2.max=200
+        priceBreakdown2.alignment = "center"
         stack.addArrangedSubview(priceBreakdown2)
         
         let priceBreakdown3 = PriceBreakdownView()
@@ -48,12 +52,20 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         priceBreakdown3.delegate = self
         priceBreakdown3.logoOption = "logo_main"
         priceBreakdown3.priceColor = "#ff3700ff"
+        priceBreakdown3.alignment = "right"
+        priceBreakdown2.size = "120%"
+        priceBreakdown2.logoSize="120%"
         stack.addArrangedSubview(priceBreakdown3)
-//
-        //NSLayoutConstraint.activate(stackConstraints)
+
+       
 
         
         view.addSubview(stack)
+        
+        stack.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:  5).isActive = true
+        stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:5).isActive = true
+        
+
 
 //        let contentView = UIView()
 //        contentView.translatesAutoresizingMaskIntoConstraints = false

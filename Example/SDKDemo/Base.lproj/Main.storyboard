@@ -120,7 +120,7 @@
         <scene sceneID="9nR-Ti-HAK">
             <objects>
                 <viewController id="3rI-L9-ldM" customClass="WidgetViewContoller" customModule="SDKDemo" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MM1-45-Vce">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="MM1-45-Vce">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="u9f-5d-4U9"/>

@@ -33,13 +33,38 @@ public final class PriceBreakdownView: UIView {
       }
   }
     
-  public var logoOption: String = ""{
+    public var isMFPPMerchant:String = ""{
+        didSet{
+            updateAttributedText()
+        }
+    }
+    
+    public var minModal: Bool = false{
+        didSet{
+            updateAttributedText()
+        }
+    }
+    
+    public var learnMorUrl: String = ""{
+        didSet{
+            updateAttributedText()
+        }
+    }
+    
+    public var merchantId:String = ""{
+        didSet{
+            updateAttributedText()
+        }
+    }
+    
+    
+  public var logoOption: String = "logo_main"{
       didSet{
           updateAttributedText()
       }
   }
     
-  public var logoSize = ""{
+  public var logoSize = "100%"{
       didSet{
           updateAttributedText()
       }
@@ -74,6 +99,12 @@ public final class PriceBreakdownView: UIView {
           updateAttributedText()
       }
   }
+    
+    public var alignment: String = "left"{
+        didSet{
+            updateAttributedText()
+        }
+    }
 
   public var textColor: UIColor = {
       if #available(iOS 13.0, *) {
@@ -129,21 +160,21 @@ public final class PriceBreakdownView: UIView {
   private let linkTextView = LinkTextView()
 
     private var infoLink: String {
+        let urlPath = Bundle.main.path(forResource: "index", ofType: "html")
+        let url  = URL(fileURLWithPath: urlPath!)
+        //return urlPath!
+        
         return "https://static.afterpay.com/modal/en_US.html"
-      //return "https://laitangzip.github.io/"
     }
 
       public init() {
-
         super.init(frame: .zero)
-
         sharedInit()
       }
 
 
     required init?(coder: NSCoder) {
       super.init(coder: coder)
-
       sharedInit()
     }
 
@@ -178,12 +209,12 @@ public final class PriceBreakdownView: UIView {
     private func updateAttributedText() {
       var widget_Text = "4 easy payments of"
         
-      let logoView =  ZipPayLogo()
-      logoView.logoOptionName = logoOption
+      let logoView =  ZipPayLogo(logoOption1: logoOption)
 
       let font: UIFont = fontProvider(traitCollection)
       var fontHeight = (font.ascender - font.descender)
       let sizePercentage =  Int(size.replacingOccurrences(of: "%", with: "")) ?? 100
+        let logoSizePercentage = Int(logoSize.replacingOccurrences(of: "%", with:"")) ?? 100
       fontHeight = fontHeight * CGFloat(sizePercentage)/CGFloat(100)
       let logoHeight =  CGFloat(logoType.heightMultiplier)
 
@@ -191,7 +222,7 @@ public final class PriceBreakdownView: UIView {
 
       let widthFittingFont = logoHeight / logoRatio
       let width = widthFittingFont > logoView.minimumWidth ? widthFittingFont : logoView.minimumWidth
-        let logoSize = CGSize(width: width * 2.4, height: width * logoRatio * 2.4)
+      let logoSize = CGSize(width: width * CGFloat(logoSizePercentage)/CGFloat(100), height: width * logoRatio * CGFloat(logoSizePercentage)/CGFloat(100))
 
       logoView.frame = CGRect(origin: .zero, size: logoSize)
 
@@ -200,15 +231,15 @@ public final class PriceBreakdownView: UIView {
         .foregroundColor: textColor as UIColor,
       ]
 
-      let colortest = UIColor(hex: priceColor)
+      let amountColor = UIColor(hex: priceColor)
         
       let amountAttribute: [NSAttributedString.Key: Any] = [
         .font: font.withSize(fontHeight),
-        .foregroundColor: colortest
+        .foregroundColor: amountColor
       ]
         
       linkTextView.linkTextAttributes = [
-        .underlineStyle: NSUnderlineStyle.single.rawValue,
+        .underlineStyle: NSUnderlineStyle.double.rawValue,
         .foregroundColor: linkColor,
       ]
 
@@ -295,6 +326,18 @@ public final class PriceBreakdownView: UIView {
     strings.forEach(attributedString.append)
 
     linkTextView.attributedText = attributedString
+    linkTextView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
+        switch alignment {
+        case "left":
+            linkTextView.textAlignment = NSTextAlignment.left
+        case "right":
+            linkTextView.textAlignment = NSTextAlignment.right
+        case "center":
+            linkTextView.textAlignment = NSTextAlignment.center
+        default:
+            linkTextView.textAlignment = NSTextAlignment.center
+        }
+        
   }
 
   public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

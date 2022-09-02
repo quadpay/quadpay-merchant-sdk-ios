@@ -10,12 +10,8 @@ import UIKit
 
 public class ZipPayLogo: UIView {
     
-    public var logoOptionName: String = "logo_main"{
-        didSet{
-            sharedInit()
-        }
-    }
-
+    public var logoOption = "logo_main"
+  
     internal var image: UIImage?
     private var imageView = UIImageView(frame: .zero)
 
@@ -23,8 +19,9 @@ public class ZipPayLogo: UIView {
 
     public var ratio: CGFloat?
 
-    public init() {
+    public init(logoOption1: String) {
         super.init(frame: .zero)
+        logoOption = logoOption1
         sharedInit()
       }
 
@@ -40,7 +37,7 @@ public class ZipPayLogo: UIView {
 
       override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-          updateImage(withTraits: traitCollection)
+          updateImage(withTraits: traitCollection )
       }
 
     internal func updateImage(withTraits traitCollection: UITraitCollection) {
@@ -49,8 +46,8 @@ public class ZipPayLogo: UIView {
 
         deactivateConstraints()
           
-        image =  AssetProvider.image(named: "logo_main")
-          
+        image =  AssetProvider.image(named: logoOption)
+        
           
        
         ratio = image!.size.height / image!.size.width
@@ -93,7 +90,7 @@ public class ZipPayLogo: UIView {
 
       @objc private func configurationDidChange(_ notification: NSNotification) {
         DispatchQueue.main.async {
-          self.updateImage(withTraits: self.traitCollection)
+            self.updateImage(withTraits: self.traitCollection)
         }
       }
 }
