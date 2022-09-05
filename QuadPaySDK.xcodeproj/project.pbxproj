@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		251EC4932469D64300679E88 /* QuadPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251EC4892469D64300679E88 /* QuadPaySDK.framework */; };
 		251EC4982469D64300679E88 /* QuadPaySDKVirtualCheckoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4972469D64300679E88 /* QuadPaySDKVirtualCheckoutTests.m */; };
-		251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC48C2469D64300679E88 /* QuadPaySDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC48C2469D64300679E88 /* QuadPaySDK.h */; };
 		251EC4AE2469D7B100679E88 /* QuadPayCheckoutDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4AD2469D7B100679E88 /* QuadPayCheckoutDelegate.h */; };
 		251EC4B02469D7EF00679E88 /* QuadPayWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4AF2469D7EF00679E88 /* QuadPayWebViewController.h */; };
 		251EC4B42469D87D00679E88 /* QuadPayCheckoutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC4B32469D87D00679E88 /* QuadPayCheckoutViewController.h */; };
@@ -48,6 +48,7 @@
 		BB0F0DF2288988DC00D1F8C6 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DED288988DC00D1F8C6 /* LogoView.swift */; };
 		BB0F0DF3288988DC00D1F8C6 /* ModalLinkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DEE288988DC00D1F8C6 /* ModalLinkConfig.swift */; };
 		BB0F0DF4288988DC00D1F8C6 /* LinkTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DEF288988DC00D1F8C6 /* LinkTextView.swift */; };
+		BB9E5E2328C621140031C5C9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5E2228C621140031C5C9 /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		BB0F0DED288988DC00D1F8C6 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = SOURCE_ROOT; };
 		BB0F0DEE288988DC00D1F8C6 /* ModalLinkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalLinkConfig.swift; sourceTree = SOURCE_ROOT; };
 		BB0F0DEF288988DC00D1F8C6 /* LinkTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextView.swift; sourceTree = SOURCE_ROOT; };
+		BB9E5E2228C621140031C5C9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		251EC48B2469D64300679E88 /* QuadPaySDK */ = {
 			isa = PBXGroup;
 			children = (
+				BB9E5E1E28C6208C0031C5C9 /* www */,
 				BB0F0DEF288988DC00D1F8C6 /* LinkTextView.swift */,
 				BB0F0DED288988DC00D1F8C6 /* LogoView.swift */,
 				BB0F0DEE288988DC00D1F8C6 /* ModalLinkConfig.swift */,
@@ -208,6 +211,14 @@
 			path = GatewayMessages;
 			sourceTree = "<group>";
 		};
+		BB9E5E1E28C6208C0031C5C9 /* www */ = {
+			isa = PBXGroup;
+			children = (
+				BB9E5E2228C621140031C5C9 /* index.html */,
+			);
+			path = www;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -215,19 +226,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				251EC4DF2472EFDC00679E88 /* ExceptionMessage.h in Headers */,
-				251EC4D4246F0AB700679E88 /* QuadPay.h in Headers */,
-				251EC4EA247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h in Headers */,
-				251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */,
-				251EC4EE2473262200679E88 /* QuadPayURLBuilder.h in Headers */,
-				251EC4D92472ED8400679E88 /* CheckoutSuccessfulMessage.h in Headers */,
 				251EC4CC246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.h in Headers */,
-				251EC4B02469D7EF00679E88 /* QuadPayWebViewController.h in Headers */,
-				251EC4CE246C9E3900679E88 /* QuadPayCheckoutDetails.h in Headers */,
+				251EC4DF2472EFDC00679E88 /* ExceptionMessage.h in Headers */,
+				251EC4D92472ED8400679E88 /* CheckoutSuccessfulMessage.h in Headers */,
 				251EC4AE2469D7B100679E88 /* QuadPayCheckoutDelegate.h in Headers */,
+				251EC4EE2473262200679E88 /* QuadPayURLBuilder.h in Headers */,
+				251EC4D4246F0AB700679E88 /* QuadPay.h in Headers */,
+				251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */,
+				251EC4EA247313F900679E88 /* VirtualCheckoutSuccessfulMessage.h in Headers */,
 				251EC4BA2469FC5300679E88 /* QuadPayMessageReceiverDelegate.h in Headers */,
-				251EC4E62472F46300679E88 /* CheckoutCancelledMessage.h in Headers */,
 				251EC4BC246B125700679E88 /* QuadPayCard.h in Headers */,
+				251EC4CE246C9E3900679E88 /* QuadPayCheckoutDetails.h in Headers */,
+				251EC4B02469D7EF00679E88 /* QuadPayWebViewController.h in Headers */,
+				251EC4E62472F46300679E88 /* CheckoutCancelledMessage.h in Headers */,
 				251EC4B42469D87D00679E88 /* QuadPayCheckoutViewController.h in Headers */,
 				251EC4C8246B19ED00679E88 /* QuadPayVirtualCheckoutDelegate.h in Headers */,
 				251EC4C0246B129100679E88 /* QuadPayCustomer.h in Headers */,
@@ -316,6 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB9E5E2328C621140031C5C9 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

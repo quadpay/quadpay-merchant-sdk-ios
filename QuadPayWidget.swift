@@ -160,7 +160,7 @@ public final class PriceBreakdownView: UIView {
   private let linkTextView = LinkTextView()
 
     private var infoLink: String {
-        let urlPath = Bundle.main.path(forResource: "index", ofType: "html")
+        let urlPath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "Resources")
         let url  = URL(fileURLWithPath: urlPath!)
         //return urlPath!
         
