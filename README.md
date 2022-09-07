@@ -13,6 +13,17 @@ Add the following to your Podfile and run `pod install`
 pod 'QuadPaySDK'
 ```
 
+<strong> Local Development </strong>
+
+Inside podspec file change the 
+
+s.source = { :git => 'https://github.com/quadpay/quadpay-merchant-ios.git', :tag => s.version.to_s}
+
+to
+
+s.source = { :git => 'https://github.com/quadpay/quadpay-merchant-ios.git', :tag => s.version.to_s, :branch => 'your branch'}
+
+
 Integration documentation
 ==============
 
