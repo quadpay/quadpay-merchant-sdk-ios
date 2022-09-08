@@ -162,18 +162,6 @@ public final class PriceBreakdownView: UIView {
   private let linkTextView = LinkTextView()
 
     private var infoLink: String {
-        let fm = FileManager.default
-        let path = Bundle.qpResource.bundlePath
-
-        do {
-            let items = try fm.contentsOfDirectory(atPath: path)
-
-            for item in items {
-                print("Found \(item)")
-            }
-        } catch {
-            // failed to read directory – bad permissions, perhaps?
-        }
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
         let url  = URL(fileURLWithPath: urlPath!)
         return urlPath!
