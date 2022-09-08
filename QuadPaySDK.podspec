@@ -5,9 +5,10 @@ Pod::Spec.new do |s|
   s.summary						= 'Integrate QuadPay into your iOS app'
   s.homepage					= 'https://github.com/quadpay/quadpay-merchant-sdk-ios'
   s.license						= { :type => "mit", :file => "LICENSE" }
-  s.source						= { :git => 'https://github.com/quadpay/quadpay-merchant-sdk-ios.git', :tag => s.version.to_s }
+  s.source						= { :git => 'https://github.com/quadpay/quadpay-merchant-sdk-ios.git', :tag => s.version.to_s, :branch => 'petros/CKO-1653/ios-widget' }
   s.ios.deployment_target		= '9.0'
-  s.source_files				    = 'QuadPaySDK/**/*.{h,m}'
+  s.source_files				    = 'QuadPaySDK/**/*.{h,m,swift}'
+  s.resources               = 'QuadPaySDK/*.xcassets'
   s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit'
 end
  

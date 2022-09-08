@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import WebKit
 
+@available(iOS 10.0, *)
 final class InfoWebViewController: UIViewController, WKNavigationDelegate {
 
   private let infoURL: URL

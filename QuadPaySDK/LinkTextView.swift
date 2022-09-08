@@ -46,7 +46,8 @@ final class LinkTextView: UITextView, UITextViewDelegate {
     textView.selectedTextRange = nil
   }
 
-  func textView(
+    @available(iOS 10.0, *)
+    func textView(
     _ textView: UITextView,
     shouldInteractWith textAttachment: NSTextAttachment,
     in characterRange: NSRange,
@@ -55,7 +56,8 @@ final class LinkTextView: UITextView, UITextViewDelegate {
     false
   }
 
-  func textView(
+    @available(iOS 10.0, *)
+    func textView(
     _ textView: UITextView,
     shouldInteractWith URL: URL,
     in characterRange: NSRange,

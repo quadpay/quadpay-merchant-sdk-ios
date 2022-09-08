@@ -21,6 +21,8 @@ public protocol PriceBreakdownViewDelegate: AnyObject {
 /// launch externally by default but can launch modally in app by implementing
 /// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
 /// as well as changes to the `totalAmount`.
+@available(iOS 10.0, *)
+@available(iOS 12.0, *)
 public final class PriceBreakdownView: UIView {
 
   /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
@@ -160,11 +162,23 @@ public final class PriceBreakdownView: UIView {
   private let linkTextView = LinkTextView()
 
     private var infoLink: String {
-        let urlPath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "Resources")
+        let fm = FileManager.default
+        let path = Bundle.qpResource.bundlePath
+
+        do {
+            let items = try fm.contentsOfDirectory(atPath: path)
+
+            for item in items {
+                print("Found \(item)")
+            }
+        } catch {
+            // failed to read directory – bad permissions, perhaps?
+        }
+        let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
         let url  = URL(fileURLWithPath: urlPath!)
-        //return urlPath!
+        return urlPath!
         
-        return "https://static.afterpay.com/modal/en_US.html"
+        //return "https://static.afterpay.com/modal/en_US.html"
     }
 
       public init() {
@@ -358,6 +372,7 @@ public final class PriceBreakdownView: UIView {
 
 }
 
+@available(iOS 10.0, *)
 extension UIColor {
     public convenience init(hex:String) {
         let r,g,b,a : CGFloat
