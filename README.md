@@ -23,6 +23,9 @@ to
 
 s.source = { :git => 'https://github.com/quadpay/quadpay-merchant-ios.git', :tag => s.version.to_s, :branch => 'your branch'}
 
+s.resources = 'QuadPaySDK/*.xcassets', 'QuadPaySDK/www'
+
+To include the assets inside the development pod under the same directory as the quadpaySDK code and not outside. 
 
 Integration documentation
 ==============
