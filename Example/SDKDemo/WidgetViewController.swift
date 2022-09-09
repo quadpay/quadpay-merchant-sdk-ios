@@ -18,7 +18,7 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         let view = UIView()
         
         view.backgroundColor = .white
-       
+     
         let stack = UIStackView()
      
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -26,15 +26,7 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         stack.spacing = 20
         stack.isLayoutMarginsRelativeArrangement = true
       
-        let priceBreakdown1 = PriceBreakdownView()
-
-        priceBreakdown1.totalAmount = 35
-        priceBreakdown1.displayMode = "logoFirst"
-        priceBreakdown1.min = 45
-        priceBreakdown1.size="100%"
-        priceBreakdown1.logoSize="50%"
-        priceBreakdown1.alignment = "left"
-        stack.addArrangedSubview(priceBreakdown1)
+        
         
         let priceBreakdown2 = PriceBreakdownView()
         priceBreakdown2.totalAmount = 7000
@@ -50,20 +42,31 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         let priceBreakdown3 = PriceBreakdownView()
         priceBreakdown3.totalAmount = 700
         priceBreakdown3.delegate = self
-        priceBreakdown3.logoOption = "logo_main"
+        priceBreakdown3.logoOption = "secondary-light"
         priceBreakdown3.priceColor = "#ff3700ff"
-        priceBreakdown3.alignment = "right"
-        priceBreakdown2.size = "120%"
-        priceBreakdown2.logoSize="120%"
+        priceBreakdown3.alignment = "left"
+        priceBreakdown3.size = "100%"
+        priceBreakdown3.logoSize="100%"
         stack.addArrangedSubview(priceBreakdown3)
 
-       
+        let priceBreakdown = PriceBreakdownView()
+
+        priceBreakdown.totalAmount = 35
+        priceBreakdown.totalAmount = 700
+        priceBreakdown.delegate = self
+        priceBreakdown.logoOption = "secondary-light"
+        priceBreakdown.priceColor = "#ff3700ff"
+        priceBreakdown.alignment = "right"
+        priceBreakdown.size = "80%"
+        priceBreakdown.logoSize="80%"
+        priceBreakdown.displayMode = "logoFirst"
+        stack.addArrangedSubview(priceBreakdown)
 
         
         view.addSubview(stack)
         
-        stack.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:  5).isActive = true
-        stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:5).isActive = true
+        stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant:  10).isActive = true
+        stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant:  -10).isActive = true
         
 
 
