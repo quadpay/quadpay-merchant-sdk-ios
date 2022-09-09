@@ -161,12 +161,9 @@ public final class PriceBreakdownView: UIView {
 
   private let linkTextView = LinkTextView()
 
-    private var infoLink: String {
+    private var infoLink: URL {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
-        let url  = URL(fileURLWithPath: urlPath!)
-        return urlPath!
-        
-        //return "https://static.afterpay.com/modal/en_US.html"
+        return url
     }
 
       public init() {

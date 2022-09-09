@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 import WebKit
 
-@available(iOS 10.0, *)
-final class InfoWebViewController: UIViewController, WKNavigationDelegate {
+final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
   private let infoURL: URL
 
@@ -24,8 +23,10 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate {
 
   override func loadView() {
     let webView = WKWebView()
+
     webView.allowsLinkPreview = false
     webView.navigationDelegate = self
+    webView.uiDelegate = self
     view = webView
   }
 
@@ -95,7 +96,12 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate {
   ) {
     if let url = navigationAction.request.url, url != infoURL {
       decisionHandler(.cancel)
-      UIApplication.shared.open(url)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(url)
+        }
     } else {
       decisionHandler(.allow)
     }
