@@ -163,7 +163,9 @@ public final class PriceBreakdownView: UIView {
 
     private var infoLink: URL {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
+        let url  = URL(fileURLWithPath: urlPath!)
         return url
+        
     }
 
       public init() {
