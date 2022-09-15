@@ -13,11 +13,13 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
 
   private let infoURL: URL
 
+  private let contentHTML : String
+    
   private var webView: WKWebView { view as! WKWebView }
 
-  init(infoURL: URL) {
+    init(infoURL: URL, contentHtml: String) {
     self.infoURL = infoURL
-
+    self.contentHTML = contentHtml
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -54,8 +56,9 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-
-    webView.load(URLRequest(url: infoURL))
+      print(contentHTML)
+      webView.loadHTMLString(contentHTML, baseURL: infoURL)
+   // webView.load(URLRequest(url: infoURL))
   }
 
   @objc private func dismissViewController() {
@@ -89,23 +92,23 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
     present(alert, animated: true, completion: nil)
   }
 
-  func webView(
-    _ webView: WKWebView,
-    decidePolicyFor navigationAction: WKNavigationAction,
-    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-  ) {
-    if let url = navigationAction.request.url, url != infoURL {
-      decisionHandler(.cancel)
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
-        } else {
-            // Fallback on earlier versions
-            UIApplication.shared.openURL(url)
-        }
-    } else {
-      decisionHandler(.allow)
-    }
-  }
+//  func webView(
+//    _ webView: WKWebView,
+//    decidePolicyFor navigationAction: WKNavigationAction,
+//    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+//  ) {
+//    if let url = navigationAction.request.url, url != infoURL {
+//      decisionHandler(.cancel)
+//        if #available(iOS 10.0, *) {
+//            UIApplication.shared.open(url)
+//        } else {
+//            // Fallback on earlier versions
+//            UIApplication.shared.openURL(url)
+//        }
+//    } else {
+//      decisionHandler(.allow)
+//    }
+//  }
 
   // MARK: Unavailable
 

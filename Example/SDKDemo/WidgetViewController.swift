@@ -33,10 +33,12 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         priceBreakdown2.delegate = self
         priceBreakdown2.logoOption = "secondary"
         priceBreakdown2.priceColor = "#ff3700ff"
-        priceBreakdown2.size = "120%"
-        priceBreakdown2.logoSize="120%"
+        priceBreakdown2.size = "150%"
+        priceBreakdown2.logoSize="150%"
         priceBreakdown2.max=200
         priceBreakdown2.alignment = "center"
+        priceBreakdown2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        
         stack.addArrangedSubview(priceBreakdown2)
         
         let priceBreakdown3 = PriceBreakdownView()
@@ -45,22 +47,22 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         priceBreakdown3.logoOption = "secondary-light"
         priceBreakdown3.priceColor = "#ff3700ff"
         priceBreakdown3.alignment = "left"
-        priceBreakdown3.size = "100%"
-        priceBreakdown3.logoSize="100%"
+        priceBreakdown3.size = "120%"
+        priceBreakdown3.logoSize="120%"
         stack.addArrangedSubview(priceBreakdown3)
-
-        let priceBreakdown = PriceBreakdownView()
-
-        priceBreakdown.totalAmount = 35
-        priceBreakdown.totalAmount = 700
-        priceBreakdown.delegate = self
-        priceBreakdown.logoOption = "secondary-light"
-        priceBreakdown.priceColor = "#ff3700ff"
-        priceBreakdown.alignment = "right"
-        priceBreakdown.size = "80%"
-        priceBreakdown.logoSize="80%"
-        priceBreakdown.displayMode = "logoFirst"
-        stack.addArrangedSubview(priceBreakdown)
+//
+//        let priceBreakdown = PriceBreakdownView()
+//
+//        priceBreakdown.totalAmount = 35
+//        priceBreakdown.totalAmount = 700
+//        priceBreakdown.delegate = self
+//        priceBreakdown.logoOption = "secondary-light"
+//        priceBreakdown.priceColor = "#ff3700ff"
+//        priceBreakdown.alignment = "right"
+//        priceBreakdown.size = "80%"
+//        priceBreakdown.logoSize="80%"
+//        priceBreakdown.displayMode = "logoFirst"
+//        stack.addArrangedSubview(priceBreakdown)
 
         
         view.addSubview(stack)

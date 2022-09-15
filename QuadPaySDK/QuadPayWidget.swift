@@ -21,19 +21,31 @@ public protocol PriceBreakdownViewDelegate: AnyObject {
 /// launch externally by default but can launch modally in app by implementing
 /// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
 /// as well as changes to the `totalAmount`.
+//@available(iOS 10.0, *)
+//@available(iOS 12.0, *)
 @available(iOS 10.0, *)
 @available(iOS 12.0, *)
 public final class PriceBreakdownView: UIView {
 
   /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
   /// externally.
-  public weak var delegate: PriceBreakdownViewDelegate?
-  
-  public var displayMode:String = ""{
-      didSet{
+    public weak var delegate: PriceBreakdownViewDelegate?
+    
+    let merchantConfigUrl: String = "https://qp-merchant-configs-dev.azureedge.net/"
+    
+    var merchantCo = [MerchantConfig]()
+    
+    public var grayLabelMerchant: Bool = false{
+        didSet{
+            updateAttributedText()
+        }
+    }
+    
+    public var displayMode:String = ""{
+        didSet{
           updateAttributedText()
-      }
-  }
+        }
+    }
     
     public var isMFPPMerchant:String = ""{
         didSet{
@@ -60,17 +72,17 @@ public final class PriceBreakdownView: UIView {
     }
     
     
-  public var logoOption: String = "logo_main"{
-      didSet{
+    public var logoOption: String = "logo_main"{
+        didSet{
           updateAttributedText()
-      }
-  }
+        }
+    }
     
-  public var logoSize = "100%"{
-      didSet{
+    public var logoSize = "100%"{
+        didSet{
           updateAttributedText()
-      }
-  }
+        }
+    }
   
     public var size = "100%"{
       didSet{
@@ -158,6 +170,7 @@ public final class PriceBreakdownView: UIView {
   public var moreInfoOptions: MoreInfoOptions = MoreInfoOptions() {
     didSet { updateAttributedText() }
   }
+    
 
   private let linkTextView = LinkTextView()
 
@@ -165,7 +178,25 @@ public final class PriceBreakdownView: UIView {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
         let url  = URL(fileURLWithPath: urlPath!)
         return url
-        
+
+    }
+    
+    private var contentHtml: String{
+        let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
+        do{
+            var strHTMLContent = try String(contentsOfFile: urlPath!)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "learnMoreUrl=''", with: "learnMoreUrl='"+learnMorUrl+"'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "merchantId=''", with: "merchantId='"+merchantId+"'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "isMFPPMerchant=''", with: "isMFPPMerchant='"+isMFPPMerchant+"'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "minModal=''", with: "minModal='"+String(minModal)+"'")
+            
+            return strHTMLContent
+        }
+        catch let err{
+            print(err)
+            return ""
+        }
+
     }
 
       public init() {
@@ -178,11 +209,13 @@ public final class PriceBreakdownView: UIView {
       super.init(coder: coder)
       sharedInit()
     }
+    
+
 
     private func sharedInit() {
-      linkTextView.linkHandler = { [weak self] url in
+      linkTextView.linkHandler = { [weak self ] url in
         if let viewController = self?.delegate?.viewControllerForPresentation() {
-          let infoWebViewController = InfoWebViewController(infoURL: url)
+            let infoWebViewController = InfoWebViewController(infoURL: url, contentHtml: self?.contentHtml ?? "")
           let navigationController = UINavigationController(rootViewController: infoWebViewController)
           viewController.present(navigationController, animated: true, completion: nil)
         } else {
@@ -200,30 +233,63 @@ public final class PriceBreakdownView: UIView {
       ])
 
     }
-
-    @objc private func configurationDidChange() {
-      DispatchQueue.main.async {
-        self.updateAttributedText()
-      }
+    
+    
+    @available(iOS 15.0, *)
+    private func fetchMerchantConfig() async -> Result<MerchantConfig, Error>{
+        if(merchantId == ""){
+            return .failure(MyError.failedToGetMerchantConfig)
+        }
+        
+        do{
+            let url = URL(string: (merchantConfigUrl + merchantId + ".json"))
+            let (data,_) = try await URLSession.shared.data(from: url!)
+  
+            let merchantConfigData = try JSONDecoder().decode(MerchantConfig.self, from: data)
+           
+            return .success(merchantConfigData)
+        }
+        catch{
+            return .failure(MyError.failedToGetMerchantConfig)
+        }
     }
+    
+    
 
     private func updateAttributedText() {
       var widget_Text = "4 easy payments of"
+    
         
+        if #available(iOS 13.0, *) {
+            Task {
+                if #available(iOS 15.0, *) {
+                    let result = await fetchMerchantConfig()
+                    switch result{
+                    case .success(_):
+                        grayLabelMerchant = true
+                        
+                    case.failure(_):
+                        grayLabelMerchant = false
+                    }
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+
       let logoView =  ZipPayLogo(logoOption1: logoOption)
 
       let font: UIFont = fontProvider(traitCollection)
       var fontHeight = (font.ascender - font.descender)
-      let sizePercentage =  Int(size.replacingOccurrences(of: "%", with: "")) ?? 100
-        let logoSizePercentage = Int(logoSize.replacingOccurrences(of: "%", with:"")) ?? 100
-      fontHeight = fontHeight * CGFloat(sizePercentage)/CGFloat(100)
+      
+      fontHeight = fontHeight * CheckSize(size: size)
       let logoHeight =  CGFloat(logoType.heightMultiplier)
 
       let logoRatio = logoView.ratio ?? 1
 
       let widthFittingFont = logoHeight / logoRatio
       let width = widthFittingFont > logoView.minimumWidth ? widthFittingFont : logoView.minimumWidth
-      let logoSize = CGSize(width: width * CGFloat(logoSizePercentage)/CGFloat(100), height: width * logoRatio * CGFloat(logoSizePercentage)/CGFloat(100))
+      let logoSize = CGSize(width: width * CheckSize(size: logoSize), height: width * logoRatio * CheckSize(size: logoSize))
 
       logoView.frame = CGRect(origin: .zero, size: logoSize)
 
@@ -231,6 +297,11 @@ public final class PriceBreakdownView: UIView {
         .font: font.withSize(fontHeight),
         .foregroundColor: textColor as UIColor,
       ]
+        
+    let poweredByAttributes: [NSAttributedString.Key: Any] = [
+          .font: font.withSize(12),
+          .foregroundColor: textColor as UIColor,
+        ]
 
       let amountColor = UIColor(hex: priceColor)
         
@@ -283,13 +354,48 @@ public final class PriceBreakdownView: UIView {
     let widgetText = NSAttributedString(string: widget_Text, attributes: textAttributes)
     
     let with = NSAttributedString(string:"with", attributes: textAttributes)
-    
+        
+    let poweredBy = NSAttributedString(string:"powered by", attributes: poweredByAttributes)
+        
     let amount = NSAttributedString(string: amountString, attributes: amountAttribute)
+        
     var badgeAndBreakdown = [space]
-    if(displayMode=="logoFirst"){
+    if(displayMode=="logoFirst" && !grayLabelMerchant){
         badgeAndBreakdown = [badge,space, widgetText, space, amount]
     }else{
-        badgeAndBreakdown = [widgetText, space, amount,space, with, space, badge]
+        if(grayLabelMerchant){
+            let merchantLogo =  ZipPayLogo(logoOption1: "welcome_pay")
+//            merchantLogo.downloaded(urlString: "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg")
+            //merchantLogo.frame = CGRect(origin: .zero, size: logoSize)
+            let merchantLogoHeight =  CGFloat(logoType.heightMultiplier)
+
+       
+
+            let merchantRatio = merchantLogo.ratio ?? 1
+
+            let widthMerchantFittingFont = merchantLogoHeight / merchantRatio
+            let width = widthMerchantFittingFont > merchantLogo.minimumWidth ? widthMerchantFittingFont : merchantLogo.minimumWidth
+            let merchantSize = CGSize(width: width , height: width * merchantRatio)
+
+            merchantLogo.frame = CGRect(origin: .zero, size: logoSize)
+            
+            let merchantBadge: NSAttributedString = {
+              let attachment = NSTextAttachment()
+              attachment.image = merchantLogo.image
+
+              let centerY = fontHeight / 2
+              let yPos = centerY - (merchantLogo.frame.height / 2) + (font.descender * CGFloat(logoType.descenderMultiplier))
+
+              attachment.bounds = CGRect(origin: .init(x: 0, y: yPos), size: merchantLogo.bounds.size)
+              attachment.isAccessibilityElement = true
+              attachment.accessibilityLabel = merchantLogo.accessibilityLabel
+              return .init(attachment: attachment)
+            }()
+            badgeAndBreakdown = [widgetText, space, amount,space, with, space, merchantBadge, space, poweredBy, space, badge]
+        }else{
+            badgeAndBreakdown = [widgetText, space, amount,space, with, space, badge]
+        }
+        
     }
     
       
@@ -341,7 +447,7 @@ public final class PriceBreakdownView: UIView {
         
   }
 
-  public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
 
     let userInterfaceStyle = traitCollection.userInterfaceStyle
@@ -356,7 +462,35 @@ public final class PriceBreakdownView: UIView {
       updateAttributedText()
     }
   }
+    
+    private func CheckSize(size:String) -> CGFloat{
+        var sizeValue = Int(size.replacingOccurrences(of: "%", with: "")) ?? 100
+        if (sizeValue >= 120)
+        {
+            sizeValue = 120
+        }
+        else if(sizeValue <= 80){
+            sizeValue = 80
+        }
+        return CGFloat(sizeValue)/CGFloat(100)
+    }
+}
 
+extension UIImageView {
+    func downloaded(urlString: String) {
+        guard let url = URL(string: urlString) else{
+            return
+        }
+        DispatchQueue.global().async{ [weak self] in
+            if let data = try? Data(contentsOf:url){
+                if let image = UIImage(data: data){
+                    DispatchQueue.main.async{
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }
 
 @available(iOS 10.0, *)
@@ -386,4 +520,12 @@ extension UIColor {
         self.init(ciColor: .black)
         return
     }
+}
+
+struct MerchantConfig: Codable{
+    var LogoUrl : String
+}
+
+enum MyError:Error{
+    case failedToGetMerchantConfig
 }
