@@ -57,6 +57,7 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
       print(contentHTML)
+      print(infoURL)
       webView.loadHTMLString(contentHTML, baseURL: infoURL)
    // webView.load(URLRequest(url: infoURL))
   }

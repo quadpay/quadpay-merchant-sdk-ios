@@ -29,14 +29,14 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         
         
         let priceBreakdown2 = PriceBreakdownView()
-        priceBreakdown2.totalAmount = 7000
+        priceBreakdown2.totalAmount = 500
         priceBreakdown2.delegate = self
         priceBreakdown2.logoOption = "secondary"
         priceBreakdown2.priceColor = "#ff3700ff"
         priceBreakdown2.size = "150%"
         priceBreakdown2.logoSize="150%"
-        priceBreakdown2.max=200
         priceBreakdown2.alignment = "center"
+       
         priceBreakdown2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         
         stack.addArrangedSubview(priceBreakdown2)

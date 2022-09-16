@@ -59,7 +59,7 @@ public final class PriceBreakdownView: UIView {
         }
     }
     
-    public var learnMorUrl: String = ""{
+    public var learnMoreUrl: String = ""{
         didSet{
             updateAttributedText()
         }
@@ -185,7 +185,8 @@ public final class PriceBreakdownView: UIView {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
         do{
             var strHTMLContent = try String(contentsOfFile: urlPath!)
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "learnMoreUrl=''", with: "learnMoreUrl='"+learnMorUrl+"'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "amount=''", with: "amount='"+String(totalAmount)+"'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "learnMoreUrl=''", with: "learnMoreUrl='"+learnMoreUrl+"'")
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "merchantId=''", with: "merchantId='"+merchantId+"'")
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "isMFPPMerchant=''", with: "isMFPPMerchant='"+isMFPPMerchant+"'")
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "minModal=''", with: "minModal='"+String(minModal)+"'")
@@ -365,17 +366,13 @@ public final class PriceBreakdownView: UIView {
     }else{
         if(grayLabelMerchant){
             let merchantLogo =  ZipPayLogo(logoOption1: "welcome_pay")
-//            merchantLogo.downloaded(urlString: "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg")
-            //merchantLogo.frame = CGRect(origin: .zero, size: logoSize)
             let merchantLogoHeight =  CGFloat(logoType.heightMultiplier)
-
        
-
             let merchantRatio = merchantLogo.ratio ?? 1
 
             let widthMerchantFittingFont = merchantLogoHeight / merchantRatio
             let width = widthMerchantFittingFont > merchantLogo.minimumWidth ? widthMerchantFittingFont : merchantLogo.minimumWidth
-            let merchantSize = CGSize(width: width , height: width * merchantRatio)
+            let merchantSize = CGSize(width: width, height: width * merchantRatio)
 
             merchantLogo.frame = CGRect(origin: .zero, size: logoSize)
             
