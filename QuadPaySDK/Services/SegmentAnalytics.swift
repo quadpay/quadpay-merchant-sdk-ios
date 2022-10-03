@@ -10,8 +10,7 @@ import Foundation
 import Segment
 
 @objc class SegmentAnalytics : NSObject {
-    // Debug: 6bL63aA5QRA5MifcXrFGidXeybebIkP8 Prod: cjapZeHIFnoWRALIB95zrsCX7fFS47SE
-    private var segmentApiWriteKey: String = "6bL63aA5QRA5MifcXrFGidXeybebIkP8"
+    private var segmentApiWriteKey: String = "get setting from config"
     private var viewStandardWidgetEventName: String = "Viewed Standard Widget"
     private var trackingProperties: [String: Any] = [:]
 
