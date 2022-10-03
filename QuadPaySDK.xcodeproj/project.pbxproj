@@ -43,6 +43,7 @@
 		29A93D0328EB309100C6D3C6 /* SegmentAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A93D0228EB309100C6D3C6 /* SegmentAnalytics.swift */; };
 		29A93D0428EB349B00C6D3C6 /* SegmentAnalytics.swift in Headers */ = {isa = PBXBuildFile; fileRef = 29A93D0228EB309100C6D3C6 /* SegmentAnalytics.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		29A93D0B28EB3B9800C6D3C6 /* ReleaseConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 29A93D0A28EB3B9800C6D3C6 /* ReleaseConfig.xcconfig */; };
+		29A93D1328EB5CC400C6D3C6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A93D1228EB5CC400C6D3C6 /* Configuration.swift */; };
 		AC972D614FAD32ED75B415CE /* Pods_QuadPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C725D039065FE3DBBFE480 /* Pods_QuadPaySDK.framework */; };
 		CBC2EEAAB9ACB1E7D18ED648 /* Pods_QuadPaySDK_QuadPaySDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F588AF574FF2694FFD74F5 /* Pods_QuadPaySDK_QuadPaySDKTests.framework */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		29A93D0228EB309100C6D3C6 /* SegmentAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnalytics.swift; sourceTree = "<group>"; };
 		29A93D0928EB38BA00C6D3C6 /* DebugConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DebugConfig.xcconfig; sourceTree = "<group>"; };
 		29A93D0A28EB3B9800C6D3C6 /* ReleaseConfig.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseConfig.xcconfig; sourceTree = "<group>"; };
+		29A93D1228EB5CC400C6D3C6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		6814893D8D6A0BE88B394166 /* Pods-QuadPaySDK-QuadPaySDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuadPaySDK-QuadPaySDKTests.release.xcconfig"; path = "Target Support Files/Pods-QuadPaySDK-QuadPaySDKTests/Pods-QuadPaySDK-QuadPaySDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		96F588AF574FF2694FFD74F5 /* Pods_QuadPaySDK_QuadPaySDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuadPaySDK_QuadPaySDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41B1072FB10E1572716FE21 /* Pods-QuadPaySDK-QuadPaySDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuadPaySDK-QuadPaySDKTests.debug.xcconfig"; path = "Target Support Files/Pods-QuadPaySDK-QuadPaySDKTests/Pods-QuadPaySDK-QuadPaySDKTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				29A93D0928EB38BA00C6D3C6 /* DebugConfig.xcconfig */,
 				29A93D0A28EB3B9800C6D3C6 /* ReleaseConfig.xcconfig */,
+				29A93D1228EB5CC400C6D3C6 /* Configuration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				251EC4D3246F0AB700679E88 /* QuadPay.m in Sources */,
 				251EC4D0246F01C100679E88 /* QuadPayCheckoutDetails.m in Sources */,
 				251EC4EF2473262200679E88 /* QuadPayURLBuilder.m in Sources */,
+				29A93D1328EB5CC400C6D3C6 /* Configuration.swift in Sources */,
 				251EC4B82469DC9600679E88 /* QuadPayCheckoutViewController.m in Sources */,
 				251EC4C6246B14F800679E88 /* QuadPayCardholder.m in Sources */,
 				251EC4C2246B14CE00679E88 /* QuadPayCard.m in Sources */,

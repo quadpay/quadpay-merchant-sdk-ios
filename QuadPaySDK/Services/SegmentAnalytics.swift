@@ -10,13 +10,12 @@ import Foundation
 import Segment
 
 @objc class SegmentAnalytics : NSObject {
-    private var segmentApiWriteKey: String = "get setting from config"
     private var viewStandardWidgetEventName: String = "Viewed Standard Widget"
     private var trackingProperties: [String: Any] = [:]
 
     @objc override init() {
         // Override point for customization after application launch
-        let configuration = AnalyticsConfiguration(writeKey: segmentApiWriteKey)
+        let configuration = AnalyticsConfiguration(writeKey: Configuration.segmentApiWriteKey)
         configuration.trackApplicationLifecycleEvents = true
         configuration.recordScreenViews = true
 
