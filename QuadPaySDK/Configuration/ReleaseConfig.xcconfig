@@ -11,4 +11,4 @@
 
 #include "Pods/Target Support Files/Pods-QuadPaySDK/Pods-QuadPaySDK.release.xcconfig"
 
-SEGMENT_WRITE_KEY = ""
+SEGMENT_WRITE_KEY = "6bL63aA5QRA5MifcXrFGidXeybebIkP8"

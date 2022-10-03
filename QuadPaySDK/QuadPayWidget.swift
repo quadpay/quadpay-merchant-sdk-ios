@@ -35,6 +35,8 @@ public final class PriceBreakdownView: UIView {
     
     var merchantCo = [MerchantConfig]()
     
+    var analytics = SegmentAnalytics()
+    
     public var grayLabelMerchant: Bool = false{
         didSet{
             updateAttributedText()
@@ -225,6 +227,8 @@ public final class PriceBreakdownView: UIView {
       }
 
       addSubview(linkTextView)
+        
+      analytics.trackViewedStandardWidget()
 
       NSLayoutConstraint.activate([
         linkTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
