@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target		= '9.0'
   s.source_files				    = 'QuadPaySDK/**/*.{h,m}'
   s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit'
+  s.dependency "Analytics", "~> 4.1"
 end
  
