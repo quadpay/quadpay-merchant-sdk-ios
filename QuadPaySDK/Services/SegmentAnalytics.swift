@@ -15,7 +15,8 @@ import Segment
 
     @objc override init() {
         // Override point for customization after application launch
-        let configuration = AnalyticsConfiguration(writeKey: Configuration.segmentApiWriteKey)
+        let keys = QuadPaySDKXcodeprojKeys()
+        let configuration = AnalyticsConfiguration(writeKey: keys.segmentWriteKey)
         configuration.trackApplicationLifecycleEvents = true
         configuration.recordScreenViews = true
 
