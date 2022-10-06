@@ -376,8 +376,8 @@ public final class PriceBreakdownView: UIView {
 
             let widthMerchantFittingFont = merchantLogoHeight / merchantRatio
             let width = widthMerchantFittingFont > merchantLogo.minimumWidth ? widthMerchantFittingFont : merchantLogo.minimumWidth
-            print(width)
-            print(logoRatio)
+            //print(width)
+            //print(logoRatio)
             let merchantSize = CGSize(width: width+30, height: width * logoRatio)
 
             merchantLogo.frame = CGRect(origin: .zero, size: merchantSize)

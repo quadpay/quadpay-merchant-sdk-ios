@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '13.4'
+platform :ios, '12.0'
 
 plugin 'cocoapods-keys', project: 'QuadPaySDK', target: 'QuadPaySDK', keys: [ 'SegmentWriteKey' ]
 

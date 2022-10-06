@@ -18,7 +18,6 @@ import Segment
         let keys = QuadPaySDKXcodeprojKeys()
         let configuration = AnalyticsConfiguration(writeKey: keys.segmentWriteKey)
         configuration.trackApplicationLifecycleEvents = true
-        configuration.recordScreenViews = true
 
         Analytics.setup(with: configuration)
 
