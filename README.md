@@ -33,7 +33,7 @@ Please find integration documentation at [https://docs.us.zip.co/docs/mobile-sdk
 
 Storing Secrets in SDK
 ===
-Please review the documentation [here](Keys/README.md) to learn more about storing secrets in the SDK.
+Please review the documentation [here](./QuadPaySDK/Keys/README.md) to learn more about storing secrets in the SDK.
 
 
 Example
