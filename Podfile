@@ -9,6 +9,7 @@ target 'QuadPaySDK' do
 
   # Pods for QuadPaySDK
   pod "Analytics", "~> 4.1"
+  pod 'FingerprintJS'
 
   target 'QuadPaySDKTests' do
     # Pods for testing

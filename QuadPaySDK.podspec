@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.source_files				    = 'QuadPaySDK/**/*.{h,m,swift}'
   s.resources               = 'QuadPaySDK/*.xcassets', 'QuadPaySDK/www'
   s.requires_arc            = true
-  s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit', 'Segment'
+  s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit', 'Segment', 'FingerprintJS'
   s.dependency "Analytics", "~> 4.1"
+  s.dependency "FingerprintJS"
 end

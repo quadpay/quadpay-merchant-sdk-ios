@@ -8,10 +8,11 @@
 
 import Foundation
 import Segment
+import FingerprintJS
 
 @objc class SegmentAnalytics : NSObject {
     private var viewStandardWidgetEventName: String = "Viewed Standard Widget"
-    private var trackingProperties: [String: Any] = [:]
+    private var trackingProperties: [String: String?] = [:]
 
     @objc override init() {
         // Override point for customization after application launch
@@ -20,11 +21,18 @@ import Segment
         configuration.trackApplicationLifecycleEvents = true
 
         Analytics.setup(with: configuration)
-
-        trackingProperties = ["userId": ""] // fingerprint
+        
+        let fingerprinter = FingerprinterFactory.getInstance()
+        var fingerprint: String? = ""
+        
+        fingerprinter.getFingerprint {
+            result in fingerprint = result
+        }
+        
+        trackingProperties = ["userId": fingerprint]
     }
 
     @objc public func trackViewedStandardWidget() {
-        Analytics.shared().track(viewStandardWidgetEventName, properties: trackingProperties)
+        Analytics.shared().track(viewStandardWidgetEventName, properties: trackingProperties as [String: Any])
     }
 }
