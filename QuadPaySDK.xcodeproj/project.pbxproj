@@ -171,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				251EC4D72472ED6700679E88 /* GatewayMessages */,
+				29A93D2B28EF4F9E00C6D3C6 /* Keys */,
 				29A93CFA28E7872100C6D3C6 /* Services */,
 				BB9E5ED428CA17AF0031C5C9 /* www */,
 				BB9E5ED628CA18340031C5C9 /* Media.xcassets */,
@@ -204,8 +205,6 @@
 				251EC4BD246B127F00679E88 /* QuadPayCardholder.h */,
 				251EC4BF246B129100679E88 /* QuadPayCustomer.h */,
 				251EC4CD246C9E3900679E88 /* QuadPayCheckoutDetails.h */,
-				29A93D2728EE27D900C6D3C6 /* QuadPaySDKXcodeprojKeys.h */,
-				29A93D2628EE27D800C6D3C6 /* QuadPaySDKXcodeprojKeys.m */,
 				251EC48D2469D64300679E88 /* Info.plist */,
 			);
 			path = QuadPaySDK;
@@ -242,6 +241,15 @@
 				29A93D0228EB309100C6D3C6 /* SegmentAnalytics.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		29A93D2B28EF4F9E00C6D3C6 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				29A93D2728EE27D900C6D3C6 /* QuadPaySDKXcodeprojKeys.h */,
+				29A93D2628EE27D800C6D3C6 /* QuadPaySDKXcodeprojKeys.m */,
+			);
+			path = Keys;
 			sourceTree = "<group>";
 		};
 		59BECF8A507B926BA79712AC /* Frameworks */ = {
