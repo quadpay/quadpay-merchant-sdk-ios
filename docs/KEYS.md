@@ -51,14 +51,14 @@ plugin 'cocoapods-keys', {
 }
 ```
 
-Then running `pod install` will prompt for the keys not yet set.
+Then running `pod install` will prompt for the keys not yet set. If it asks you for a project, provide `QuadPaySDK`. This will depict the name of the file generated and a custom store location for the keys.
 
 This install will generate a pod that contains the `.h` and `.m` file for the keys. These are the interface header and class implementation of the keys. These files need to be pulled into the SDK, rather than importing the pod into the SDK. The reason for this is because we will not deploy this pod for usage when the 3rd party app installs our SDK, so the keys need to exist within the SDK itself.
 
-Simply replace the files in `./QuadPaySDK` with the generated files. Sometimes Xcode will remove the header file from the public headers, so if that happens, just add the `QuadPaySDKXcodeprojKeys.h` header as a public header in the project settings.
+Simply replace the files in `./QuadPaySDK` with the generated files. Sometimes Xcode will remove the header file from the public headers, so if that happens, just add the `QuadPaySDKKeys.h` header as a public header in the project settings under the Build Phases/Headers setting location.
 
 You can access the key value by using the interface
 ```swift
-let keys = QuadPaySDKXcodeprojKeys()
+let keys = QuadPaySDKKeys()
 let myNewKeyValue = keys.myNewKey
 ```

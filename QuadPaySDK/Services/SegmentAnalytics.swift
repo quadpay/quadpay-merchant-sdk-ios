@@ -16,7 +16,7 @@ import FingerprintJS
 
     @objc override init() {
         // Override point for customization after application launch
-        let keys = QuadPaySDKXcodeprojKeys()
+        let keys = QuadPaySDKKeys()
         let configuration = AnalyticsConfiguration(writeKey: keys.segmentWriteKey)
         configuration.trackApplicationLifecycleEvents = true
 
