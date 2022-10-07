@@ -28,15 +28,12 @@ To include the assets inside the development pod under the same directory as the
 
 Integration documentation
 ===
-
 Please find integration documentation at [https://docs.us.zip.co/docs/mobile-sdk-ios](https://docs.us.zip.co/docs/mobile-sdk-ios).
 
 Storing Secrets in SDK
 ===
-Please review the documentation [here](./QuadPaySDK/Keys/README.md) to learn more about storing secrets in the SDK.
-
+Please review the documentation [here](./docs/KEYS.md) to learn more about storing secrets in the SDK.
 
 Example
 ===
-
 This repo also contains a demo app at `./Example` to show a basic implementation of the QuadPay SDK.

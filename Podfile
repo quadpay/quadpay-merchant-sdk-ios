@@ -1,7 +1,12 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '12.0'
 
-plugin 'cocoapods-keys', project: 'QuadPaySDK', target: 'QuadPaySDK', keys: [ 'SegmentWriteKey' ]
+plugin 'cocoapods-keys', {
+  :project => 'QuadPaySDK',
+  :keys => [
+    'SegmentWriteKey',
+  ]
+}
 
 target 'QuadPaySDK' do
   # Comment the next line if you don't want to use dynamic frameworks

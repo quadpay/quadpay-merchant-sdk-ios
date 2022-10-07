@@ -1,1 +1,0 @@
-# QuadPaySDK Secret Keys
