@@ -25,7 +25,7 @@ import FingerprintJS
         let fingerprinter = FingerprinterFactory.getInstance()
         var fingerprint: String? = ""
         
-        fingerprinter.getFingerprint {
+        fingerprinter.getDeviceId {
             result in fingerprint = result
         }
         
