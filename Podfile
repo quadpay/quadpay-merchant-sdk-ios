@@ -7,7 +7,7 @@ plugin 'cocoapods-keys', {
   :project => 'QuadPaySDK',
   :keys => [
     'SegmentWriteKey',
-    'TestKey'
+    'MerchantConfigApiUrl'
   ]
 }
 

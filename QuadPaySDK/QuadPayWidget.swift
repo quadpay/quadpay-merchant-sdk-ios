@@ -21,8 +21,6 @@ public protocol PriceBreakdownViewDelegate: AnyObject {
 /// launch externally by default but can launch modally in app by implementing
 /// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
 /// as well as changes to the `totalAmount`.
-//@available(iOS 10.0, *)
-//@available(iOS 12.0, *)
 @available(iOS 10.0, *)
 @available(iOS 12.0, *)
 public final class PriceBreakdownView: UIView {
@@ -31,7 +29,9 @@ public final class PriceBreakdownView: UIView {
   /// externally.
     public weak var delegate: PriceBreakdownViewDelegate?
     
-    let merchantConfigUrl: String = "https://qp-merchant-configs-dev.azureedge.net/"
+    let keys = QuadPaySDKKeys()
+    
+    let merchantConfigUrl: String = keys.merchantConfigApiUrl
     
     var merchantCo = [MerchantConfig]()
     
