@@ -31,8 +31,6 @@ public final class PriceBreakdownView: UIView {
     
     let keys = QuadPaySDKKeys()
     
-    let merchantConfigUrl: String = keys.merchantConfigApiUrl
-    
     var merchantCo = [MerchantConfig]()
     
     var analytics = SegmentAnalytics()
@@ -247,6 +245,7 @@ public final class PriceBreakdownView: UIView {
         }
         
         do{
+            let merchantConfigUrl: String = keys.merchantConfigApiUrl
             let url = URL(string: (merchantConfigUrl + merchantId + ".json"))
             let (data,_) = try await URLSession.shared.data(from: url!)
   
