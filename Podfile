@@ -16,8 +16,8 @@ target 'QuadPaySDK' do
   use_frameworks!
 
   # Pods for QuadPaySDK
-  pod "Analytics", "~> 4.1" :modular_headers => true
-  pod 'FingerprintJS' :modular_headers => true
+  pod "Analytics", "~> 4.1", :modular_headers => true
+  pod 'FingerprintJS', :modular_headers => true
 
   target 'QuadPaySDKTests' do
     # Pods for testing
