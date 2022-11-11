@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name						= 'QuadPaySDK'
   s.authors						= "Zip Co."
-  s.version						= '0.5.5-beta'
+  s.version						= '0.5.6-beta'
   s.summary						= 'Integrate Zip (formally QuadPay) into your iOS app'
   s.homepage					= 'https://github.com/quadpay/quadpay-merchant-sdk-ios'
   s.license						= { :type => "mit", :file => "LICENSE" }
@@ -13,5 +13,6 @@ Pod::Spec.new do |s|
   s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit'
   s.dependency "Analytics", "~> 4.1"
   s.dependency "FingerprintJS"
-  s.swift_version = '5.7'
+  s.swift_version = '5.7',
+  s.pod_target_xcconfig = { 'DEFINES_MODULES' => 'YES' }
 end
