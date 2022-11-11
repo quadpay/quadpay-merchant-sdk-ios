@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit'
   s.dependency "Analytics", "~> 4.1"
   s.dependency "FingerprintJS"
-  s.swift_version = '5.7',
+  s.swift_version = '5.7'
   s.pod_target_xcconfig = { 'DEFINES_MODULES' => 'YES' }
 end
