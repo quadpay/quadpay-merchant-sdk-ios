@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import QuadPaySDK
 
-final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
+final class WidgetViewContoller : UIViewController, QuadPayWidgetComponentDelegate {
 
     private var scrollView: UIScrollView!
     
@@ -28,7 +28,7 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
       
         
         
-        let priceBreakdown2 = PriceBreakdownView()
+        let priceBreakdown2 = QuadPayWidgetComponent()
         priceBreakdown2.amount = "500"
         priceBreakdown2.delegate = self
         priceBreakdown2.logoOption = "secondary"
@@ -41,7 +41,7 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         
         stack.addArrangedSubview(priceBreakdown2)
         
-        let priceBreakdown3 = PriceBreakdownView()
+        let priceBreakdown3 = QuadPayWidgetComponent()
         priceBreakdown3.amount = "700"
         priceBreakdown3.delegate = self
         priceBreakdown3.logoOption = "secondary-light"
@@ -50,59 +50,18 @@ final class WidgetViewContoller : UIViewController, PriceBreakdownViewDelegate {
         priceBreakdown3.size = "120%"
         priceBreakdown3.logoSize="120%"
         stack.addArrangedSubview(priceBreakdown3)
-//
-//        let priceBreakdown = PriceBreakdownView()
-//
-//        priceBreakdown.totalAmount = 35
-//        priceBreakdown.totalAmount = 700
-//        priceBreakdown.delegate = self
-//        priceBreakdown.logoOption = "secondary-light"
-//        priceBreakdown.priceColor = "#ff3700ff"
-//        priceBreakdown.alignment = "right"
-//        priceBreakdown.size = "80%"
-//        priceBreakdown.logoSize="80%"
-//        priceBreakdown.displayMode = "logoFirst"
-//        stack.addArrangedSubview(priceBreakdown)
 
-        
         view.addSubview(stack)
         
         stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant:  10).isActive = true
         stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant:  -10).isActive = true
-        
-
-
-//        let contentView = UIView()
-//        contentView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.addSubview(contentView)
-//
-//        let contentStack = UIStackView()
-//        contentStack.translatesAutoresizingMaskIntoConstraints = false
-//        contentStack.axis = .vertical
-//        contentView.addSubview(contentStack)
-//
-//        let child = ContentStackViewController()
-//        addChild(child)
-//
-//        child.view.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(child.view)
-//
-//        NSLayoutConstraint.activate([
-//            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            child.view.topAnchor.constraint(equalTo: view.topAnchor),
-//            child.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
-//
-//        child.didMove(toParent: self)
-    
         
         self.view = view
     }
     func viewControllerForPresentation() -> UIViewController { self }
 }
 
-private final class ContentStackViewController: UIViewController, PriceBreakdownViewDelegate {
+private final class ContentStackViewController: UIViewController, QuadPayWidgetComponentDelegate {
 
     init() {
       super.init(nibName: nil, bundle: nil)

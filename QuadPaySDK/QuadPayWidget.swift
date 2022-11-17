@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Implementing this delegate protocol allows launching of the info link modally in app.
-public protocol PriceBreakdownViewDelegate: AnyObject {
+public protocol QuadPayWidgetComponentDelegate: AnyObject {
 
   /// The view controller for which the modal info web view controller should be presented on.
   /// - Returns: The view controller for modal presentation.
@@ -23,11 +23,11 @@ public protocol PriceBreakdownViewDelegate: AnyObject {
 /// as well as changes to the `totalAmount`.
 @available(iOS 10.0, *)
 @available(iOS 12.0, *)
-public final class PriceBreakdownView: UIView {
+public final class QuadPayWidgetComponent: UIView {
 
   /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
   /// externally.
-    public weak var delegate: PriceBreakdownViewDelegate?
+    public weak var delegate: QuadPayWidgetComponentDelegate?
     
     let keys = QuadPaySDKKeys()
     
