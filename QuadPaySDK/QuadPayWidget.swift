@@ -41,31 +41,31 @@ public final class PriceBreakdownView: UIView {
         }
     }
     
-    public var displayMode:String = ""{
+    @objc public var displayMode:String = ""{
         didSet{
           updateAttributedText()
         }
     }
     
-    public var isMFPPMerchant:String = ""{
+    @objc public var isMFPPMerchant:String = ""{
         didSet{
             updateAttributedText()
         }
     }
     
-    public var minModal: Bool = false{
+    @objc public var minModal: String = "false"{
         didSet{
             updateAttributedText()
         }
     }
     
-    public var learnMoreUrl: String = ""{
+    @objc public var learnMoreUrl: String = ""{
         didSet{
             updateAttributedText()
         }
     }
     
-    public var merchantId:String = ""{
+    @objc public var merchantId:String = ""{
         didSet{
             updateAttributedText()
         }
@@ -78,43 +78,43 @@ public final class PriceBreakdownView: UIView {
         }
     }
     
-    public var logoSize = "100%"{
+    @objc public var logoSize = "100%"{
         didSet{
           updateAttributedText()
         }
     }
   
-    public var size = "100%"{
+    @objc public var size = "100%"{
       didSet{
           updateAttributedText()
       }
   }
   
-  public var min = 35 {
+   @objc public var min:String = "35" {
       didSet{
           updateAttributedText()
       }
   }
   
-  public var max = 1500{
+   @objc public var max:String = "1500"{
       didSet{
           updateAttributedText()
       }
   }
   
-  public var totalAmount: Float = .zero {
+    @objc public var amount: String = "" {
       didSet {
         updateAttributedText()
       }
   }
   
-  public var priceColor: String = ""{
+    @objc public var colorPrice: String = ""{
       didSet{
           updateAttributedText()
       }
   }
     
-    public var alignment: String = "left"{
+    @objc public var alignment: String = "left"{
         didSet{
             updateAttributedText()
         }
@@ -185,7 +185,7 @@ public final class PriceBreakdownView: UIView {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
         do{
             var strHTMLContent = try String(contentsOfFile: urlPath!)
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "amount=''", with: "amount='"+String(totalAmount)+"'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "amount=''", with: "amount='"+String(amount)+"'")
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "learnMoreUrl=''", with: "learnMoreUrl='"+learnMoreUrl+"'")
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "merchantId=''", with: "merchantId='"+merchantId+"'")
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "isMFPPMerchant=''", with: "isMFPPMerchant='"+isMFPPMerchant+"'")
@@ -281,7 +281,7 @@ public final class PriceBreakdownView: UIView {
             // Fallback on earlier versions
         }
 
-      let logoView =  ZipPayLogo(logoOption1: logoOption)
+      let logoView =  ZipPayLogo(logoOption: logoOption)
 
       let font: UIFont = fontProvider(traitCollection)
       var fontHeight = (font.ascender - font.descender)
@@ -307,7 +307,7 @@ public final class PriceBreakdownView: UIView {
           .foregroundColor: textColor as UIColor,
         ]
 
-      let amountColor = UIColor(hex: priceColor)
+        let amountColor = UIColor(hexString: colorPrice)
         
       let amountAttribute: [NSAttributedString.Key: Any] = [
         .font: font.withSize(fontHeight),
@@ -343,16 +343,19 @@ public final class PriceBreakdownView: UIView {
       formatter.numberStyle = .currency
     
     var amountString :String
-    
-    if(Int(totalAmount)<min){
+    let amountt  = Double(amount) ?? 0.00
+        let min  = Double(min) ?? 35.00
+        let max = Double(max) ?? 1500.00
+    if(amountt<min){
       widget_Text = "4 payments on order over"
-        amountString = formatter.string(for:min) ?? "?"
-    }else if(Int(totalAmount)>max){
+            amountString = formatter.string(for:Float(min)) ?? "?"
+        }else if(amountt>max){
       widget_Text = " 4 payments on order up to"
-        amountString = formatter.string(for:max) ?? "?"
+            amountString = formatter.string(for:Float(max)) ?? "?"
     }else{
       widget_Text = "4 easy payments of"
-      amountString = formatter.string(for: totalAmount/4) ?? "?"
+        
+      amountString = formatter.string(for: amountt/4) ?? "?"
     }
     
     let widgetText = NSAttributedString(string: widget_Text, attributes: textAttributes)
@@ -368,7 +371,7 @@ public final class PriceBreakdownView: UIView {
         badgeAndBreakdown = [badge,space, widgetText, space, amount]
     }else{
         if(grayLabelMerchant){
-            let merchantLogo =  ZipPayLogo(logoOption1: "welcome_pay")
+            let merchantLogo =  ZipPayLogo(logoOption: "welcome_pay")
             let merchantLogoHeight =  CGFloat(logoType.heightMultiplier)
        
             let merchantRatio = merchantLogo.ratio ?? 1
@@ -497,30 +500,31 @@ extension UIImageView {
 
 @available(iOS 10.0, *)
 extension UIColor {
-    public convenience init(hex:String) {
-        let r,g,b,a : CGFloat
-        
-        if hex.hasPrefix("#"){
-            let start  = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
-            
-            if hexColor.count == 8 {
-                let scanner = Scanner(string: hexColor)
-                var hexNumber : UInt64 = 0
-                
-                if scanner.scanHexInt64(&hexNumber){
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                    a = CGFloat((hexNumber & 0x000000ff)) / 255
-                    
-                    self.init(red:r, green: g, blue: b, alpha: a)
-                    return
-                }
-            }
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
         }
-        self.init(ciColor: .black)
-        return
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
     }
 }
 

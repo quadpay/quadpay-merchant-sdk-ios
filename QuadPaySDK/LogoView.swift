@@ -10,7 +10,7 @@ import UIKit
 
 public class ZipPayLogo: UIView {
     
-    public var logoOption = "logo_main"
+    public var logo = "logo_main"
   
     internal var image: UIImage?
     private var imageView = UIImageView(frame: .zero)
@@ -19,9 +19,9 @@ public class ZipPayLogo: UIView {
 
     public var ratio: CGFloat?
 
-    public init(logoOption1: String) {
+    public init(logoOption: String) {
         super.init(frame: .zero)
-        logoOption = logoOption1
+        logo = logoOption
         sharedInit()
       }
 
@@ -46,7 +46,7 @@ public class ZipPayLogo: UIView {
 
         deactivateConstraints()
           
-        image =  AssetProvider.image(named: logoOption)
+        image =  AssetProvider.image(named: logo)
         
           
        
