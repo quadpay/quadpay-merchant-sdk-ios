@@ -28,7 +28,7 @@ public final class QuadPayWidgetComponent: UIView {
   /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
   /// externally.
     public weak var delegate: QuadPayWidgetComponentDelegate?
-    
+
     let keys = QuadPaySDKKeys()
     
     var merchantCo = [MerchantConfig]()
@@ -41,13 +41,13 @@ public final class QuadPayWidgetComponent: UIView {
         }
     }
     
-    @objc public var displayMode:String = ""{
+    @objc public var displayMode: String = ""{
         didSet{
           updateAttributedText()
         }
     }
     
-    @objc public var isMFPPMerchant:String = ""{
+    @objc public var isMFPPMerchant: String = ""{
         didSet{
             updateAttributedText()
         }
@@ -65,7 +65,7 @@ public final class QuadPayWidgetComponent: UIView {
         }
     }
     
-    @objc public var merchantId:String = ""{
+    @objc public var merchantId: String = ""{
         didSet{
             updateAttributedText()
         }
@@ -78,13 +78,13 @@ public final class QuadPayWidgetComponent: UIView {
         }
     }
     
-    @objc public var logoSize = "100%"{
+    @objc public var logoSize: String = "100%"{
         didSet{
           updateAttributedText()
         }
     }
   
-    @objc public var size = "100%"{
+    @objc public var size: String = "100%"{
       didSet{
           updateAttributedText()
       }
@@ -96,7 +96,7 @@ public final class QuadPayWidgetComponent: UIView {
       }
   }
   
-   @objc public var max:String = "1500"{
+   @objc public var max: String = "1500"{
       didSet{
           updateAttributedText()
       }
@@ -211,30 +211,42 @@ public final class QuadPayWidgetComponent: UIView {
       sharedInit()
     }
     
+   
 
 
     private func sharedInit() {
-      linkTextView.linkHandler = { [weak self ] url in
-        if let viewController = self?.delegate?.viewControllerForPresentation() {
-            let infoWebViewController = InfoWebViewController(infoURL: url, contentHtml: self?.contentHtml ?? "")
-          let navigationController = UINavigationController(rootViewController: infoWebViewController)
-          viewController.present(navigationController, animated: true, completion: nil)
-        } else {
-          UIApplication.shared.open(url)
-        }
-      }
+        linkTextView.linkHandler = { [weak self ] url in
+          if let viewController = self?.delegate?.viewControllerForPresentation() {
+              let infoWebViewController = InfoWebViewController(infoURL: url, contentHtml: self?.contentHtml ?? "")
+            let navigationController = UINavigationController(rootViewController: infoWebViewController)
+            viewController.present(navigationController, animated: true, completion: nil)
+          } else if let rnController = self?.ReactNativeController(){
+              let infoWebViewController = InfoWebViewController(infoURL: url, contentHtml: self?.contentHtml ?? "")
+            let navigationController = UINavigationController(rootViewController: infoWebViewController)
+              rnController.present(navigationController, animated: true, completion: nil)
+            } else {
+                  UIApplication.shared.open(url)
+              }
+          }
+        
 
       addSubview(linkTextView)
-        
       analytics.trackViewedStandardWidget()
-
       NSLayoutConstraint.activate([
         linkTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
         linkTextView.topAnchor.constraint(equalTo: topAnchor),
         linkTextView.trailingAnchor.constraint(equalTo: trailingAnchor),
         linkTextView.bottomAnchor.constraint(equalTo: bottomAnchor),
       ])
+    }
+    
+    func ReactNativeController() -> UIViewController {
+        var reactNativeController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
 
+        while (reactNativeController.presentedViewController != nil) {
+            reactNativeController = reactNativeController.presentedViewController!
+        }
+        return reactNativeController
     }
     
     
