@@ -1,38 +1,34 @@
 <!DOCTYPE html>
-<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1'/>
+<meta name='viewport'content='width=device-width,initial-scale=1,maximum-scale=1' />
 <html>
-    <body>
-        <quadpay-widget-v3
-                amount=''
-                min=''
-                minModal=''
-                max=''
-                merchantId=''
-                alignment=''
-                amountSelector=''
-                breakpointAlignment=''
-                customMargins=''
-                disableAdaCompliance=''
-                displayMode=''
-                installmentServiceFeeAmount=''
-                isServiceFeeMerchant=''
-                isMFPPMerchant=''
-                learnMoreUrl=''
-                logoAlignment=''
-                logoColor=''
-                logoTextColor=''
-                logoSize=''
-                logoOption=''
-                priceColor=''
-                size=''
-                widgetVerbiage=''
-                subtextLayout=''
-                hideLogo=''
-                implementCloseModal=''
-                currency=''
-                languageSelector=''>
-        </quadpay-widget-v3>
-    </body>
+<body>
+<shadow-test></shadow-test>
+<script type="text/javascript">
+    customElements.define('shadow-test', class extends HTMLElement {
+      connectedCallback() {
+        const shadow = this.attachShadow({ mode: 'open' });
+        document.addEventListener('DOMContentLoaded', () => {
+          const script = document.createElement('script')
+          script.src = 'https://cdn.dev.us.zip.co/v1/quadpay.js'
 
-    <script src='https://cdn.dev.us.zip.co/v1/quadpay.js'></script>
+          script.onload = function () {
+            const modalOptions = {
+              isMFPPMerchant: '%isMFPPMerchant%',
+              learnMoreUrl: '%learnMoreUrl%',
+              minModal: '%minModal%' ,
+              isMobileSDK: 'true'
+            }
+
+            const merchantId = '%merchantId%'
+
+            window.quadpay.insertModal(merchantId, modalOptions);
+          }
+
+          document.body.appendChild(script)
+        })
+      }
+    });
+  </script>
+</body>
 </html>
+

@@ -185,11 +185,11 @@ public final class QuadPayWidgetComponent: UIView {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
         do{
             var strHTMLContent = try String(contentsOfFile: urlPath!)
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "amount=''", with: "amount='"+String(amount)+"'")
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "learnMoreUrl=''", with: "learnMoreUrl='"+learnMoreUrl+"'")
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "merchantId=''", with: "merchantId='"+merchantId+"'")
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "isMFPPMerchant=''", with: "isMFPPMerchant='"+isMFPPMerchant+"'")
-            strHTMLContent = strHTMLContent.replacingOccurrences(of: "minModal=''", with: "minModal='"+String(minModal)+"'")
+            //strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: "String(amount)'")
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%learnMoreUrl%", with: learnMoreUrl)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: String(minModal))
             
             return strHTMLContent
         }
