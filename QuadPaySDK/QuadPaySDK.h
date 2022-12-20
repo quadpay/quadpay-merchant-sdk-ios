@@ -24,4 +24,3 @@ FOUNDATION_EXPORT const unsigned char QuadPaySDKVersionString[];
 #import <QuadPaySDK/QuadPayCardholder.h>
 #import <QuadPaySDK/QuadPayCheckoutDetails.h>
 #import <QuadPaySDK/ExceptionMessage.h>
-#import <QuadPaySDK/QuadPaySDKKeys.h>

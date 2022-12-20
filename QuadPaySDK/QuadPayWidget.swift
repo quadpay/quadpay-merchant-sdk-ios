@@ -29,11 +29,9 @@ public final class QuadPayWidgetComponent: UIView {
   /// externally.
     public weak var delegate: QuadPayWidgetComponentDelegate?
 
-    let keys = QuadPaySDKKeys()
     
     var merchantCo = [MerchantConfig]()
-    
-    var analytics = SegmentAnalytics()
+
     
     public var grayLabelMerchant: Bool = false{
         didSet{
@@ -190,7 +188,13 @@ public final class QuadPayWidgetComponent: UIView {
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: String(minModal))
+            #if DEBUG
+            let quadpayJS : String = "https://cdn.dev.us.zip.co/v1/quadpay.js"
+            #else
+            let quadpayJS : String = "https://cdn.us.zip.co/v1/quadpay.js"
+            #endif
             
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%QuadPayJS%", with: quadpayJS)
             return strHTMLContent
         }
         catch let err{
@@ -231,7 +235,7 @@ public final class QuadPayWidgetComponent: UIView {
         
 
       addSubview(linkTextView)
-      analytics.trackViewedStandardWidget()
+
       NSLayoutConstraint.activate([
         linkTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
         linkTextView.topAnchor.constraint(equalTo: topAnchor),
@@ -257,7 +261,11 @@ public final class QuadPayWidgetComponent: UIView {
         }
         
         do{
-            let merchantConfigUrl: String = keys.merchantConfigApiUrl
+            #if DEBUG
+            let merchantConfigUrl: String = "https://qp-merchant-configs-dev.azureedge.net/"
+            #else
+            let merchantConfigUrl: String = "https://qpmerchconfigsprd.blob.core.windows.net/merchant-configs/"
+            #endif
             let url = URL(string: (merchantConfigUrl + merchantId + ".json"))
             let (data,_) = try await URLSession.shared.data(from: url!)
   
