@@ -39,9 +39,6 @@
     //   NSLog(@"%@ %@", key, [message.body objectForKey:key]);
     // }
     [self.messageDelegate viewController:self didReceiveScriptMessage:(NSDictionary*)message.body];
-    
-
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

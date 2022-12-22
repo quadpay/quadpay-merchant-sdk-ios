@@ -12,11 +12,10 @@ import WebKit
 final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
   private let infoURL: URL
-
+    @IBOutlet weak var webViewHeight: NSLayoutConstraint!
   private let contentHTML : String
     
   private var webView: WKWebView { view as! WKWebView }
-
     init(infoURL: URL, contentHtml: String) {
     self.infoURL = infoURL
     self.contentHTML = contentHtml
@@ -27,7 +26,9 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
     let webView = WKWebView()
 
     webView.allowsLinkPreview = false
+    webView.scrollView.isScrollEnabled = true
     webView.navigationDelegate = self
+
     webView.uiDelegate = self
     view = webView
   }
@@ -70,9 +71,11 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
 
   func webView(
     _ webView: WKWebView,
+ 
     didFailProvisionalNavigation navigation: WKNavigation!,
     withError error: Error
   ) {
+           
     let alert = UIAlertController(
       title: "Error",
       message: "Failed to load url",
@@ -93,25 +96,23 @@ final class InfoWebViewController: UIViewController, WKNavigationDelegate, WKUID
     present(alert, animated: true, completion: nil)
   }
 
-//  func webView(
-//    _ webView: WKWebView,
-//    decidePolicyFor navigationAction: WKNavigationAction,
-//    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-//  ) {
-//    if let url = navigationAction.request.url, url != infoURL {
-//      decisionHandler(.cancel)
-//        if #available(iOS 10.0, *) {
-//            UIApplication.shared.open(url)
-//        } else {
-//            // Fallback on earlier versions
-//            UIApplication.shared.openURL(url)
-//        }
-//    } else {
-//      decisionHandler(.allow)
-//    }
-//  }
-
-  // MARK: Unavailable
+  func webView(
+    _ webView: WKWebView,
+    decidePolicyFor navigationAction: WKNavigationAction,
+    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+  ) {
+    if let url = navigationAction.request.url, url != infoURL {
+      decisionHandler(.cancel)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(url)
+        }
+    } else {
+      decisionHandler(.allow)
+    }
+  }
 
   @available(*, unavailable)
   required init?(coder: NSCoder) {
