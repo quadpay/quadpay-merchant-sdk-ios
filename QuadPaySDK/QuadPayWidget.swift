@@ -28,10 +28,6 @@ public final class QuadPayWidgetComponent: UIView {
   /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
   /// externally.
     public weak var delegate: QuadPayWidgetComponentDelegate?
-
-    
-    var merchantCo = [MerchantConfig]()
-
     
     public var grayLabelMerchant: Bool = false{
         didSet{
@@ -70,7 +66,7 @@ public final class QuadPayWidgetComponent: UIView {
     }
     
     
-    public var logoOption: String = "logo_main"{
+    @objc public var logoOption: String = "logo_main"{
         didSet{
           updateAttributedText()
         }
@@ -187,11 +183,7 @@ public final class QuadPayWidgetComponent: UIView {
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: String(minModal))
-            #if DEBUG
-            let quadpayJS : String = "https://cdn.dev.us.zip.co/v1/quadpay.js"
-            #else
             let quadpayJS : String = "https://cdn.us.zip.co/v1/quadpay.js"
-            #endif
             
             strHTMLContent = strHTMLContent.replacingOccurrences(of: "%QuadPayJS%", with: quadpayJS)
             return strHTMLContent
@@ -260,11 +252,7 @@ public final class QuadPayWidgetComponent: UIView {
         }
         
         do{
-            #if DEBUG
-            let merchantConfigUrl: String = "https://qp-merchant-configs-dev.azureedge.net/"
-            #else
             let merchantConfigUrl: String = "https://qpmerchconfigsprd.blob.core.windows.net/merchant-configs/"
-            #endif
             let url = URL(string: (merchantConfigUrl + merchantId + ".json"))
             let (data,_) = try await URLSession.shared.data(from: url!)
   
