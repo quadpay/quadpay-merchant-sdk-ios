@@ -52,6 +52,10 @@
 		BB9E5EBB28CA11460031C5C9 /* MoreInfoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */; };
 		BB9E5EDB28CA189D0031C5C9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED628CA18340031C5C9 /* Media.xcassets */; };
 		BB9E5EDC28CA189D0031C5C9 /* www in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED428CA17AF0031C5C9 /* www */; };
+		BBFE02AD296DA95900453D9A /* PaymentWidgetText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02AC296DA95900453D9A /* PaymentWidgetText.swift */; };
+		BBFE02BF29718BE600453D9A /* PaymentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02BE29718BE600453D9A /* PaymentWidget.swift */; };
+		BBFE02C22971948100453D9A /* TimelapseGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02C12971948100453D9A /* TimelapseGraphView.swift */; };
+		BBFE02C62971AA6700453D9A /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02C52971AA6700453D9A /* Factories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +119,10 @@
 		BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoOptions.swift; sourceTree = "<group>"; };
 		BB9E5ED428CA17AF0031C5C9 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		BB9E5ED628CA18340031C5C9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		BBFE02AC296DA95900453D9A /* PaymentWidgetText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetText.swift; sourceTree = "<group>"; };
+		BBFE02BE29718BE600453D9A /* PaymentWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidget.swift; sourceTree = "<group>"; };
+		BBFE02C12971948100453D9A /* TimelapseGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelapseGraphView.swift; sourceTree = "<group>"; };
+		BBFE02C52971AA6700453D9A /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		C8F7E864FF265E021ED55059 /* Pods_QuadPaySDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuadPaySDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E24F6FEBD8B6AA6FD70D6727 /* Pods-QuadPaySDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuadPaySDK.debug.xcconfig"; path = "Target Support Files/Pods-QuadPaySDK/Pods-QuadPaySDK.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +171,7 @@
 		251EC48B2469D64300679E88 /* QuadPaySDK */ = {
 			isa = PBXGroup;
 			children = (
+				BBFE02C02971944500453D9A /* PaymentWidget */,
 				251EC4D72472ED6700679E88 /* GatewayMessages */,
 				BB9E5ED428CA17AF0031C5C9 /* www */,
 				BB9E5ED628CA18340031C5C9 /* Media.xcassets */,
@@ -197,6 +206,7 @@
 				251EC4BF246B129100679E88 /* QuadPayCustomer.h */,
 				251EC4CD246C9E3900679E88 /* QuadPayCheckoutDetails.h */,
 				251EC48D2469D64300679E88 /* Info.plist */,
+				BBFE02C52971AA6700453D9A /* Factories.swift */,
 			);
 			path = QuadPaySDK;
 			sourceTree = "<group>";
@@ -233,6 +243,16 @@
 				03B274D9666E57C33C607803 /* Pods_QuadPaySDK_QuadPaySDKTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBFE02C02971944500453D9A /* PaymentWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BBFE02AC296DA95900453D9A /* PaymentWidgetText.swift */,
+				BBFE02BE29718BE600453D9A /* PaymentWidget.swift */,
+				BBFE02C12971948100453D9A /* TimelapseGraphView.swift */,
+			);
+			path = PaymentWidget;
 			sourceTree = "<group>";
 		};
 		C893F7405A64030A2E8A0294 /* Pods */ = {
@@ -422,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBFE02BF29718BE600453D9A /* PaymentWidget.swift in Sources */,
 				BB9E5EB728CA11460031C5C9 /* LogoView.swift in Sources */,
 				251EC4E72472F46300679E88 /* CheckoutCancelledMessage.m in Sources */,
 				251EC4CB246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.m in Sources */,
@@ -433,13 +454,16 @@
 				BB9E5EBA28CA11460031C5C9 /* QuadPayWidget.swift in Sources */,
 				BB0F0DE82889889A00D1F8C6 /* BundleFinder.swift in Sources */,
 				251EC4EF2473262200679E88 /* QuadPayURLBuilder.m in Sources */,
+				BBFE02C22971948100453D9A /* TimelapseGraphView.swift in Sources */,
 				251EC4B82469DC9600679E88 /* QuadPayCheckoutViewController.m in Sources */,
 				BB0F0DE92889889A00D1F8C6 /* AssetProvider.swift in Sources */,
 				251EC4C6246B14F800679E88 /* QuadPayCardholder.m in Sources */,
 				BB9E5EB828CA11460031C5C9 /* LinkTextView.swift in Sources */,
 				251EC4C2246B14CE00679E88 /* QuadPayCard.m in Sources */,
+				BBFE02C62971AA6700453D9A /* Factories.swift in Sources */,
 				251EC4B62469DC9100679E88 /* QuadPayWebViewController.m in Sources */,
 				251EC4DB2472EE9C00679E88 /* CheckoutSuccessfulMessage.m in Sources */,
+				BBFE02AD296DA95900453D9A /* PaymentWidgetText.swift in Sources */,
 				251EC4C5246B14F800679E88 /* QuadPayCustomer.m in Sources */,
 				251EC4EB247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m in Sources */,
 				BB0F0DEA2889889A00D1F8C6 /* InfoWebViewController.swift in Sources */,

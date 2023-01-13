@@ -14,7 +14,6 @@ final class LinkTextView: UITextView, UITextViewDelegate {
 
   override init(frame: CGRect, textContainer: NSTextContainer?) {
     super.init(frame: frame, textContainer: textContainer)
-
     translatesAutoresizingMaskIntoConstraints = false
     isEditable = false
     isScrollEnabled = false
