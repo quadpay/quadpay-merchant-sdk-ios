@@ -262,8 +262,7 @@ public final class QuadPayWidgetComponent: UIView {
 
   private func updateAttributedText() {
       var widget_Text = "4 easy payments of"
-    
-        
+      
         if #available(iOS 13.0, *) {
             Task {
                 if #available(iOS 15.0, *) {
@@ -338,7 +337,7 @@ public final class QuadPayWidgetComponent: UIView {
 
       let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 0
+        formatter.minimumFractionDigits = 2
         formatter.currencyCode="USD"
         formatter.numberStyle = .currency
       

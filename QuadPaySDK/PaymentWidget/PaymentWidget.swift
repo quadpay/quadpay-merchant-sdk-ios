@@ -11,8 +11,29 @@ import Foundation
 
 public final class PaymentWidget: UIView {
     
-    let paymentWidget = PaymentWidgetText()
-    let timelapseGraphView = TimelapseGraphView()
+    @objc public var merchantId: String = "" {
+        didSet{
+            style()
+            layout()
+        }
+    }
+    
+    @objc public var amount: String = "" {
+        didSet{
+            style()
+            layout()
+        }
+    }
+    
+    @objc public var timelapseColor: String = "" {
+        didSet{
+            style()
+            layout()
+        }
+    }
+    
+    var paymentWidgetText = PaymentWidgetText()
+    var timelapseGraphView = TimelapseGraphView()
     
     override public var intrinsicContentSize: CGSize {
         return CGSize(width: 100, height: 200)
@@ -32,19 +53,29 @@ public final class PaymentWidget: UIView {
 
 extension PaymentWidget {
     func style(){
-        paymentWidget.translatesAutoresizingMaskIntoConstraints = false
+
+        paymentWidgetText.translatesAutoresizingMaskIntoConstraints = false
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = false
+        
+        MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
+            switch result {
+            case .success(_):
+                self.paymentWidgetText.paymentWidgetLabel.text = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
+            case .failure(_):
+                print("Error fetching merchant")
+            }}
+        
     }
     
     func layout(){
-        addSubview(paymentWidget)
+        addSubview(paymentWidgetText)
         addSubview(timelapseGraphView)
         
         NSLayoutConstraint.activate([
-            paymentWidget.topAnchor.constraint(equalTo: topAnchor),
-            paymentWidget.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidget.trailingAnchor, multiplier: 2),
-            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidget.bottomAnchor, multiplier: 0),
+            paymentWidgetText.topAnchor.constraint(equalTo: topAnchor),
+            paymentWidgetText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetText.trailingAnchor, multiplier: 2),
+            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetText.bottomAnchor, multiplier: 0),
             timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
             timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
             timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
@@ -52,9 +83,15 @@ extension PaymentWidget {
         ])
     }
     
+    
+    //Redraw timelapse
     override public func layoutSubviews() {
         super.layoutSubviews()
         timelapseGraphView.actualFrameWidth = frame.width
+        timelapseGraphView.amount = amount
+        if(timelapseColor == "black") {
+            timelapseGraphView.actualTimelapseColor = UIColor.zipBlack.cgColor
+        }
         timelapseGraphView.drawTimelapseGraph()
     }
 }

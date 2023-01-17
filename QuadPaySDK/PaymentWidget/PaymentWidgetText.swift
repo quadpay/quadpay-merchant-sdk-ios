@@ -10,9 +10,12 @@ import UIKit
 @available(iOS 12.0, *)
 public final class PaymentWidgetText: UIView {
     
-    let paymentWidgetLabel = UILabel()
+    var paymentWidgetLabel = UILabel()
   //  let infoView = makeSymbolImageView(systemName: "star.fill")
     let paymentWidgetSubLabel = UILabel()
+    
+    let initialPaymentWidgetLabelText : String = "Split your order in 4 easy payments with Zip."
+    var actualPaymentWidgetLabelText : String?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -26,8 +29,8 @@ public final class PaymentWidgetText: UIView {
     
     func style(){
         paymentWidgetLabel.translatesAutoresizingMaskIntoConstraints  = false
-        paymentWidgetLabel.text = "Split your order in 4 easy payments with Zip."
         paymentWidgetLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
+        paymentWidgetLabel.text = actualPaymentWidgetLabelText ?? initialPaymentWidgetLabelText
         paymentWidgetLabel.numberOfLines = 0
         paymentWidgetLabel.lineBreakMode = .byWordWrapping
         
@@ -48,6 +51,7 @@ public final class PaymentWidgetText: UIView {
       NSLayoutConstraint.activate([
         paymentWidgetLabel.topAnchor.constraint(equalTo: topAnchor),
         paymentWidgetLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+        paymentWidgetLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
         
 //        infoView.leadingAnchor.constraint(equalTo: paymentWidgetLabel.trailingAnchor, constraints: -2),
 //        infoView.centerYAnchor.constraint(equalTo: paymentWidgetLabel.centerYAnchor),

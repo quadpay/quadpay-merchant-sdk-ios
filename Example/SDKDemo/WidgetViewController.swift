@@ -17,8 +17,8 @@ final class WidgetViewContoller : UIViewController {
 
     let paymentWidget = PaymentWidget()
     let paymentWidget2 = PaymentWidget()
-    let paymentWidget3 = PaymentWidget()
-    let paymentWidget4 = PaymentWidget()
+    //let paymentWidget3 = PaymentWidget()
+    //let paymentWidget4 = PaymentWidget()
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -27,6 +27,10 @@ final class WidgetViewContoller : UIViewController {
         super.viewDidLoad()
         widget.amount = "100"
         widget2.amount = "200"
+        paymentWidget.amount = "200"
+        paymentWidget2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidget2.amount = "300"
+        paymentWidget2.timelapseColor = "black"
         setupScrollView()
         style()
         layout()
@@ -52,8 +56,8 @@ extension WidgetViewContoller {
         
         stackView.addArrangedSubview(paymentWidget)
         stackView.addArrangedSubview(paymentWidget2)
-        stackView.addArrangedSubview(paymentWidget3)
-        stackView.addArrangedSubview(paymentWidget4)
+        //stackView.addArrangedSubview(paymentWidget3)
+        //stackView.addArrangedSubview(paymentWidget4)
         stackView.addArrangedSubview(widget)
         stackView.addArrangedSubview(widget2)
         

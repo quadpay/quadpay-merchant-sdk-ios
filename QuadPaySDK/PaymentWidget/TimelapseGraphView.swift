@@ -14,12 +14,20 @@ public final class TimelapseGraphView: UIView {
     let initialFrameWidth: CGFloat = 200
     var actualFrameWidth: CGFloat?
     
+    let initialAmount: String = "0"
+    var amount: String?
+    
     let height: CGFloat = 100
+
+    
+    let initialTimelapseColor: CGColor = UIColor.zipPurple.cgColor
+    var actualTimelapseColor: CGColor?
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
         layout()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -28,6 +36,21 @@ public final class TimelapseGraphView: UIView {
 }
 
 extension TimelapseGraphView {
+    func populateAmountLabel() -> [String]{
+        
+        var amountLabels: [String] = []
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        let amountAsString: String = amount ?? initialAmount
+        let amountAsFloat  = Double(amountAsString) ?? 0.00
+        let transactionAmount = formatter.string(for: amountAsFloat/4) ?? "0"
+        for _ in 0...4{
+            amountLabels.append(transactionAmount)
+        }
+        return amountLabels
+    }
+    
     func layout(){
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -61,7 +84,7 @@ extension TimelapseGraphView {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: frameWidth, height: height))
         
         var squares: [CGPoint] = []
-        let amountLabels: [String] = ["25","50","75","100"]
+        
         let weekLabels: [String] = ["Due today", "In 2 weeks", "In 4 weeks", "In 6 Weeks"]
         
         let indicatoOffset: CGFloat = 34
@@ -77,11 +100,11 @@ extension TimelapseGraphView {
             
             //Define our lines between squares
             ctx.cgContext.setLineWidth(lineWidth)
-            ctx.cgContext.setStrokeColor(UIColor.zipPurple.cgColor)
+            ctx.cgContext.setStrokeColor(actualTimelapseColor ?? initialTimelapseColor)
             ctx.cgContext.addLines(between: squares)
             ctx.cgContext.strokePath()
             
-            ctx.cgContext.setFillColor(UIColor.zipPurple.cgColor)
+            ctx.cgContext.setFillColor(actualTimelapseColor ?? initialTimelapseColor)
             
             //Draw our squares
             for square in squares{
@@ -107,21 +130,20 @@ extension TimelapseGraphView {
 
             ]
             
+            let amountLabels = populateAmountLabel()
+            
             for (i, square) in squares.enumerated() {
                 let amountString = amountLabels[i]
                 let weeksString = weekLabels[i]
+                
                 
                 let attributedAmountString = NSAttributedString(string: "$" + amountString, attributes: attrs)
                 attributedAmountString.draw(with: CGRect(x: square.x - 5 , y: square.y + 10, width: 100, height: 20), options: .usesLineFragmentOrigin, context: nil)
                 
                 let attributedWeekString = NSAttributedString(string: weeksString, attributes: attrsWeeks)
                 attributedWeekString.draw(with: CGRect(x: square.x - 5 , y: square.y + 30, width: 100, height: 20), options: .usesLineFragmentOrigin, context: nil)
-                
             }
-            
         }
-        
         imageView.image = img
-        
     }
 }
