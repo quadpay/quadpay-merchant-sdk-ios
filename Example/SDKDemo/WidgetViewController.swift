@@ -31,6 +31,7 @@ final class WidgetViewContoller : UIViewController {
         paymentWidget2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         paymentWidget2.amount = "300"
         paymentWidget2.timelapseColor = "black"
+        paymentWidget3.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         setupScrollView()
         style()
         layout()

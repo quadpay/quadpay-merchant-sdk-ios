@@ -14,7 +14,7 @@ public final class PaymentWidgetText: UIView {
   //  let infoView = makeSymbolImageView(systemName: "star.fill")
     let paymentWidgetSubLabel = UILabel()
     
-    let initialPaymentWidgetLabelText : String = "Split your order in 4 easy payments with Zip."
+    let initialPaymentWidgetLabelText : String = "Pay in installments with Zip."
     var actualPaymentWidgetLabelText : String?
     
     override init(frame: CGRect) {
