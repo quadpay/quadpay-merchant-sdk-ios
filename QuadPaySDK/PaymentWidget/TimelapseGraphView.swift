@@ -18,7 +18,9 @@ public final class TimelapseGraphView: UIView {
     var amount: String?
     
     let height: CGFloat = 100
-
+    
+    let initialDepth: CGFloat = 0
+    var depth: CGFloat?
     
     let initialTimelapseColor: CGColor = UIColor.zipPurple.cgColor
     var actualTimelapseColor: CGColor?
@@ -76,7 +78,6 @@ extension TimelapseGraphView {
         let numberOfSquares: CGFloat = 4
         let numberOfSections = numberOfSquares - 1
         
-        
         let spacingBetweenSquares = (frameWidth - 8 * padding) / (numberOfSections + 0.5)
         
         let shortSegmentLegth = spacingBetweenSquares * 0.25
@@ -88,6 +89,9 @@ extension TimelapseGraphView {
         let weekLabels: [String] = ["Due today", "In 2 weeks", "In 4 weeks", "In 6 Weeks"]
         
         let indicatoOffset: CGFloat = 34
+        
+       
+        
         let yOffset = (squareSize + lineWidth) / 2 + indicatoOffset
         
         let img = renderer.image { ctx in
@@ -96,6 +100,7 @@ extension TimelapseGraphView {
             for index in 0...Int((numberOfSquares - 1)){
                 let x = padding + shortSegmentLegth + ( spacingBetweenSquares * CGFloat(index))
                 squares.append(CGPoint(x: x, y: yOffset))
+               
             }
             
             //Define our lines between squares
@@ -103,14 +108,19 @@ extension TimelapseGraphView {
             ctx.cgContext.setStrokeColor(actualTimelapseColor ?? initialTimelapseColor)
             ctx.cgContext.addLines(between: squares)
             ctx.cgContext.strokePath()
-            
             ctx.cgContext.setFillColor(actualTimelapseColor ?? initialTimelapseColor)
             
+            
+            //Define our depth
+            let actualDepth = depth ?? initialDepth
             //Draw our squares
             for square in squares{
-                let squareBounds = CGRect(x: square.x - (squareSize * 0.5), y: square.y - (squareSize * 0.5), width: squareSize, height: squareSize)
+                ctx.cgContext.move(to: CGPoint(x: square.x - (squareSize * 0.5), y: square.y - (squareSize * 0.5)))
+                ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize * 0.5), y: square.y - (squareSize * 0.5)))
+                ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize * 0.5) + actualDepth, y: square.y + (squareSize * 0.5)))
+                ctx.cgContext.addLine(to: CGPoint(x: square.x - (squareSize * 0.5) + actualDepth, y: square.y + (squareSize * 0.5)))
                 
-                ctx.cgContext.addRect(squareBounds)
+                //ctx.cgContext.addRect(squareBounds)
                 ctx.cgContext.drawPath(using: .fillStroke)
             }
             

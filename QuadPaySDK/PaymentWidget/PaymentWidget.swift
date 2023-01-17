@@ -53,18 +53,8 @@ public final class PaymentWidget: UIView {
 
 extension PaymentWidget {
     func style(){
-
         paymentWidgetText.translatesAutoresizingMaskIntoConstraints = false
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = false
-        
-        MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
-            switch result {
-            case .success(_):
-                self.paymentWidgetText.paymentWidgetLabel.text = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
-            case .failure(_):
-                print("Error fetching merchant")
-            }}
-        
     }
     
     func layout(){
@@ -92,6 +82,14 @@ extension PaymentWidget {
         if(timelapseColor == "black") {
             timelapseGraphView.actualTimelapseColor = UIColor.zipBlack.cgColor
         }
+        MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
+            switch result {
+            case .success(_):
+                self.paymentWidgetText.paymentWidgetLabel.text = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
+                self.timelapseGraphView.depth = 3
+            case .failure(_):
+                print("Error fetching merchant")
+            }}
         timelapseGraphView.drawTimelapseGraph()
     }
 }

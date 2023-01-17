@@ -17,8 +17,8 @@ final class WidgetViewContoller : UIViewController {
 
     let paymentWidget = PaymentWidget()
     let paymentWidget2 = PaymentWidget()
-    //let paymentWidget3 = PaymentWidget()
-    //let paymentWidget4 = PaymentWidget()
+    let paymentWidget3 = PaymentWidget()
+    let paymentWidget4 = PaymentWidget()
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -56,8 +56,8 @@ extension WidgetViewContoller {
         
         stackView.addArrangedSubview(paymentWidget)
         stackView.addArrangedSubview(paymentWidget2)
-        //stackView.addArrangedSubview(paymentWidget3)
-        //stackView.addArrangedSubview(paymentWidget4)
+        stackView.addArrangedSubview(paymentWidget3)
+        stackView.addArrangedSubview(paymentWidget4)
         stackView.addArrangedSubview(widget)
         stackView.addArrangedSubview(widget2)
         
@@ -76,7 +76,6 @@ extension WidgetViewContoller {
         
     }
 }
-
 
 extension WidgetViewContoller : UIScrollViewDelegate{
 }
