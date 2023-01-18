@@ -24,7 +24,6 @@ extension UIColor {
     static let zipPurple = UIColor(red: 0.67, green: 0.56, blue: 1.00, alpha: 1.00)
 }
 
-@available(iOS 13.0, *)
 func makeSymbolImageView(systemName: String, scale: UIImage.SymbolScale = .large) -> UIImageView{
     let configuration = UIImage.SymbolConfiguration(scale: scale)
     let image = UIImage(systemName: systemName, withConfiguration: configuration)

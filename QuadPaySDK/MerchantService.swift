@@ -13,21 +13,21 @@ struct Merchant: Codable {
     let MerchantName: String
     let MinimumOrderAmount: Int
     let MaximumOrderAmount: Int
-    let IsLongDurationLendingEnabled: Bool
-    let LongDurationLendingMinimumAmount: String
-    let LongDurationLendingMaximumAmount: String
-    let ApplyGrayLabel: Bool
-    let ModalGrayLabelName: String
-    let LogoUrl: String
-    let ModalTopColor: String
-    let LinkTextColor: String
-    let ModalHeadersFontStyle: String
-    let ModalBodyFontStyle: String
-    let ZipWidgetFontStyle: String
-    let TimelineColor: String
-    let PaymentWidgetHeaderFontStyle: String
-    let PaymentWidgetBodyFontStyle: String
-    let CheckoutButtonColor: String
+//    let IsLongDurationLendingEnabled: Bool
+//    let LongDurationLendingMinimumAmount: String
+//    let LongDurationLendingMaximumAmount: String
+//    let ApplyGrayLabel: Bool
+//    let ModalGrayLabelName: String
+//    let LogoUrl: String
+//    let ModalTopColor: String
+//    let LinkTextColor: String
+//    let ModalHeadersFontStyle: String
+//    let ModalBodyFontStyle: String
+//    let ZipWidgetFontStyle: String
+//    let TimelineColor: String
+//    let PaymentWidgetHeaderFontStyle: String
+//    let PaymentWidgetBodyFontStyle: String
+//    let CheckoutButtonColor: String
     //Many more to add later
 }
 

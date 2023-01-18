@@ -32,7 +32,8 @@ public final class PaymentWidget: UIView {
         }
     }
     
-    var paymentWidgetText = PaymentWidgetText()
+    var paymentWidgetHeaderText = PaymentWidgetHeaderText()
+    var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
     
     override public var intrinsicContentSize: CGSize {
@@ -53,19 +54,24 @@ public final class PaymentWidget: UIView {
 
 extension PaymentWidget {
     func style(){
-        paymentWidgetText.translatesAutoresizingMaskIntoConstraints = false
+        paymentWidgetHeaderText.translatesAutoresizingMaskIntoConstraints = false
+        paymentWidgetSubText.translatesAutoresizingMaskIntoConstraints = false
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func layout(){
-        addSubview(paymentWidgetText)
+        addSubview(paymentWidgetHeaderText)
+        addSubview(paymentWidgetSubText)
         addSubview(timelapseGraphView)
         
         NSLayoutConstraint.activate([
-            paymentWidgetText.topAnchor.constraint(equalTo: topAnchor),
-            paymentWidgetText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetText.trailingAnchor, multiplier: 2),
-            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetText.bottomAnchor, multiplier: 0),
+            paymentWidgetHeaderText.topAnchor.constraint(equalTo: topAnchor),
+            paymentWidgetHeaderText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetHeaderText.trailingAnchor, multiplier: 2),
+            paymentWidgetSubText.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetHeaderText.bottomAnchor, multiplier: 0),
+            paymentWidgetSubText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetSubText.trailingAnchor, multiplier: 2),
+            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetSubText.bottomAnchor, multiplier: 0),
             timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
             timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
             timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
@@ -85,7 +91,7 @@ extension PaymentWidget {
         MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
             switch result {
             case .success(_):
-                self.paymentWidgetText.paymentWidgetLabel.text = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
+                self.paymentWidgetHeaderText.paymentWidgetLabel.text = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
                 self.timelapseGraphView.depth = 3
             case .failure(_):
                 print("Error fetching merchant")
