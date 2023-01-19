@@ -90,8 +90,6 @@ extension TimelapseGraphView {
         
         let indicatoOffset: CGFloat = 34
         
-       
-        
         let yOffset = (squareSize + lineWidth) / 2 + indicatoOffset
         
         let img = renderer.image { ctx in
@@ -115,6 +113,8 @@ extension TimelapseGraphView {
             let actualDepth = depth ?? initialDepth
             //Draw our squares
             for square in squares{
+                //Instead of using addRect to draw our rectangles
+                //since we need to add angles sometimes.
                 ctx.cgContext.move(to: CGPoint(x: square.x - (squareSize * 0.5), y: square.y - (squareSize * 0.5)))
                 ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize * 0.5), y: square.y - (squareSize * 0.5)))
                 ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize * 0.5) + actualDepth, y: square.y + (squareSize * 0.5)))

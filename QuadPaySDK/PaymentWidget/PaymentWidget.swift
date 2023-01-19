@@ -52,13 +52,15 @@ public final class PaymentWidget: UIView {
     var timelapseGraphView = TimelapseGraphView()
     
     override public var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 160)
+        return CGSize(width: 100, height: 180)
     }
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
         style()
-        //layout()
+   
+           // layout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -109,22 +111,6 @@ extension PaymentWidget {
     }
     
     func layoutWithoutHeader(){
-        addSubview(paymentWidgetHeaderText)
-        addSubview(timelapseGraphView)
-        
-        NSLayoutConstraint.activate([
-            paymentWidgetHeaderText.topAnchor.constraint(equalTo: topAnchor),
-            paymentWidgetHeaderText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetHeaderText.trailingAnchor, multiplier: 2),
-            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetHeaderText.bottomAnchor, multiplier: 0),
-            timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
-            timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2)
-        ])
-    }
-    
-    func layoutWithoutSubtitle(){
         addSubview(paymentWidgetSubText)
         addSubview(timelapseGraphView)
         
@@ -133,6 +119,22 @@ extension PaymentWidget {
             paymentWidgetSubText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
             trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetSubText.trailingAnchor, multiplier: 2),
             timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetSubText.bottomAnchor, multiplier: 0),
+            timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
+            timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2)
+        ])
+    }
+    
+    func layoutWithoutSubtitle(){
+        addSubview(paymentWidgetHeaderText)
+        addSubview(timelapseGraphView)
+        
+        NSLayoutConstraint.activate([
+            paymentWidgetHeaderText.topAnchor.constraint(equalTo: topAnchor),
+            paymentWidgetHeaderText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetHeaderText.trailingAnchor, multiplier: 2),
+            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetHeaderText.bottomAnchor, multiplier: 0),
             timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
             timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
             timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
@@ -161,6 +163,8 @@ extension PaymentWidget {
             layoutWithoutBothHeaders()
         }else if(hideTimeline){
             layoutWithoutTimeline()
+        }else {
+            layout()
         }
     }
     
@@ -176,7 +180,8 @@ extension PaymentWidget {
         MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
             switch result {
             case .success(_):
-                self.paymentWidgetHeaderText.paymentWidgetLabel.text = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
+                self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
+                self.paymentWidgetHeaderText.style()
                 self.timelapseGraphView.depth = 3
             case .failure(_):
                 print("Error fetching merchant")

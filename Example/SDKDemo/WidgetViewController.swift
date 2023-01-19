@@ -28,22 +28,22 @@ final class WidgetViewContoller : UIViewController {
         super.viewDidLoad()
         widget.amount = "100"
         widget2.amount = "200"
-        paymentWidget.amount = "200"
         
+        paymentWidget.amount = "200"
+        paymentWidget.hideSubtitle = true
+        paymentWidget.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         
         paymentWidget2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         paymentWidget2.amount = "300"
         paymentWidget2.timelapseColor = "black"
-        paymentWidget2.hideSubtitle = true
-        
+        paymentWidget2.hideHeader = true
+
         paymentWidget3.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
-        paymentWidget3.hideHeader = true
         
-        paymentWidget4.hideHeader = true
         paymentWidget4.hideSubtitle = true
-        
+
         paymentWidget5.hideTimeline = true
-        
+
         setupScrollView()
         style()
         layout()
