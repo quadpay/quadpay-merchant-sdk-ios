@@ -80,7 +80,7 @@ extension TimelapseGraphView {
         
         let spacingBetweenSquares = (frameWidth - 8 * padding) / (numberOfSections + 0.5)
         
-        let shortSegmentLegth = spacingBetweenSquares * 0.25
+        let shortSegmentLegth = spacingBetweenSquares * 0.20
         
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: frameWidth, height: height))
         
@@ -98,7 +98,7 @@ extension TimelapseGraphView {
             
             //Define our squares
             for index in 0...Int((numberOfSquares - 1)){
-                let x = padding + shortSegmentLegth + ( spacingBetweenSquares * CGFloat(index))
+                let x =  shortSegmentLegth + ( spacingBetweenSquares * CGFloat(index))
                 squares.append(CGPoint(x: x, y: yOffset))
                
             }
