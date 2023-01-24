@@ -13,19 +13,19 @@ public final class PaymentWidget: UIView {
     
     @objc public var merchantId: String = "" {
         didSet{
-            hideHeaders()
+            
         }
     }
     
     @objc public var amount: String = "0" {
         didSet{
-            hideHeaders()
+            
         }
     }
     
     @objc public var timelapseColor: String = "" {
         didSet{
-            hideHeaders()
+   
         }
     }
     
@@ -47,20 +47,36 @@ public final class PaymentWidget: UIView {
         }
     }
     
+    @objc public var  isMFPPMerchant: String = ""{
+        didSet{
+            
+        }
+    }
+    
+    @objc public var learnMoreUrl: String = ""{
+        didSet{
+            
+        }
+    }
+    
+    @objc public var minModal: String = "" {
+        didSet{
+            
+        }
+    }
+    
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
     
     override public var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 180)
+        return CGSize(width: 100, height: 160)
     }
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
         style()
-   
-           // layout()
-        
+        hideHeaders()
     }
     
     required init?(coder: NSCoder) {
@@ -154,16 +170,23 @@ extension PaymentWidget {
         ])
     }
     
+
     func hideHeaders(){
-        if(hideHeader && !hideSubtitle){
+        print(" ")
+        print(hideHeader)
+        print(hideSubtitle)
+        print(hideTimeline)
+ 
+
+        if(hideHeader && !hideSubtitle && !hideTimeline){
             layoutWithoutHeader()
-        }else if(!hideHeader && hideSubtitle){
+        }else if(!hideHeader && hideSubtitle && !hideTimeline){
             layoutWithoutSubtitle()
-        }else if(hideHeader && hideSubtitle){
+        }else if(hideHeader && hideSubtitle && !hideTimeline){
             layoutWithoutBothHeaders()
-        }else if(hideTimeline){
+        } else if(hideTimeline  && !hideHeader && !hideSubtitle){
             layoutWithoutTimeline()
-        }else {
+        } else if(!hideTimeline  && !hideHeader && !hideSubtitle){
             layout()
         }
     }
@@ -172,11 +195,26 @@ extension PaymentWidget {
     //Redraw timelapse
     override public func layoutSubviews() {
         super.layoutSubviews()
-        timelapseGraphView.actualFrameWidth = frame.width
-        timelapseGraphView.amount = amount
-        if(timelapseColor == "black") {
-            timelapseGraphView.actualTimelapseColor = UIColor.zipBlack.cgColor
+        //Pass parameters {amount} in the timelapse graph
+        if(hideTimeline){
+            //Hiding the timeline by removing the width.
+            timelapseGraphView.actualFrameWidth = 0
+        }else{
+            timelapseGraphView.actualFrameWidth = frame.width
+            timelapseGraphView.amount = amount
+            if(timelapseColor == "black") {
+                timelapseGraphView.actualTimelapseColor = UIColor.zipBlack.cgColor
+            }
         }
+     
+        timelapseGraphView.drawTimelapseGraph()
+        
+        //Passed parameters to the header for pop up
+        //{minModal, merchantId,isMFPPMerchant, learnmoreURL}
+        paymentWidgetHeaderText.minModal = minModal
+        paymentWidgetHeaderText.merchantId = merchantId
+        paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
+        paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
         MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
             switch result {
             case .success(_):
@@ -186,6 +224,5 @@ extension PaymentWidget {
             case .failure(_):
                 print("Error fetching merchant")
             }}
-        timelapseGraphView.drawTimelapseGraph()
     }
 }

@@ -15,20 +15,19 @@ public final class PaymentWidgetHeaderText: UIView {
     var initialPaymentWidgetLabelText : String = "Pay in installments with Zip."
     var actualPaymentWidgetLabelText : String?
     
-    //let moreInfoOptions = MoreInfoOptions()
+    var initialLearnMoreUrl : String = ""
+    var learnMoreUrl : String?
     
-    private var contentHtml: String {
-        let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
-        do{
-            let strHTMLContent = try String(contentsOfFile: urlPath!)
-            return strHTMLContent
-        }
-        catch let err{
-            print(err)
-            return ""
-        }
-
-    }
+    var initialIsMFPPMerchant : String = ""
+    var isMFPPMerchant : String?
+    
+    var initialMinModal : String = ""
+    var minModal : String?
+    
+    var initialMerchantId : String = ""
+    var merchantId : String?
+    
+    var contentHtml: String = ""
     
     private var infoLink: URL {
         let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
@@ -51,7 +50,7 @@ extension PaymentWidgetHeaderText {
     
     func style(){
         let headerText = makeHeaderText(headerText: actualPaymentWidgetLabelText ?? initialPaymentWidgetLabelText, link: infoLink)
-        
+        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl ?? initialLearnMoreUrl, merchantId: merchantId ?? initialMerchantId, isMFPPMerchant: isMFPPMerchant ?? initialIsMFPPMerchant, minModal: minModal ?? initialMinModal)
         paymentWidgetLabel.linkHandler = { [weak self ] url in
             if let rnController = self?.ReactNativeController(){
                 let infoWebViewController = InfoWebViewController(infoURL: url, contentHtml: self?.contentHtml ?? "")

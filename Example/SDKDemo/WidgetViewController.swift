@@ -15,11 +15,12 @@ final class WidgetViewContoller : UIViewController {
     let widget = QuadPayWidgetComponent()
     let widget2 = QuadPayWidgetComponent()
 
-    let paymentWidget = PaymentWidget()
-    let paymentWidget2 = PaymentWidget()
-    let paymentWidget3 = PaymentWidget()
-    let paymentWidget4 = PaymentWidget()
-    let paymentWidget5 = PaymentWidget()
+    let paymentWidgetWithoutHeader = PaymentWidget()
+    let paymentWidgetWithoutSubtitle = PaymentWidget()
+    let paymentWidgetWithoutBothHeaders = PaymentWidget()
+    let paymentWidgetWithoutTimeline = PaymentWidget()
+    let normalWidget = PaymentWidget()
+
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -29,20 +30,21 @@ final class WidgetViewContoller : UIViewController {
         widget.amount = "100"
         widget2.amount = "200"
         
-        paymentWidget.amount = "200"
-        paymentWidget.hideSubtitle = true
-        paymentWidget.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutHeader.amount = "200"
+        paymentWidgetWithoutHeader.hideHeader = true
         
-        paymentWidget2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
-        paymentWidget2.amount = "300"
-        paymentWidget2.timelapseColor = "black"
-        paymentWidget2.hideHeader = true
-
-        paymentWidget3.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutSubtitle.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutSubtitle.amount = "300"
+        paymentWidgetWithoutSubtitle.timelapseColor = "black"
+        paymentWidgetWithoutSubtitle.hideSubtitle = true
+  
+        paymentWidgetWithoutBothHeaders.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
+        paymentWidgetWithoutBothHeaders.hideHeader = true
+        paymentWidgetWithoutBothHeaders.hideSubtitle = true
         
-        paymentWidget4.hideSubtitle = true
+        paymentWidgetWithoutTimeline.hideTimeline = true
 
-        paymentWidget5.hideTimeline = true
 
         setupScrollView()
         style()
@@ -67,11 +69,12 @@ extension WidgetViewContoller {
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         
-        stackView.addArrangedSubview(paymentWidget)
-        stackView.addArrangedSubview(paymentWidget2)
-        stackView.addArrangedSubview(paymentWidget3)
-        stackView.addArrangedSubview(paymentWidget4)
-        stackView.addArrangedSubview(paymentWidget5)
+        stackView.addArrangedSubview(paymentWidgetWithoutHeader)
+        stackView.addArrangedSubview(paymentWidgetWithoutSubtitle)
+        stackView.addArrangedSubview(paymentWidgetWithoutBothHeaders)
+        stackView.addArrangedSubview(paymentWidgetWithoutTimeline)
+        stackView.addArrangedSubview(normalWidget)
+
         stackView.addArrangedSubview(widget)
         stackView.addArrangedSubview(widget2)
         

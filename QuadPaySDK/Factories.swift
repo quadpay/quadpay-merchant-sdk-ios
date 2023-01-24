@@ -31,6 +31,26 @@ func makeSymbolImageView(systemName: String, scale: UIImage.SymbolScale = .large
     return UIImageView(image: image)
 }
 
+func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant: String, minModal: String) -> String {
+    let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
+    do{
+        var strHTMLContent = try String(contentsOfFile: urlPath!)
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%learnMoreUrl%", with: learnMoreUrl)
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: minModal)
+    
+        let quadpayJS : String = "https://cdn.us.zip.co/v1/quadpay.js"
+        
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%QuadPayJS%", with: quadpayJS)
+        return strHTMLContent
+    }
+    catch let err{
+        print(err)
+        return ""
+    }
+}
+
 func makeHeaderText(headerText : String, link: URL) -> NSAttributedString{
     let moreInfoOptions = MoreInfoOptions()
     
