@@ -10,54 +10,87 @@ import Foundation
 import UIKit
 import QuadPaySDK
 
-final class WidgetViewContoller : UIViewController, QuadPayWidgetComponentDelegate {
-
-    private var scrollView: UIScrollView!
+final class WidgetViewContoller : UIViewController {
     
-    override func loadView() {
-        let view = UIView()
-        
-        view.backgroundColor = .white
-     
-        let stack = UIStackView()
-     
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.spacing = 20
-        stack.isLayoutMarginsRelativeArrangement = true
-      
-        
-        
-        let priceBreakdown2 = QuadPayWidgetComponent()
-        priceBreakdown2.amount = "500"
-        priceBreakdown2.delegate = self
-        priceBreakdown2.logoOption = "secondary"
-        priceBreakdown2.colorPrice = "#ff3700ff"
-        priceBreakdown2.size = "150%"
-        priceBreakdown2.logoSize="150%"
-        priceBreakdown2.alignment = "center"
-       
-        priceBreakdown2.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
-        
-        stack.addArrangedSubview(priceBreakdown2)
-        
-        let priceBreakdown3 = QuadPayWidgetComponent()
-        priceBreakdown3.amount = "700"
-        priceBreakdown3.delegate = self
-        priceBreakdown3.logoOption = "secondary-light"
-        priceBreakdown3.colorPrice = "#ff3700ff"
-        priceBreakdown3.alignment = "left"
-        priceBreakdown3.size = "120%"
-        priceBreakdown3.logoSize="120%"
-        stack.addArrangedSubview(priceBreakdown3)
+    let widget = QuadPayWidgetComponent()
+    let widget2 = QuadPayWidgetComponent()
 
-        view.addSubview(stack)
+    let paymentWidgetWithoutHeader = PaymentWidget()
+    let paymentWidgetWithoutSubtitle = PaymentWidget()
+    let paymentWidgetWithoutBothHeaders = PaymentWidget()
+    let paymentWidgetWithoutTimeline = PaymentWidget()
+    let normalWidget = PaymentWidget()
+
+    
+    let scrollView = UIScrollView()
+    let stackView = UIStackView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        widget.amount = "100"
+        widget2.amount = "200"
         
-        stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant:  10).isActive = true
-        stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant:  -10).isActive = true
+        paymentWidgetWithoutHeader.amount = "200"
+        paymentWidgetWithoutHeader.hideHeader = true
         
-        self.view = view
+        paymentWidgetWithoutSubtitle.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutSubtitle.amount = "300"
+        paymentWidgetWithoutSubtitle.timelapseColor = "black"
+  
+        paymentWidgetWithoutBothHeaders.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
+        paymentWidgetWithoutBothHeaders.hideHeader = true
+        paymentWidgetWithoutBothHeaders.hideSubtitle = true
+        
+        paymentWidgetWithoutTimeline.hideTimeline = true
+
+        setupScrollView()
+        style()
+        layout()
     }
-    func viewControllerForPresentation() -> UIViewController { self }
+    
+    func setupScrollView(){
+        scrollView.delegate = self
+    }
 }
 
+extension WidgetViewContoller {
+    func style(){
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.axis = .vertical
+        stackView.spacing = 10
+    }
+    
+    func layout(){
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+        
+        stackView.addArrangedSubview(paymentWidgetWithoutHeader)
+        stackView.addArrangedSubview(paymentWidgetWithoutSubtitle)
+        stackView.addArrangedSubview(paymentWidgetWithoutBothHeaders)
+        stackView.addArrangedSubview(paymentWidgetWithoutTimeline)
+        stackView.addArrangedSubview(normalWidget)
+
+        stackView.addArrangedSubview(widget)
+        stackView.addArrangedSubview(widget2)
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 6),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -4),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+        
+    }
+}
+
+extension WidgetViewContoller : UIScrollViewDelegate{
+}

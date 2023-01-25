@@ -124,17 +124,8 @@
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="MM1-45-Vce">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z4A-bw-VmJ">
-                                <rect key="frame" x="20" y="109" width="374" height="200"/>
-                            </stackView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="u9f-5d-4U9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Z4A-bw-VmJ" firstAttribute="leading" secondItem="u9f-5d-4U9" secondAttribute="leading" constant="20" id="ph1-l9-7IQ"/>
-                            <constraint firstItem="u9f-5d-4U9" firstAttribute="trailing" secondItem="Z4A-bw-VmJ" secondAttribute="trailing" constant="20" id="tFa-NW-9Fu"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Widget" image="w.square.fill" catalog="system" id="FPb-yh-Mti"/>
                 </viewController>
