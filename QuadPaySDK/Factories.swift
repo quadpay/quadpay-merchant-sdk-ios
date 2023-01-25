@@ -59,7 +59,7 @@ func makeHeaderText(headerText : String, link: URL) -> NSAttributedString{
     let space = NSAttributedString(string: " ")
     
     let textAttributes: [NSAttributedString.Key: Any] = [
-        .foregroundColor: UIColor.black
+        .foregroundColor: UIColor.zipBlack
     ]
     
     let linkConfig = moreInfoOptions.modalLinkStyle.styleConfig

@@ -65,6 +65,9 @@ extension PaymentWidgetHeaderText {
         paymentWidgetLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
         paymentWidgetLabel.attributedText = headerText
         paymentWidgetLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        paymentWidgetLabel.linkTextAttributes = [
+            .foregroundColor: UIColor.zipBlack,
+        ]
     }
     
     func layout(){
