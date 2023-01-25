@@ -36,7 +36,6 @@ final class WidgetViewContoller : UIViewController {
         paymentWidgetWithoutSubtitle.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         paymentWidgetWithoutSubtitle.amount = "300"
         paymentWidgetWithoutSubtitle.timelapseColor = "black"
-        paymentWidgetWithoutSubtitle.hideSubtitle = true
   
         paymentWidgetWithoutBothHeaders.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
@@ -44,7 +43,6 @@ final class WidgetViewContoller : UIViewController {
         paymentWidgetWithoutBothHeaders.hideSubtitle = true
         
         paymentWidgetWithoutTimeline.hideTimeline = true
-
 
         setupScrollView()
         style()

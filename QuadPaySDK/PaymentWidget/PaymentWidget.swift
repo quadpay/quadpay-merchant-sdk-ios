@@ -69,9 +69,9 @@ public final class PaymentWidget: UIView {
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
     
-    override public var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 160)
-    }
+//    override public var intrinsicContentSize: CGSize {
+//        return CGSize(width: 100, height: 180)
+//    }
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
@@ -108,7 +108,8 @@ extension PaymentWidget {
             timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
             timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
             timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2)
+            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2),
+            timelapseGraphView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

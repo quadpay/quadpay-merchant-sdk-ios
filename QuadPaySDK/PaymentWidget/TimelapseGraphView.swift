@@ -11,7 +11,7 @@ public final class TimelapseGraphView: UIView {
     
     let imageView = UIImageView()
     
-    let initialFrameWidth: CGFloat = 200
+    let initialFrameWidth: CGFloat = 180
     var actualFrameWidth: CGFloat?
     
     let initialAmount: String = "0"

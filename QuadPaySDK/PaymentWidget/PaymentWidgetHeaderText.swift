@@ -12,7 +12,7 @@ public final class PaymentWidgetHeaderText: UIView {
     
     var paymentWidgetLabel = LinkTextView()
     
-    var initialPaymentWidgetLabelText : String = "Pay in installments with Zip."
+    var initialPaymentWidgetLabelText : String = "Split your order in 4 easy payments with Zip."
     var actualPaymentWidgetLabelText : String?
     
     var initialLearnMoreUrl : String = ""
