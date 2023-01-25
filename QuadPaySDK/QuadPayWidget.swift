@@ -55,7 +55,7 @@ public final class QuadPayWidgetComponent: UIView {
     }
     
     
-    public var logoOption: String = "logo_main"{
+    @objc public var logoOption: String = "logo_main"{
         didSet{
           updateAttributedText()
         }
@@ -164,27 +164,24 @@ public final class QuadPayWidgetComponent: UIView {
 
   }
     
-  private var contentHtml: String {
-      let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
-      do{
-          var strHTMLContent = try String(contentsOfFile: urlPath!)
-          strHTMLContent = strHTMLContent.replacingOccurrences(of: "%learnMoreUrl%", with: learnMoreUrl)
-          strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
-          strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
-          strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: String(minModal))
-          #if DEBUG
-          let quadpayJS : String = "https://cdn.dev.us.zip.co/v1/quadpay.js"
-          #else
-          let quadpayJS : String = "https://cdn.us.zip.co/v1/quadpay.js"
-          #endif
-          
-          strHTMLContent = strHTMLContent.replacingOccurrences(of: "%QuadPayJS%", with: quadpayJS)
-          return strHTMLContent
-      }
-      catch let err{
-          print(err)
-          return ""
-      }
+
+    private var contentHtml: String{
+        let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
+        do{
+            var strHTMLContent = try String(contentsOfFile: urlPath!)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%learnMoreUrl%", with: learnMoreUrl)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: String(minModal))
+            let quadpayJS : String = "https://cdn.us.zip.co/v1/quadpay.js"
+            
+            strHTMLContent = strHTMLContent.replacingOccurrences(of: "%QuadPayJS%", with: quadpayJS)
+            return strHTMLContent
+        }
+        catch let err{
+            print(err)
+            return ""
+        }
 
   }
 
@@ -240,21 +237,19 @@ public final class QuadPayWidgetComponent: UIView {
         return .failure(MyError.failedToGetMerchantConfig)
     }
     
-    do{
-        #if DEBUG
-        let merchantConfigUrl: String = "https://qp-merchant-configs-dev.azureedge.net/"
-        #else
-        let merchantConfigUrl: String = "https://qpmerchconfigsprd.blob.core.windows.net/merchant-configs/"
-        #endif
-        let url = URL(string: (merchantConfigUrl + merchantId + ".json"))
-        let (data,_) = try await URLSession.shared.data(from: url!)
+        do{
+            let merchantConfigUrl: String = "https://qpmerchconfigsprd.blob.core.windows.net/merchant-configs/"
+            let url = URL(string: (merchantConfigUrl + merchantId + ".json"))
+            let (data,_) = try await URLSession.shared.data(from: url!)
+  
+            let merchantConfigData = try JSONDecoder().decode(MerchantConfig.self, from: data)
+           
+            return .success(merchantConfigData)
+        }
+        catch{
+            return .failure(MyError.failedToGetMerchantConfig)
+        }
 
-        let merchantConfigData = try JSONDecoder().decode(MerchantConfig.self, from: data)
-        
-        return .success(merchantConfigData)
-    }
-    catch{
-        return .failure(MyError.failedToGetMerchantConfig)
     }
   }
     
