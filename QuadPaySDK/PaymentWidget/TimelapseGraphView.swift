@@ -19,7 +19,7 @@ public final class TimelapseGraphView: UIView {
     
     let height: CGFloat = 100
     
-    let initialDepth: CGFloat = 0
+    let initialDepth: CGFloat = 3
     var depth: CGFloat?
     
     let initialTimelapseColor: CGColor = UIColor.zipPurple.cgColor
@@ -86,7 +86,7 @@ extension TimelapseGraphView {
         
         var squares: [CGPoint] = []
         
-        let weekLabels: [String] = ["Due today", "In 2 weeks", "In 4 weeks", "In 6 Weeks"]
+        let weekLabels: [String] = ["Due today", "In 2 weeks", "In 4 weeks", "In 6 weeks"]
         
         let indicatoOffset: CGFloat = 34
         
@@ -129,7 +129,7 @@ extension TimelapseGraphView {
             paragraphStyle.alignment = .natural
             
             let attrs: [NSAttributedString.Key: Any] = [
-                .font: UIFont.preferredFont(forTextStyle: .footnote),
+                .font: UIFont.preferredFont(forTextStyle: .footnote).bold(),
                 .paragraphStyle: paragraphStyle,
               
             ]
@@ -137,6 +137,7 @@ extension TimelapseGraphView {
             let attrsWeeks: [NSAttributedString.Key: Any] = [
                 .font: UIFont.preferredFont(forTextStyle: .footnote),
                 .paragraphStyle: paragraphStyle,
+                .foregroundColor: UIColor.gray
 
             ]
             

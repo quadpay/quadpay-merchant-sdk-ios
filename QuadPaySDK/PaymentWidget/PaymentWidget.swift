@@ -13,55 +13,55 @@ public final class PaymentWidget: UIView {
     
     @objc public var merchantId: String = "" {
         didSet{
-            
+            updateWidget()
         }
     }
     
     @objc public var amount: String = "0" {
         didSet{
-            
+            updateWidget()
         }
     }
     
     @objc public var timelapseColor: String = "" {
         didSet{
-   
+            updateWidget()
         }
     }
     
     @objc public var hideHeader: Bool = false {
         didSet{
-            hideHeaders()
+            updateWidget()
         }
     }
     
     @objc public var hideSubtitle: Bool = false {
         didSet{
-            hideHeaders()
+            updateWidget()
         }
     }
     
     @objc public var hideTimeline: Bool = false {
         didSet{
-            hideHeaders()
+            updateWidget()
         }
     }
     
     @objc public var  isMFPPMerchant: String = ""{
         didSet{
-            
+            updateWidget()
         }
     }
     
     @objc public var learnMoreUrl: String = ""{
         didSet{
-            
+            updateWidget()
         }
     }
     
     @objc public var minModal: String = "" {
         didSet{
-            
+            updateWidget()
         }
     }
     
@@ -76,7 +76,7 @@ public final class PaymentWidget: UIView {
     override public init(frame: CGRect) {
         super.init(frame: .zero)
         style()
-        hideHeaders()
+        updateWidget()
     }
     
     required init?(coder: NSCoder) {
@@ -172,13 +172,7 @@ extension PaymentWidget {
     }
     
 
-    func hideHeaders(){
-        print(" ")
-        print(hideHeader)
-        print(hideSubtitle)
-        print(hideTimeline)
- 
-
+    func updateWidget(){
         if(hideHeader && !hideSubtitle && !hideTimeline){
             layoutWithoutHeader()
         }else if(!hideHeader && hideSubtitle && !hideTimeline){
@@ -219,9 +213,9 @@ extension PaymentWidget {
         MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
             switch result {
             case .success(_):
-                self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payment with Welcome Pay (powered by Zip)."
+                self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."
                 self.paymentWidgetHeaderText.style()
-                self.timelapseGraphView.depth = 3
+                self.timelapseGraphView.depth = 0
             case .failure(_):
                 print("Error fetching merchant")
             }}

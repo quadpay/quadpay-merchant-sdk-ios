@@ -46,6 +46,8 @@
 		BB0F0DE82889889A00D1F8C6 /* BundleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE52889889A00D1F8C6 /* BundleFinder.swift */; };
 		BB0F0DE92889889A00D1F8C6 /* AssetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE62889889A00D1F8C6 /* AssetProvider.swift */; };
 		BB0F0DEA2889889A00D1F8C6 /* InfoWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */; };
+		BB28FE972984143000310222 /* PaymentWidgetHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */; };
+		BB28FE992984149B00310222 /* PaymentWidgetSubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */; };
 		BB9E5EB728CA11460031C5C9 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB228CA11460031C5C9 /* LogoView.swift */; };
 		BB9E5EB828CA11460031C5C9 /* LinkTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB328CA11460031C5C9 /* LinkTextView.swift */; };
 		BB9E5EB928CA11460031C5C9 /* ModalLinkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB428CA11460031C5C9 /* ModalLinkConfig.swift */; };
@@ -53,7 +55,6 @@
 		BB9E5EBB28CA11460031C5C9 /* MoreInfoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */; };
 		BB9E5EDB28CA189D0031C5C9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED628CA18340031C5C9 /* Media.xcassets */; };
 		BB9E5EDC28CA189D0031C5C9 /* www in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED428CA17AF0031C5C9 /* www */; };
-		BBFE02AD296DA95900453D9A /* PaymentWidgetText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02AC296DA95900453D9A /* PaymentWidgetText.swift */; };
 		BBFE02BF29718BE600453D9A /* PaymentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02BE29718BE600453D9A /* PaymentWidget.swift */; };
 		BBFE02C22971948100453D9A /* TimelapseGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02C12971948100453D9A /* TimelapseGraphView.swift */; };
 		BBFE02C62971AA6700453D9A /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02C52971AA6700453D9A /* Factories.swift */; };
@@ -114,6 +115,8 @@
 		BB0F0DE52889889A00D1F8C6 /* BundleFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleFinder.swift; sourceTree = "<group>"; };
 		BB0F0DE62889889A00D1F8C6 /* AssetProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetProvider.swift; sourceTree = "<group>"; };
 		BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWebViewController.swift; sourceTree = "<group>"; };
+		BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetHeaderText.swift; sourceTree = "<group>"; };
+		BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetSubText.swift; sourceTree = "<group>"; };
 		BB9E5EB228CA11460031C5C9 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		BB9E5EB328CA11460031C5C9 /* LinkTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextView.swift; sourceTree = "<group>"; };
 		BB9E5EB428CA11460031C5C9 /* ModalLinkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalLinkConfig.swift; sourceTree = "<group>"; };
@@ -121,7 +124,6 @@
 		BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoOptions.swift; sourceTree = "<group>"; };
 		BB9E5ED428CA17AF0031C5C9 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		BB9E5ED628CA18340031C5C9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		BBFE02AC296DA95900453D9A /* PaymentWidgetText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetText.swift; sourceTree = "<group>"; };
 		BBFE02BE29718BE600453D9A /* PaymentWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidget.swift; sourceTree = "<group>"; };
 		BBFE02C12971948100453D9A /* TimelapseGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelapseGraphView.swift; sourceTree = "<group>"; };
 		BBFE02C52971AA6700453D9A /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
@@ -251,9 +253,10 @@
 		BBFE02C02971944500453D9A /* PaymentWidget */ = {
 			isa = PBXGroup;
 			children = (
-				BBFE02AC296DA95900453D9A /* PaymentWidgetText.swift */,
 				BBFE02BE29718BE600453D9A /* PaymentWidget.swift */,
 				BBFE02C12971948100453D9A /* TimelapseGraphView.swift */,
+				BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */,
+				BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */,
 			);
 			path = PaymentWidget;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				251EC4CB246B1C6500679E88 /* QuadPayVirtualCheckoutViewController.m in Sources */,
 				BB9E5EBB28CA11460031C5C9 /* MoreInfoOptions.swift in Sources */,
 				251EC4DE2472EFDC00679E88 /* ExceptionMessage.m in Sources */,
+				BB28FE992984149B00310222 /* PaymentWidgetSubText.swift in Sources */,
 				BB9E5EB928CA11460031C5C9 /* ModalLinkConfig.swift in Sources */,
 				251EC4D3246F0AB700679E88 /* QuadPay.m in Sources */,
 				251EC4D0246F01C100679E88 /* QuadPayCheckoutDetails.m in Sources */,
@@ -463,11 +467,11 @@
 				BB0F0DE92889889A00D1F8C6 /* AssetProvider.swift in Sources */,
 				251EC4C6246B14F800679E88 /* QuadPayCardholder.m in Sources */,
 				BB9E5EB828CA11460031C5C9 /* LinkTextView.swift in Sources */,
+				BB28FE972984143000310222 /* PaymentWidgetHeaderText.swift in Sources */,
 				251EC4C2246B14CE00679E88 /* QuadPayCard.m in Sources */,
 				BBFE02C62971AA6700453D9A /* Factories.swift in Sources */,
 				251EC4B62469DC9100679E88 /* QuadPayWebViewController.m in Sources */,
 				251EC4DB2472EE9C00679E88 /* CheckoutSuccessfulMessage.m in Sources */,
-				BBFE02AD296DA95900453D9A /* PaymentWidgetText.swift in Sources */,
 				251EC4C5246B14F800679E88 /* QuadPayCustomer.m in Sources */,
 				251EC4EB247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m in Sources */,
 				BB0F0DEA2889889A00D1F8C6 /* InfoWebViewController.swift in Sources */,

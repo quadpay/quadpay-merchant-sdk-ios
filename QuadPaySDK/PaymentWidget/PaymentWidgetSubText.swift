@@ -1,3 +1,10 @@
+//
+//  PaymentWidgetSubText.swift
+//  QuadPaySDK
+//
+//  Created by Petros Andreou on 27/01/2023.
+//  Copyright © 2023 QuadPay. All rights reserved.
+//
 
 import Foundation
 import UIKit
@@ -44,3 +51,4 @@ public final class PaymentWidgetSubText: UIView {
     }
     
 }
+
