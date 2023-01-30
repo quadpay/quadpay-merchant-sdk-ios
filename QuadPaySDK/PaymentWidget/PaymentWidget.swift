@@ -29,19 +29,19 @@ public final class PaymentWidget: UIView {
         }
     }
     
-    @objc public var hideHeader: Bool = false {
+    @objc public var hideHeader: String = "false" {
         didSet{
             updateWidget()
         }
     }
     
-    @objc public var hideSubtitle: Bool = false {
+    @objc public var hideSubtitle: String = "false" {
         didSet{
             updateWidget()
         }
     }
     
-    @objc public var hideTimeline: Bool = false {
+    @objc public var hideTimeline: String = "false" {
         didSet{
             updateWidget()
         }
@@ -173,15 +173,15 @@ extension PaymentWidget {
     
 
     func updateWidget(){
-        if(hideHeader && !hideSubtitle && !hideTimeline){
+        if(hideHeader == "true" && hideSubtitle == "false" && hideTimeline == "false"){
             layoutWithoutHeader()
-        }else if(!hideHeader && hideSubtitle && !hideTimeline){
+        }else if(hideHeader == "false" && hideSubtitle == "true" && hideTimeline == "false"){
             layoutWithoutSubtitle()
-        }else if(hideHeader && hideSubtitle && !hideTimeline){
+        }else if(hideHeader == "true" && hideSubtitle == "true" && hideTimeline == "false"){
             layoutWithoutBothHeaders()
-        } else if(hideTimeline  && !hideHeader && !hideSubtitle){
+        } else if(hideTimeline == "true"  && hideHeader == "false" && hideSubtitle == "false"){
             layoutWithoutTimeline()
-        } else if(!hideTimeline  && !hideHeader && !hideSubtitle){
+        } else if(hideTimeline == "false" && hideHeader == "false" && hideSubtitle == "false"){
             layout()
         }
     }
@@ -191,7 +191,7 @@ extension PaymentWidget {
     override public func layoutSubviews() {
         super.layoutSubviews()
         //Pass parameters {amount} in the timelapse graph
-        if(hideTimeline){
+        if(hideTimeline == "true"){
             //Hiding the timeline by removing the width.
             timelapseGraphView.actualFrameWidth = 0
         }else{

@@ -31,7 +31,7 @@ final class WidgetViewContoller : UIViewController {
         widget2.amount = "200"
         
         paymentWidgetWithoutHeader.amount = "200"
-        paymentWidgetWithoutHeader.hideHeader = true
+        paymentWidgetWithoutHeader.hideHeader = "true"
         
         paymentWidgetWithoutSubtitle.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         paymentWidgetWithoutSubtitle.amount = "300"
@@ -39,10 +39,10 @@ final class WidgetViewContoller : UIViewController {
   
         paymentWidgetWithoutBothHeaders.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
         paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
-        paymentWidgetWithoutBothHeaders.hideHeader = true
-        paymentWidgetWithoutBothHeaders.hideSubtitle = true
+        paymentWidgetWithoutBothHeaders.hideHeader = "true"
+        paymentWidgetWithoutBothHeaders.hideSubtitle = "true"
         
-        paymentWidgetWithoutTimeline.hideTimeline = true
+        paymentWidgetWithoutTimeline.hideTimeline = "true"
 
         setupScrollView()
         style()
