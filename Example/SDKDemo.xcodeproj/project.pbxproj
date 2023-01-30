@@ -17,7 +17,6 @@
 		25EAE4A2247436430048BB8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EAE4A1247436430048BB8C /* main.m */; };
 		25EAE4AC247436430048BB8C /* SDKDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EAE4AB247436430048BB8C /* SDKDemoTests.m */; };
 		25EAE4B7247436430048BB8C /* SDKDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25EAE4B6247436430048BB8C /* SDKDemoUITests.m */; };
-		29A93D0128E78EF000C6D3C6 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A93D0028E78EF000C6D3C6 /* SegmentViewController.swift */; };
 		35D3998D04D9610F3D2934EE /* Pods_SDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D11DDFDBC4DD178A59258F8 /* Pods_SDKDemo.framework */; };
 		39FA4B1F286E70F9005956F0 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FA4B1E286E70F9005956F0 /* WidgetViewController.swift */; };
 		57C1AF40AE513EFBCC7B5405 /* Pods_SDKDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5B60D3D3D9162255D4949F /* Pods_SDKDemoTests.framework */; };
@@ -64,7 +63,6 @@
 		25EAE4B6247436430048BB8C /* SDKDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDKDemoUITests.m; sourceTree = "<group>"; };
 		25EAE4B8247436430048BB8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29A93CFF28E78EF000C6D3C6 /* SDKDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDKDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		29A93D0028E78EF000C6D3C6 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		39FA4B1E286E70F9005956F0 /* WidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewController.swift; sourceTree = "<group>"; };
 		455F76FA4AFC341C590600AC /* Pods-SDKDemo-SDKDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKDemo-SDKDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SDKDemo-SDKDemoUITests/Pods-SDKDemo-SDKDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D11DDFDBC4DD178A59258F8 /* Pods_SDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,7 +154,6 @@
 				25EAE4A0247436430048BB8C /* Info.plist */,
 				25EAE4A1247436430048BB8C /* main.m */,
 				39FA4B1E286E70F9005956F0 /* WidgetViewController.swift */,
-				29A93D0028E78EF000C6D3C6 /* SegmentViewController.swift */,
 				29A93CFF28E78EF000C6D3C6 /* SDKDemo-Bridging-Header.h */,
 			);
 			path = SDKDemo;
@@ -433,7 +430,6 @@
 				25EAE497247436410048BB8C /* SecondViewController.m in Sources */,
 				25EAE48E247436410048BB8C /* AppDelegate.m in Sources */,
 				25EAE494247436410048BB8C /* FirstViewController.m in Sources */,
-				29A93D0128E78EF000C6D3C6 /* SegmentViewController.swift in Sources */,
 				39FA4B1F286E70F9005956F0 /* WidgetViewController.swift in Sources */,
 				25EAE491247436410048BB8C /* SceneDelegate.m in Sources */,
 			);

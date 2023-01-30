@@ -14,8 +14,6 @@ import UIKit
 /// launch externally by default but can launch modally in app by implementing
 /// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
 /// as well as changes to the `totalAmount`.
-@available(iOS 10.0, *)
-@available(iOS 12.0, *)
 public final class PaymentWidgetHeaderText: UIView {
     
     var paymentWidgetLabel = LinkTextView()
@@ -90,8 +88,10 @@ extension PaymentWidgetHeaderText {
     }
     
     func ReactNativeController() -> UIViewController {
-        var reactNativeController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+     
             
+        var reactNativeController: UIViewController = (UIApplication.shared.windows.first(where: \.isKeyWindow)?.rootViewController)!
+           
         while (reactNativeController.presentedViewController != nil) {
             reactNativeController = reactNativeController.presentedViewController!
         }

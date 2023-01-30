@@ -12,8 +12,6 @@ import UIKit
 /// launch externally by default but can launch modally in app by implementing
 /// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
 /// as well as changes to the `totalAmount`.
-@available(iOS 10.0, *)
-@available(iOS 12.0, *)
 public final class QuadPayWidgetComponent: UIView {
     
     /// The price breakdown view delegate. Not setting this delegate will cause the info link to open
@@ -222,8 +220,7 @@ public final class QuadPayWidgetComponent: UIView {
     }
     
     func ReactNativeController() -> UIViewController {
-        var reactNativeController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
-        
+        var reactNativeController: UIViewController = (UIApplication.shared.windows.first(where: \.isKeyWindow)?.rootViewController)!
         while (reactNativeController.presentedViewController != nil) {
             reactNativeController = reactNativeController.presentedViewController!
         }
@@ -493,16 +490,17 @@ public final class QuadPayWidgetComponent: UIView {
         }
     }
 
-    @available(iOS 10.0, *)
+
     extension UIColor {
         convenience init(hexString: String, alpha: CGFloat = 1.0) {
-            let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            let scanner = Scanner(string: hexString)
+            var hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if (hexString.hasPrefix("#")) {
-                scanner.scanLocation = 1
+                hexString = String(hexString.dropFirst())
             }
-            var color: UInt32 = 0
-            scanner.scanHexInt32(&color)
+            let scanner = Scanner(string: hexString)
+           
+            var color: UInt64 = 0
+            scanner.scanHexInt64(&color)
             let mask = 0x000000FF
             let r = Int(color >> 16) & mask
             let g = Int(color >> 8) & mask
