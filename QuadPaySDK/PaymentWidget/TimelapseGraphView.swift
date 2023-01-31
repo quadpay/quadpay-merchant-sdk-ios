@@ -17,7 +17,7 @@ public final class TimelapseGraphView: UIView {
     let initialAmount: String = "0"
     var amount: String?
     
-    let height: CGFloat = 100
+    let height: CGFloat = 80
     
     let initialDepth: CGFloat = 3
     var depth: CGFloat?
@@ -55,7 +55,7 @@ extension TimelapseGraphView {
     
     func layout(){
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         drawTimelapseGraph()
         
         addSubview(imageView)
@@ -64,7 +64,9 @@ extension TimelapseGraphView {
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
@@ -80,7 +82,8 @@ extension TimelapseGraphView {
         
         let spacingBetweenSquares = (frameWidth - 8 * padding) / (numberOfSections + 0.5)
         
-        let shortSegmentLegth = spacingBetweenSquares * 0.20
+        //Move the x of the image
+        let shortSegmentLegth = spacingBetweenSquares * 0 // 0.20
         
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: frameWidth, height: height))
         
@@ -88,7 +91,7 @@ extension TimelapseGraphView {
         
         let weekLabels: [String] = ["Due today", "In 2 weeks", "In 4 weeks", "In 6 weeks"]
         
-        let indicatoOffset: CGFloat = 34
+        let indicatoOffset: CGFloat = 20
         
         let yOffset = (squareSize + lineWidth) / 2 + indicatoOffset
         
@@ -96,7 +99,7 @@ extension TimelapseGraphView {
             
             //Define our squares
             for index in 0...Int((numberOfSquares - 1)){
-                let x =  shortSegmentLegth + ( spacingBetweenSquares * CGFloat(index))
+                let x = shortSegmentLegth + ( spacingBetweenSquares * CGFloat(index))
                 squares.append(CGPoint(x: x, y: yOffset))
                
             }
@@ -104,7 +107,8 @@ extension TimelapseGraphView {
             //Define our lines between squares
             ctx.cgContext.setLineWidth(lineWidth)
             ctx.cgContext.setStrokeColor(actualTimelapseColor ?? initialTimelapseColor)
-            ctx.cgContext.addLines(between: squares)
+            ctx.cgContext.move(to: CGPoint(x: squares[0].x + (squareSize), y: squares[0].y))
+            ctx.cgContext.addLine(to: CGPoint(x: squares[3].x + (squareSize), y: squares[0].y))
             ctx.cgContext.strokePath()
             ctx.cgContext.setFillColor(actualTimelapseColor ?? initialTimelapseColor)
             
@@ -115,10 +119,10 @@ extension TimelapseGraphView {
             for square in squares{
                 //Instead of using addRect to draw our rectangles
                 //since we need to add angles sometimes.
-                ctx.cgContext.move(to: CGPoint(x: square.x - (squareSize * 0.5), y: square.y - (squareSize * 0.5)))
-                ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize * 0.5), y: square.y - (squareSize * 0.5)))
-                ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize * 0.5) + actualDepth, y: square.y + (squareSize * 0.5)))
-                ctx.cgContext.addLine(to: CGPoint(x: square.x - (squareSize * 0.5) + actualDepth, y: square.y + (squareSize * 0.5)))
+                ctx.cgContext.move(to: CGPoint(x: square.x , y: square.y - (squareSize * 0.5)))
+                ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize), y: square.y - (squareSize * 0.5)))
+                ctx.cgContext.addLine(to: CGPoint(x: square.x + (squareSize) + actualDepth, y: square.y + (squareSize * 0.5)))
+                ctx.cgContext.addLine(to: CGPoint(x: square.x + actualDepth, y: square.y + (squareSize * 0.5)))
                 
                 //ctx.cgContext.addRect(squareBounds)
                 ctx.cgContext.drawPath(using: .fillStroke)
@@ -149,10 +153,10 @@ extension TimelapseGraphView {
                 
                 
                 let attributedAmountString = NSAttributedString(string: "$" + amountString, attributes: attrs)
-                attributedAmountString.draw(with: CGRect(x: square.x - 5 , y: square.y + 10, width: 100, height: 20), options: .usesLineFragmentOrigin, context: nil)
+                attributedAmountString.draw(with: CGRect(x: square.x , y: square.y + 10, width: 100, height: 20), options: .usesLineFragmentOrigin, context: nil)
                 
                 let attributedWeekString = NSAttributedString(string: weeksString, attributes: attrsWeeks)
-                attributedWeekString.draw(with: CGRect(x: square.x - 5 , y: square.y + 30, width: 100, height: 20), options: .usesLineFragmentOrigin, context: nil)
+                attributedWeekString.draw(with: CGRect(x: square.x, y: square.y + 30, width: 100, height: 20), options: .usesLineFragmentOrigin, context: nil)
             }
         }
         imageView.image = img

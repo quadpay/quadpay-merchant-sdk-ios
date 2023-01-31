@@ -30,14 +30,16 @@ final class WidgetViewContoller : UIViewController {
         widget.amount = "100"
         widget2.amount = "200"
         
+        
         paymentWidgetWithoutHeader.amount = "200"
         paymentWidgetWithoutHeader.hideHeader = "true"
         
-        paymentWidgetWithoutSubtitle.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutSubtitle.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
         paymentWidgetWithoutSubtitle.amount = "300"
         paymentWidgetWithoutSubtitle.timelapseColor = "black"
-  
-        paymentWidgetWithoutBothHeaders.merchantId = "9f7c8dcc-a546-45e4-a789-b65055abe0db"
+        paymentWidgetWithoutSubtitle.hideSubtitle = "true"
+        
+        paymentWidgetWithoutBothHeaders.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
         paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
         paymentWidgetWithoutBothHeaders.hideHeader = "true"
         paymentWidgetWithoutBothHeaders.hideSubtitle = "true"

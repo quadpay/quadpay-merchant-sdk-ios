@@ -41,7 +41,7 @@ struct MerchantService {
     
     func fetchMerchants(merchantId: String ,completion: @escaping((Result<Merchant, Error>) -> Void )){
         
-        let url = URL(string: "https://qp-merchant-configs-dev.azureedge.net/" + merchantId + ".json")!
+        let url = URL(string: "https://qpmerchconfigsprd.blob.core.windows.net/merchant-configs/" + merchantId + ".json")!
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             

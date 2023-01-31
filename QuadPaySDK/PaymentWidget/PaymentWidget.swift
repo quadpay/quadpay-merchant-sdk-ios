@@ -69,10 +69,6 @@ public final class PaymentWidget: UIView {
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
     
-//    override public var intrinsicContentSize: CGSize {
-//        return CGSize(width: 100, height: 180)
-//    }
-    
     override public init(frame: CGRect) {
         super.init(frame: .zero)
         style()
@@ -173,15 +169,13 @@ extension PaymentWidget {
     
 
     func updateWidget(){
-        if(hideHeader == "true" && hideSubtitle == "false" && hideTimeline == "false"){
+        if(hideHeader == "true" && hideSubtitle == "false"){
             layoutWithoutHeader()
-        }else if(hideHeader == "false" && hideSubtitle == "true" && hideTimeline == "false"){
+        }else if(hideHeader == "false" && hideSubtitle == "true"){
             layoutWithoutSubtitle()
-        }else if(hideHeader == "true" && hideSubtitle == "true" && hideTimeline == "false"){
+        }else if(hideHeader == "true" && hideSubtitle == "true" ){
             layoutWithoutBothHeaders()
-        } else if(hideTimeline == "true"  && hideHeader == "false" && hideSubtitle == "false"){
-            layoutWithoutTimeline()
-        } else if(hideTimeline == "false" && hideHeader == "false" && hideSubtitle == "false"){
+        }else if(hideTimeline == "false" && hideHeader == "false"){
             layout()
         }
     }
@@ -204,6 +198,7 @@ extension PaymentWidget {
      
         timelapseGraphView.drawTimelapseGraph()
         
+        
         //Passed parameters to the header for pop up
         //{minModal, merchantId,isMFPPMerchant, learnmoreURL}
         paymentWidgetHeaderText.minModal = minModal
@@ -219,5 +214,8 @@ extension PaymentWidget {
             case .failure(_):
                 print("Error fetching merchant")
             }}
+        
+        paymentWidgetHeaderText.style()
+        paymentWidgetSubText.style()
     }
 }
