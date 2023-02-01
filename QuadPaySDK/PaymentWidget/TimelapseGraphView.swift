@@ -22,8 +22,8 @@ public final class TimelapseGraphView: UIView {
     let initialDepth: CGFloat = 3
     var depth: CGFloat?
     
-    let initialTimelapseColor: CGColor = UIColor.zipPurple.cgColor
-    var actualTimelapseColor: CGColor?
+    let initialTimelineColor: CGColor = UIColor.zipPurple.cgColor
+    var actualTimelineColor: CGColor?
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
@@ -74,7 +74,7 @@ extension TimelapseGraphView {
         
         let frameWidth: CGFloat = actualFrameWidth ?? initialFrameWidth
         
-        let padding: CGFloat = 10
+        let padding: CGFloat = 5
         let squareSize: CGFloat = 10
         let lineWidth: CGFloat = 2
         let numberOfSquares: CGFloat = 4
@@ -106,11 +106,11 @@ extension TimelapseGraphView {
             
             //Define our lines between squares
             ctx.cgContext.setLineWidth(lineWidth)
-            ctx.cgContext.setStrokeColor(actualTimelapseColor ?? initialTimelapseColor)
+            ctx.cgContext.setStrokeColor(actualTimelineColor ?? initialTimelineColor)
             ctx.cgContext.move(to: CGPoint(x: squares[0].x + (squareSize), y: squares[0].y))
             ctx.cgContext.addLine(to: CGPoint(x: squares[3].x + (squareSize), y: squares[0].y))
             ctx.cgContext.strokePath()
-            ctx.cgContext.setFillColor(actualTimelapseColor ?? initialTimelapseColor)
+            ctx.cgContext.setFillColor(actualTimelineColor ?? initialTimelineColor)
             
             
             //Define our depth

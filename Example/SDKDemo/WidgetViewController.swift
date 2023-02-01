@@ -36,7 +36,7 @@ final class WidgetViewContoller : UIViewController {
         
         paymentWidgetWithoutSubtitle.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
         paymentWidgetWithoutSubtitle.amount = "300"
-        paymentWidgetWithoutSubtitle.timelapseColor = "black"
+        paymentWidgetWithoutSubtitle.timelineColor = "black"
         paymentWidgetWithoutSubtitle.hideSubtitle = "true"
         
         paymentWidgetWithoutBothHeaders.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"

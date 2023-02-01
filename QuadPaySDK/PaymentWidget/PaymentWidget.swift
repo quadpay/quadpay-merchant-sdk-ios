@@ -23,7 +23,7 @@ public final class PaymentWidget: UIView {
         }
     }
     
-    @objc public var timelapseColor: String = "" {
+    @objc public var timelineColor: String = "" {
         didSet{
             updateWidget()
         }
@@ -191,8 +191,8 @@ extension PaymentWidget {
         }else{
             timelapseGraphView.actualFrameWidth = frame.width
             timelapseGraphView.amount = amount
-            if(timelapseColor == "black") {
-                timelapseGraphView.actualTimelapseColor = UIColor.zipBlack.cgColor
+            if(timelineColor == "black") {
+                timelapseGraphView.actualTimelineColor = UIColor.zipBlack.cgColor
             }
         }
      
