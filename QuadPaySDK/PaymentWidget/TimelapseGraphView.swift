@@ -89,7 +89,7 @@ extension TimelapseGraphView {
         
         var squares: [CGPoint] = []
         
-        let weekLabels: [String] = ["Due today", "In 2 weeks", "In 4 weeks", "In 6 weeks"]
+        let weekLabels: [String] = ["Due today", "2 weeks", "4 weeks", "6 weeks"]
         
         let indicatoOffset: CGFloat = 20
         
