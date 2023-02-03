@@ -214,9 +214,12 @@ extension PaymentWidget {
                 self.timelapseGraphView.drawTimelapseGraph()
             case .failure(_):
                 self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Zip."
-                self.paymentWidgetHeaderText.style()
                 self.timelapseGraphView.depth = 3
-                self.timelapseGraphView.drawTimelapseGraph()
+                DispatchQueue.main.async {
+                    self.paymentWidgetHeaderText.style()
+                    self.timelapseGraphView.drawTimelapseGraph()
+                }
+                
                 print("Error fetching merchant")
             }}
         
