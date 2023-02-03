@@ -211,11 +211,16 @@ extension PaymentWidget {
                 self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."
                 self.paymentWidgetHeaderText.style()
                 self.timelapseGraphView.depth = 0
+                self.timelapseGraphView.drawTimelapseGraph()
             case .failure(_):
+                self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Zip."
+                self.paymentWidgetHeaderText.style()
+                self.timelapseGraphView.depth = 3
+                self.timelapseGraphView.drawTimelapseGraph()
                 print("Error fetching merchant")
             }}
         
-        paymentWidgetHeaderText.style()
-        paymentWidgetSubText.style()
+        
+
     }
 }
