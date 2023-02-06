@@ -77,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic, copy, nullable) NSString* merchantFeeForPaymentPlan;
 
+/**
+ Checkout flow for Checkout. Optional
+*/
+@property (nonatomic, copy, nullable) NSString* checkoutFlow;
+
 @end
 
 NS_ASSUME_NONNULL_END

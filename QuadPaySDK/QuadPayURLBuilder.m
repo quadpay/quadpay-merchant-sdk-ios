@@ -67,6 +67,9 @@
     if (details.merchantFeeForPaymentPlan) {
         base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantFeeForPaymentPlan=%@", details.merchantFeeForPaymentPlan]];
     }
+    if (details.checkoutFlow) {
+        base = [base stringByAppendingString:[NSString stringWithFormat:@"&checkoutFlow=%@", details.checkoutFlow]];
+    }
     return base;
 }
 
