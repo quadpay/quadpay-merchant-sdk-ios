@@ -191,8 +191,10 @@ extension PaymentWidget {
         }else{
             timelapseGraphView.actualFrameWidth = frame.width
             timelapseGraphView.amount = amount
-            if(timelineColor == "black") {
+            if(timelineColor.lowercased() == "black") {
                 timelapseGraphView.actualTimelineColor = UIColor.zipBlack.cgColor
+            }else {
+                timelapseGraphView.actualTimelineColor = UIColor.zipPurple.cgColor
             }
         }
      
