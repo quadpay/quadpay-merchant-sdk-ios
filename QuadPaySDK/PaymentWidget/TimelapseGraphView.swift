@@ -17,10 +17,12 @@ public final class TimelapseGraphView: UIView {
     let initialAmount: String = "0"
     var amount: String?
     
-    let height: CGFloat = 80
+    let initialHeight: CGFloat = 80
     
     let initialDepth: CGFloat = 3
     var depth: CGFloat?
+    
+    var deviceAdjustment: CGFloat = 1.0
     
     let initialTimelineColor: CGColor = UIColor.zipPurple.cgColor
     var actualTimelineColor: CGColor?
@@ -29,7 +31,6 @@ public final class TimelapseGraphView: UIView {
         super.init(frame: .zero)
         layout()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,7 +56,7 @@ extension TimelapseGraphView {
     
     func layout(){
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        imageView.contentMode = .left
         drawTimelapseGraph()
         
         addSubview(imageView)
@@ -73,6 +74,9 @@ extension TimelapseGraphView {
     func drawTimelapseGraph(){
         
         let frameWidth: CGFloat = actualFrameWidth ?? initialFrameWidth
+        if(UIDevice.current.userInterfaceIdiom == .pad){
+            deviceAdjustment = 2
+        }
         
         let padding: CGFloat = 5
         let squareSize: CGFloat = 10
@@ -80,12 +84,12 @@ extension TimelapseGraphView {
         let numberOfSquares: CGFloat = 4
         let numberOfSections = numberOfSquares - 1
         
-        let spacingBetweenSquares = (frameWidth - 8 * padding) / (numberOfSections + 0.5)
+        let spacingBetweenSquares = (frameWidth - 8 * padding) / (numberOfSections + 0.5) * deviceAdjustment
         
         //Move the x of the image
         let shortSegmentLegth = spacingBetweenSquares * 0 // 0.20
         
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: frameWidth, height: height))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: frame.width, height: initialHeight))
         
         var squares: [CGPoint] = []
         
