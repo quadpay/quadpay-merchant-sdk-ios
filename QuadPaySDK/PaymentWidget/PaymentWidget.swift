@@ -9,7 +9,9 @@
 import UIKit
 import Foundation
 
-public final class PaymentWidget: UIStackView {
+public final class PaymentWidget: UIView {
+    
+    let stackView = UIStackView()
     
     @objc public var merchantId: String = "" {
         didSet{
@@ -84,24 +86,26 @@ public final class PaymentWidget: UIStackView {
 
 extension PaymentWidget {
     func style(){
-
-        translatesAutoresizingMaskIntoConstraints = false
-        axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
         paymentWidgetHeaderText.translatesAutoresizingMaskIntoConstraints = false
         paymentWidgetSubText.translatesAutoresizingMaskIntoConstraints = false
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func layout(){
-        addArrangedSubview(paymentWidgetHeaderText)
-        addArrangedSubview(paymentWidgetSubText)
-        addArrangedSubview(timelapseGraphView)
+        addSubview(stackView)
+        stackView.addArrangedSubview(paymentWidgetHeaderText)
+        stackView.addArrangedSubview(paymentWidgetSubText)
+        stackView.addArrangedSubview(timelapseGraphView)
    
         
         NSLayoutConstraint.activate([
-            topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
-            leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 6),
-            trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor,constant: -6),
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
     
