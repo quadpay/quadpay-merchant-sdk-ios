@@ -90,7 +90,6 @@ func makeHeaderText(headerText : String, link: URL) -> NSAttributedString{
     
     if link != nil {
       link?.addAttributes(linkAttributes, range: NSRange(location: 0, length: link!.length))
-        attributedString.append(space)
         attributedString.append(link!)
     }
 

@@ -109,65 +109,6 @@ extension PaymentWidget {
         ])
     }
     
-//    func layoutWithoutTimeline(){
-//        addSubview(paymentWidgetHeaderText)
-//        addSubview(paymentWidgetSubText)
-//
-//        NSLayoutConstraint.activate([
-//            paymentWidgetHeaderText.topAnchor.constraint(equalTo: topAnchor),
-//            paymentWidgetHeaderText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetHeaderText.trailingAnchor, multiplier: 2),
-//            paymentWidgetSubText.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetHeaderText.bottomAnchor, multiplier: 0),
-//            paymentWidgetSubText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetSubText.trailingAnchor, multiplier: 2),
-//        ])
-//    }
-    
-//    func layoutWithoutHeader(){
-//        addSubview(paymentWidgetSubText)
-//        addSubview(timelapseGraphView)
-//
-//        NSLayoutConstraint.activate([
-//            paymentWidgetSubText.topAnchor.constraint(equalTo: topAnchor),
-//            paymentWidgetSubText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetSubText.trailingAnchor, multiplier: 2),
-//            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetSubText.bottomAnchor, multiplier: 0),
-//            timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            //timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
-//            timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2)
-//        ])
-//    }
-//
-//    func layoutWithoutSubtitle(){
-//        addSubview(paymentWidgetHeaderText)
-//        addSubview(timelapseGraphView)
-//
-//        NSLayoutConstraint.activate([
-//            paymentWidgetHeaderText.topAnchor.constraint(equalTo: topAnchor),
-//            paymentWidgetHeaderText.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: paymentWidgetHeaderText.trailingAnchor, multiplier: 2),
-//            timelapseGraphView.topAnchor.constraint(equalToSystemSpacingBelow: paymentWidgetHeaderText.bottomAnchor, multiplier: 0),
-//            timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//           // timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
-//            timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2)
-//        ])
-//    }
-//
-//    func layoutWithoutBothHeaders(){
-//        addSubview(timelapseGraphView)
-//
-//        NSLayoutConstraint.activate([
-//            timelapseGraphView.topAnchor.constraint(equalTo: topAnchor),
-//            timelapseGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//          //  timelapseGraphView.widthAnchor.constraint(equalToConstant: frame.width),
-//            timelapseGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-//            trailingAnchor.constraint(equalToSystemSpacingAfter: timelapseGraphView.trailingAnchor, multiplier: 2)
-//        ])
-//    }
-    
-
     func updateWidget(){
         layout()
     }
