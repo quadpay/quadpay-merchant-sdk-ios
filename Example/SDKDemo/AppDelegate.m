@@ -18,7 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[QuadPay sharedInstance] initialize:@"5898b9a9-46bb-4647-92ed-52643d019d8c" environment:@"sandbox" locale:@"US"];
+    //CI a3ef4ac2-4b26-46be-b516-2b86f1f0959e
+    [[QuadPay sharedInstance] initialize:@"a3ef4ac2-4b26-46be-b516-2b86f1f0959e" environment:@"development" locale:@"US"];
     return YES;
 }
 
