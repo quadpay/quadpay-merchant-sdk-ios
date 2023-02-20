@@ -34,16 +34,17 @@ final class WidgetViewContoller : UIViewController {
         paymentWidgetWithoutHeader.amount = "200"
         paymentWidgetWithoutHeader.hideHeader = "true"
         
-        paymentWidgetWithoutSubtitle.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+        paymentWidgetWithoutSubtitle.merchantId = "8f52d93d-f308-4067-a8ef-7d98cc2b0f1b"// Not valid merchant
         paymentWidgetWithoutSubtitle.amount = "300"
         paymentWidgetWithoutSubtitle.timelineColor = "black"
         paymentWidgetWithoutSubtitle.hideSubtitle = "true"
-        
+        paymentWidgetWithoutSubtitle.isMFPPMerchant = "true"
+//        
         paymentWidgetWithoutBothHeaders.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
         paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
-        paymentWidgetWithoutBothHeaders.hideHeader = "true"
         paymentWidgetWithoutBothHeaders.hideSubtitle = "true"
-        
+        paymentWidgetWithoutBothHeaders.hideHeader = "true"
+//        
         paymentWidgetWithoutTimeline.hideTimeline = "true"
 
         setupScrollView()
@@ -74,9 +75,8 @@ extension WidgetViewContoller {
         stackView.addArrangedSubview(paymentWidgetWithoutBothHeaders)
         stackView.addArrangedSubview(paymentWidgetWithoutTimeline)
         stackView.addArrangedSubview(normalWidget)
-
-        stackView.addArrangedSubview(widget)
-        stackView.addArrangedSubview(widget2)
+        //stackView.addArrangedSubview(widget)
+        //stackView.addArrangedSubview(widget2)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),

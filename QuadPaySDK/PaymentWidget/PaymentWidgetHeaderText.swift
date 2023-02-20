@@ -10,10 +10,6 @@
 import Foundation
 import UIKit
 
-/// A view that displays informative text, the Afterpay badge and an info link. The info link will
-/// launch externally by default but can launch modally in app by implementing
-/// PriceBreakdownViewDelegate. This view updates in response to Afterpay configuration changes
-/// as well as changes to the `totalAmount`.
 public final class PaymentWidgetHeaderText: UIView {
     
     var paymentWidgetLabel = LinkTextView()

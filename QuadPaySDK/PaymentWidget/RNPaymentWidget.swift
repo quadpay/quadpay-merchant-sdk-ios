@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-public final class PaymentWidget: UIView {
+public final class RNPaymentWidget: UIView {
     
     let stackView = UIStackView()
     
@@ -94,11 +94,9 @@ public final class PaymentWidget: UIView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
-extension PaymentWidget {
+extension RNPaymentWidget {
     func style(){
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -117,9 +115,6 @@ extension PaymentWidget {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-     
         ])
     }
     
