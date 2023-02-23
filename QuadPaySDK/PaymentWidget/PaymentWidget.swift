@@ -131,15 +131,12 @@ extension PaymentWidget {
         if(hideTimeline.lowercased() == "true"){
             //Hiding the timeline by removing the width.
             timelapseGraphView.isHidden = true
-     
-
         }else{
             timelapseGraphView.isHidden = false
             if(UIDevice.current.userInterfaceIdiom == .pad){
                 timelapseGraphView.actualFrameWidth = 300
             }else{
                 timelapseGraphView.actualFrameWidth = frame.width
-                print(frame.width)
             }
             timelapseGraphView.amount = amount
             if(timelineColor.lowercased() == "black") {

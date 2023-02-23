@@ -14,7 +14,18 @@ final class WidgetViewContoller : UIViewController {
     
     let widget = QuadPayWidgetComponent()
     let widget2 = QuadPayWidgetComponent()
-
+    let widget3 = QuadPayWidgetComponent()
+    let widget4 = QuadPayWidgetComponent()
+    let widget5 = QuadPayWidgetComponent()
+    let widget6 = QuadPayWidgetComponent()
+    let widget7 = QuadPayWidgetComponent()
+    let widget8 = QuadPayWidgetComponent()
+    let widget9 = QuadPayWidgetComponent()
+    let widget10 = QuadPayWidgetComponent()
+    let widget11 = QuadPayWidgetComponent()
+    let widget12 = QuadPayWidgetComponent()
+    
+    
     let paymentWidgetWithoutHeader = PaymentWidget()
     let paymentWidgetWithoutSubtitle = PaymentWidget()
     let paymentWidgetWithoutBothHeaders = PaymentWidget()
@@ -27,9 +38,46 @@ final class WidgetViewContoller : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        widget.amount = "100"
-        widget2.amount = "200"
+        widget.amount = "0"
+        widget.logoOption = "secondary"
         
+        widget2.amount = "100"
+        widget2.logoOption = "secondary"
+        widget2.displayMode = "logoFirst"
+        
+        widget3.amount = "200"
+        widget3.logoOption = "secondary"
+        widget3.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+        
+        widget4.amount = "0"
+        widget4.logoOption = "secondary-light"
+        
+        widget5.amount = "100"
+        widget5.logoOption = "secondary-light"
+        widget5.displayMode = "logoFirst"
+        
+        widget6.amount = "200"
+        widget6.logoOption = "secondary-light"
+        widget6.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+        
+        widget7.amount = "0"
+        widget7.logoOption = "black-white"
+        
+        widget8.amount = "200"
+        widget8.logoOption = "black-white"
+        widget8.displayMode = "logoFirst"
+        
+        widget9.amount = "200"
+        widget9.logoOption = "black-white"
+        widget9.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+        
+        widget10.amount = "0"
+        
+        widget11.amount = "200"
+        widget11.displayMode = "logoFirst"
+    
+        widget12.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+
         
         paymentWidgetWithoutHeader.amount = "200"
         paymentWidgetWithoutHeader.hideHeader = "true"
@@ -75,9 +123,19 @@ extension WidgetViewContoller {
         stackView.addArrangedSubview(paymentWidgetWithoutBothHeaders)
         stackView.addArrangedSubview(paymentWidgetWithoutTimeline)
         stackView.addArrangedSubview(normalWidget)
-        //stackView.addArrangedSubview(widget)
-        //stackView.addArrangedSubview(widget2)
-        
+        stackView.addArrangedSubview(widget)
+        stackView.addArrangedSubview(widget2)
+        stackView.addArrangedSubview(widget3)
+        stackView.addArrangedSubview(widget4)
+        stackView.addArrangedSubview(widget5)
+        stackView.addArrangedSubview(widget6)
+        stackView.addArrangedSubview(widget7)
+        stackView.addArrangedSubview(widget8)
+        stackView.addArrangedSubview(widget9)
+        stackView.addArrangedSubview(widget10)
+        stackView.addArrangedSubview(widget11)
+        stackView.addArrangedSubview(widget12)
+      
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 6),

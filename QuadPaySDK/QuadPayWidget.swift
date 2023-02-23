@@ -185,6 +185,7 @@ public final class QuadPayWidgetComponent: UIView {
     
     public init() {
         super.init(frame: .zero)
+        updateAttributedText()
         sharedInit()
     }
     
@@ -301,8 +302,9 @@ public final class QuadPayWidgetComponent: UIView {
         let amountColor = UIColor(hexString: colorPrice)
         
         let amountAttribute: [NSAttributedString.Key: Any] = [
-            .font: font.withSize(fontHeight),
+            .font: font.withSize(fontHeight).bold(),
             .foregroundColor: amountColor
+            
         ]
         
         linkTextView.linkTextAttributes = [
@@ -317,8 +319,12 @@ public final class QuadPayWidgetComponent: UIView {
             attachment.image = logoView.image
             
             let centerY = fontHeight / 2
-            let yPos = centerY - (logoView.frame.height / 2) + (font.descender * CGFloat(logoType.descenderMultiplier))
-            
+            var yPos: CGFloat = 0.0
+            if(logoOption == "secondary" || logoOption == "secondary-light"){
+                yPos = centerY - (logoView.frame.height / 2) + (font.descender * CGFloat(logoType.descenderMultiplier))
+            }else{
+                yPos = centerY - (logoView.frame.height / 2)
+            }
             attachment.bounds = CGRect(origin: .init(x: 0, y: yPos), size: logoView.bounds.size)
             attachment.isAccessibilityElement = true
             attachment.accessibilityLabel = logoView.accessibilityLabel
@@ -338,20 +344,21 @@ public final class QuadPayWidgetComponent: UIView {
         let min  = Double(min) ?? 35.00
         let max = Double(max) ?? 1500.00
         if(amountt<min){
-            widget_Text = "4 payments on order over"
+            widget_Text = "4 payments on orders over"
             amountString = formatter.string(for:Float(min)) ?? "?"
         }else if(amountt>max){
-            widget_Text = " 4 payments on order up to"
+            widget_Text = " 4 payments on orders up to"
             amountString = formatter.string(for:Float(max)) ?? "?"
         }else{
             widget_Text = "4 easy payments of"
-            
             amountString = formatter.string(for: amountt/4) ?? "?"
         }
         
         let widgetText = NSAttributedString(string: widget_Text, attributes: textAttributes)
         
         let with = NSAttributedString(string:"with", attributes: textAttributes)
+        
+        let or = NSAttributedString(string: "or" , attributes: textAttributes)
         
         let poweredBy = NSAttributedString(string:"powered by", attributes: poweredByAttributes)
         
@@ -371,7 +378,7 @@ public final class QuadPayWidgetComponent: UIView {
                 let width = widthMerchantFittingFont > merchantLogo.minimumWidth ? widthMerchantFittingFont : merchantLogo.minimumWidth
                 //print(width)
                 //print(logoRatio)
-                let merchantSize = CGSize(width: width+30, height: width * logoRatio)
+                let merchantSize = CGSize(width: width+50, height: width * logoRatio)
                 
                 merchantLogo.frame = CGRect(origin: .zero, size: merchantSize)
                 
@@ -389,7 +396,7 @@ public final class QuadPayWidgetComponent: UIView {
                 }()
                 badgeAndBreakdown = [widgetText, space, amount,space, with, space, merchantBadge, space, poweredBy, space, badge]
             }else{
-                badgeAndBreakdown = [widgetText, space, amount,space, with, space, badge]
+                badgeAndBreakdown = [or, space , widgetText, space, amount,space, with, space, badge]
             }
             
         }
@@ -398,6 +405,7 @@ public final class QuadPayWidgetComponent: UIView {
         let linkConfig = moreInfoOptions.modalLinkStyle.styleConfig
         let linkStyleAttributes = textAttributes.merging(linkConfig.attributes) { $1 }
         let linkAttributes = linkStyleAttributes.merging([.link: infoLink]) { $1 }
+        
         
         let link: NSMutableAttributedString? = {
             if linkConfig.customContent != nil {
