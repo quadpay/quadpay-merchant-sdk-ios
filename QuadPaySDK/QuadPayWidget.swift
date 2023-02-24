@@ -272,7 +272,7 @@ public final class QuadPayWidgetComponent: UIView {
         } else {
             // Fallback on earlier versions
         }
-        
+ 
         let logoView =  ZipPayLogo(logoOption: logoOption)
         
         let font: UIFont = fontProvider(traitCollection)
@@ -320,7 +320,7 @@ public final class QuadPayWidgetComponent: UIView {
             
             let centerY = fontHeight / 2
             var yPos: CGFloat = 0.0
-            if(logoOption == "secondary" || logoOption == "secondary-light"){
+            if(logoOption.lowercased() == "secondary" || logoOption.lowercased() == "secondary-light"){
                 yPos = centerY - (logoView.frame.height / 2) + (font.descender * CGFloat(logoType.descenderMultiplier))
             }else{
                 yPos = centerY - (logoView.frame.height / 2)
@@ -438,7 +438,7 @@ public final class QuadPayWidgetComponent: UIView {
         
         linkTextView.attributedText = attributedString
         linkTextView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
-        switch alignment {
+        switch alignment.lowercased() {
         case "left":
             linkTextView.textAlignment = NSTextAlignment.left
         case "right":
@@ -446,7 +446,7 @@ public final class QuadPayWidgetComponent: UIView {
         case "center":
             linkTextView.textAlignment = NSTextAlignment.center
         default:
-            linkTextView.textAlignment = NSTextAlignment.center
+            linkTextView.textAlignment = NSTextAlignment.left
         }
         
     }
@@ -479,7 +479,7 @@ public final class QuadPayWidgetComponent: UIView {
         }
         return CGFloat(sizeValue)/CGFloat(100)
     }
-} 
+}
     
     extension UIImageView {
         func downloaded(urlString: String) {

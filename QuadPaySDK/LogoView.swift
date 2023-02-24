@@ -21,7 +21,18 @@ public class ZipPayLogo: UIView {
 
     public init(logoOption: String) {
         super.init(frame: .zero)
-        logo = logoOption
+        switch logoOption.lowercased(){
+        case "secondary":
+            logo = logoOption.lowercased()
+        case "secondary-light":
+            logo = logoOption.lowercased()
+        case "black-white":
+            logo = logoOption.lowercased()
+        case "welcome_pay":
+            logo = logoOption.lowercased()
+        default:
+            logo = "logo_main"
+        }
         sharedInit()
       }
 
@@ -49,8 +60,10 @@ public class ZipPayLogo: UIView {
         image =  AssetProvider.image(named: logo)
         
           
-       
+
         ratio = image!.size.height / image!.size.width
+            
+      
 
         imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
