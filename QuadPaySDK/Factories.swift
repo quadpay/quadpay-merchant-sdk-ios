@@ -53,6 +53,31 @@ extension UIColor {
     }
 }
 
+public enum LogoType {
+       case badge
+       case lockup
+       
+       var heightMultiplier: Double {
+           switch self {
+           case .badge:
+               return 1.8
+           case .lockup:
+               return 1
+           }
+       }
+       
+       var descenderMultiplier: Double {
+           switch self {
+           case .badge:
+               return 1
+           case .lockup:
+               return 1.2
+           }
+       }
+   }
+
+public var logoType: LogoType = .badge
+
 public var infoLink: URL {
     let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
     let url  = URL(fileURLWithPath: urlPath!)
@@ -133,14 +158,24 @@ func createInfoLink(link:URL) -> NSAttributedString{
 }
 
 func makeText(text: String, size: String) -> NSAttributedString{
+    var textAttributes : [NSAttributedString.Key: Any]
     let font = UIFont.preferredFont(forTextStyle: .body)
     let fontHeight = UIFont.preferredFont(forTextStyle: .body).ascender - UIFont.preferredFont(forTextStyle: .body).descender * CheckSize(size: size)
-    let textAttributes: [NSAttributedString.Key: Any] = [
-        .foregroundColor: UIColor.zipBlack,
-        .font: font.withSize(fontHeight)
-    ]
+    
+    if(text == "powered by"){
+        textAttributes = [
+            .foregroundColor: UIColor.zipBlack,
+            .font: font.withSize(12)
+        ]
+    }else{
+        textAttributes = [
+            .foregroundColor: UIColor.zipBlack,
+            .font: font.withSize(fontHeight)
+        ]
+       
+    }
     let attributedString = NSMutableAttributedString(string: text, attributes: textAttributes)
-    return attributedString
+        return attributedString
 }
 
 func makeAmountText(text: String, color: UIColor, size: String ) -> NSAttributedString{
@@ -157,7 +192,7 @@ func makeAmountText(text: String, color: UIColor, size: String ) -> NSAttributed
 
 func createLogo(logoOption: String, logoSize: String) -> NSAttributedString{
     let logoView =  ZipPayLogo(logoOption: logoOption)
-    let logoHeight = CGFloat(1.8)
+    let logoHeight = CGFloat(logoType.heightMultiplier)
     let logoRatio = logoView.ratio ?? 1
     let widthFittingFont = logoHeight / logoRatio
     let width = widthFittingFont > logoView.minimumWidth ? widthFittingFont : logoView.minimumWidth
@@ -176,7 +211,7 @@ func createLogo(logoOption: String, logoSize: String) -> NSAttributedString{
         let centerY = fontHeight / 2
         var yPos: CGFloat = 0.0
         if(logoOption.lowercased() == "secondary" || logoOption.lowercased() == "secondary-light"){
-            yPos = centerY - (logoView.frame.height / 2) + (fontDescender * CGFloat(1.8))
+            yPos = centerY - (logoView.frame.height / 2) + (fontDescender * CGFloat(logoType.descenderMultiplier))
         }else{
             yPos = centerY - (logoView.frame.height / 2)
         }
@@ -194,7 +229,7 @@ func createMerchantLogo() -> NSAttributedString{
     let logoView =  ZipPayLogo(logoOption: "logo_main")
     let logoRatio = logoView.ratio ?? 1
     let merchantLogo =  ZipPayLogo(logoOption: "welcome_pay")
-    let merchantLogoHeight =  CGFloat(1.8)
+    let merchantLogoHeight =  CGFloat(logoType.heightMultiplier)
     
     let merchantRatio = 0.37
     let fontDescender = UIFont.preferredFont(forTextStyle: .body).descender
@@ -213,7 +248,7 @@ func createMerchantLogo() -> NSAttributedString{
         attachment.image = merchantLogo.image
         
         let centerY = fontHeight / 2
-        let yPos = centerY - (merchantLogo.frame.height / 2) + (fontDescender)
+        let yPos = centerY - (merchantLogo.frame.height / 2) + (fontDescender * CGFloat(logoType.descenderMultiplier))
         
         attachment.bounds = CGRect(origin: .init(x: 0, y: yPos), size: merchantLogo.bounds.size)
         attachment.isAccessibilityElement = true
