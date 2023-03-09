@@ -27,7 +27,10 @@ public enum ModalLinkStyle {
     case .circledInfoIcon:
       return ModalLinkConfig(
         text: "\u{24D8}",
-        attributes: [NSAttributedString.Key.underlineColor: UIColor.clear]
+        attributes: [NSAttributedString.Key.underlineColor: UIColor.clear,
+                     NSAttributedString.Key.foregroundColor: UIColor.zipBlack,
+                     NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+        
       )
     case .none:
       return ModalLinkConfig()

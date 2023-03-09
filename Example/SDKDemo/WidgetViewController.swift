@@ -12,18 +12,33 @@ import QuadPaySDK
 
 final class WidgetViewContoller : UIViewController {
     
-    let widget = QuadPayWidgetComponent()
-    let widget2 = QuadPayWidgetComponent()
-    let widget3 = QuadPayWidgetComponent()
-    let widget4 = QuadPayWidgetComponent()
-    let widget5 = QuadPayWidgetComponent()
-    let widget6 = QuadPayWidgetComponent()
-    let widget7 = QuadPayWidgetComponent()
-    let widget8 = QuadPayWidgetComponent()
-    let widget9 = QuadPayWidgetComponent()
-    let widget10 = QuadPayWidgetComponent()
-    let widget11 = QuadPayWidgetComponent()
-    let widget12 = QuadPayWidgetComponent()
+//    let widget = QuadPayWidgetComponent()
+//    let widget2 = QuadPayWidgetComponent()
+//    let widget3 = QuadPayWidgetComponent()
+//    let widget4 = QuadPayWidgetComponent()
+//    let widget5 = QuadPayWidgetComponent()
+//    let widget6 = QuadPayWidgetComponent()
+//    let widget7 = QuadPayWidgetComponent()
+//    let widget8 = QuadPayWidgetComponent()
+//    let widget9 = QuadPayWidgetComponent()
+//    let widget10 = QuadPayWidgetComponent()
+//    let widget11 = QuadPayWidgetComponent()
+//    let widget12 = QuadPayWidgetComponent()
+    
+    let widget = Widget()
+    let widget2 = Widget()
+    let widget3 = Widget()
+    let widget4 = Widget()
+    let widget5 = Widget()
+    let widget6 = Widget()
+    let widget7 = Widget()
+    let widget8 = Widget()
+    let widget9 = Widget()
+    let widget10 = Widget()
+    let widget11 = Widget()
+    let widget12 = Widget()
+    
+    let widget13 = Widget()
     
     
     let paymentWidgetWithoutHeader = PaymentWidget()
@@ -40,16 +55,24 @@ final class WidgetViewContoller : UIViewController {
         super.viewDidLoad()
         widget.amount = "0"
         widget.logoOption = "secondary"
+        widget.alignment = "right"
         
         widget2.amount = "100"
         widget2.logoOption = "secondary"
         widget2.displayMode = "logoFirst"
+        widget2.alignment = "center"
         
         widget3.amount = "200"
         widget3.logoOption = "secondary"
+        widget3.logoSize = "120%"
+        widget3.size = "130%"
         widget3.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+        widget3.learnMoreUrl = "https://www.google.com"
+        widget3.isMFPPMerchant = "true"
+        widget3.alignment = "left"
         
         widget4.amount = "0"
+        widget4.size = "30%"
         widget4.logoOption = "secondary-light"
         
         widget5.amount = "100"
@@ -60,16 +83,18 @@ final class WidgetViewContoller : UIViewController {
         widget6.logoOption = "secondary-light"
         widget6.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
         
-        widget7.amount = "0"
+        widget7.min = "20"
         widget7.logoOption = "black-white"
         
         widget8.amount = "200"
         widget8.logoOption = "black-white"
         widget8.displayMode = "logoFirst"
         
-        widget9.amount = "200"
+        widget9.amount = "2000"
         widget9.logoOption = "black-white"
         widget9.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
+        widget9.colorPrice = "#eb4034"
+        widget9.max = "3400"
         
         widget10.amount = "0"
         
@@ -94,6 +119,11 @@ final class WidgetViewContoller : UIViewController {
         paymentWidgetWithoutBothHeaders.hideHeader = "true"
 //        
         paymentWidgetWithoutTimeline.hideTimeline = "true"
+        
+        widget13.amount = "400"
+        widget13.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be831"
+        widget13.displayMode = "logoFirst"
+        
 
         setupScrollView()
         style()
@@ -135,6 +165,7 @@ extension WidgetViewContoller {
         stackView.addArrangedSubview(widget10)
         stackView.addArrangedSubview(widget11)
         stackView.addArrangedSubview(widget12)
+        stackView.addArrangedSubview(widget13)
       
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
