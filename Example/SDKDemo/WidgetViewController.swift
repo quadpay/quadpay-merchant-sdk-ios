@@ -11,20 +11,7 @@ import UIKit
 import QuadPaySDK
 
 final class WidgetViewContoller : UIViewController {
-    
-//    let widget = QuadPayWidgetComponent()
-//    let widget2 = QuadPayWidgetComponent()
-//    let widget3 = QuadPayWidgetComponent()
-//    let widget4 = QuadPayWidgetComponent()
-//    let widget5 = QuadPayWidgetComponent()
-//    let widget6 = QuadPayWidgetComponent()
-//    let widget7 = QuadPayWidgetComponent()
-//    let widget8 = QuadPayWidgetComponent()
-//    let widget9 = QuadPayWidgetComponent()
-//    let widget10 = QuadPayWidgetComponent()
-//    let widget11 = QuadPayWidgetComponent()
-//    let widget12 = QuadPayWidgetComponent()
-    
+     
     let widget = Widget()
     let widget2 = Widget()
     let widget3 = Widget()
