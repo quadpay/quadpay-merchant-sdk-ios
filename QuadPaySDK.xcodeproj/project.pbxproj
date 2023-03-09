@@ -55,6 +55,7 @@
 		BB9E5EBB28CA11460031C5C9 /* MoreInfoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */; };
 		BB9E5EDB28CA189D0031C5C9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED628CA18340031C5C9 /* Media.xcassets */; };
 		BB9E5EDC28CA189D0031C5C9 /* www in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED428CA17AF0031C5C9 /* www */; };
+		BBFDDA9229B84C0D00DB5533 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFDDA9129B84C0D00DB5533 /* Widget.swift */; };
 		BBFE02BF29718BE600453D9A /* PaymentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02BE29718BE600453D9A /* PaymentWidget.swift */; };
 		BBFE02C22971948100453D9A /* TimelapseGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02C12971948100453D9A /* TimelapseGraphView.swift */; };
 		BBFE02C62971AA6700453D9A /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFE02C52971AA6700453D9A /* Factories.swift */; };
@@ -124,6 +125,7 @@
 		BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoOptions.swift; sourceTree = "<group>"; };
 		BB9E5ED428CA17AF0031C5C9 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		BB9E5ED628CA18340031C5C9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		BBFDDA9129B84C0D00DB5533 /* Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
 		BBFE02BE29718BE600453D9A /* PaymentWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidget.swift; sourceTree = "<group>"; };
 		BBFE02C12971948100453D9A /* TimelapseGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelapseGraphView.swift; sourceTree = "<group>"; };
 		BBFE02C52971AA6700453D9A /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		251EC48B2469D64300679E88 /* QuadPaySDK */ = {
 			isa = PBXGroup;
 			children = (
+				BBFDDA9029B84BF000DB5533 /* Widget */,
 				BBFE02C02971944500453D9A /* PaymentWidget */,
 				251EC4D72472ED6700679E88 /* GatewayMessages */,
 				BB9E5ED428CA17AF0031C5C9 /* www */,
@@ -248,6 +251,14 @@
 				03B274D9666E57C33C607803 /* Pods_QuadPaySDK_QuadPaySDKTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBFDDA9029B84BF000DB5533 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				BBFDDA9129B84C0D00DB5533 /* Widget.swift */,
+			);
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		BBFE02C02971944500453D9A /* PaymentWidget */ = {
@@ -475,6 +486,7 @@
 				251EC4C5246B14F800679E88 /* QuadPayCustomer.m in Sources */,
 				251EC4EB247313F900679E88 /* VirtualCheckoutSuccessfulMessage.m in Sources */,
 				BB0F0DEA2889889A00D1F8C6 /* InfoWebViewController.swift in Sources */,
+				BBFDDA9229B84C0D00DB5533 /* Widget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
