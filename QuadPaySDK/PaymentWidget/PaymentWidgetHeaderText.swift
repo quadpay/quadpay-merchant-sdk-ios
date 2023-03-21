@@ -31,12 +31,6 @@ public final class PaymentWidgetHeaderText: UIView {
     
     var contentHtml: String = ""
     
-    private var infoLink: URL {
-        let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
-        let url  = URL(fileURLWithPath: urlPath!)
-        return url
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         style()
@@ -52,7 +46,9 @@ extension PaymentWidgetHeaderText {
     
     func style(){
         let headerText = makeHeaderText(headerText: actualPaymentWidgetLabelText ?? initialPaymentWidgetLabelText, link: infoLink)
+        
         contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl ?? initialLearnMoreUrl, merchantId: merchantId ?? initialMerchantId, isMFPPMerchant: isMFPPMerchant ?? initialIsMFPPMerchant, minModal: minModal ?? initialMinModal)
+        
         paymentWidgetLabel.linkHandler = { [weak self ] url in
             if let rnController = self?.ReactNativeController(){
                 let infoWebViewController = InfoWebViewController(infoURL: url, contentHtml: self?.contentHtml ?? "")
@@ -69,6 +65,7 @@ extension PaymentWidgetHeaderText {
         paymentWidgetLabel.font = UIFont.preferredFont(forTextStyle: .body)
         paymentWidgetLabel.linkTextAttributes = [
             .foregroundColor: UIColor.zipBlack,
+           
         ]
     }
     
