@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "251EC4882469D64300679E88"
-               BuildableName = "QuadPaySDK.framework"
-               BlueprintName = "QuadPaySDK"
-               ReferencedContainer = "container:QuadPaySDK.xcodeproj">
+               BlueprintIdentifier = "25EAE488247436410048BB8C"
+               BuildableName = "SDKDemo.app"
+               BlueprintName = "SDKDemo"
+               ReferencedContainer = "container:SDKDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "251EC4912469D64300679E88"
-               BuildableName = "QuadPaySDKTests.xctest"
-               BlueprintName = "QuadPaySDKTests"
-               ReferencedContainer = "container:QuadPaySDK.xcodeproj">
+               BlueprintIdentifier = "25EAE4A6247436430048BB8C"
+               BuildableName = "SDKDemoTests.xctest"
+               BlueprintName = "SDKDemoTests"
+               ReferencedContainer = "container:SDKDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25EAE4B1247436430048BB8C"
+               BuildableName = "SDKDemoUITests.xctest"
+               BlueprintName = "SDKDemoUITests"
+               ReferencedContainer = "container:SDKDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -50,6 +60,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "25EAE488247436410048BB8C"
+            BuildableName = "SDKDemo.app"
+            BlueprintName = "SDKDemo"
+            ReferencedContainer = "container:SDKDemo.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,15 +77,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "251EC4882469D64300679E88"
-            BuildableName = "QuadPaySDK.framework"
-            BlueprintName = "QuadPaySDK"
-            ReferencedContainer = "container:QuadPaySDK.xcodeproj">
+            BlueprintIdentifier = "25EAE488247436410048BB8C"
+            BuildableName = "SDKDemo.app"
+            BlueprintName = "SDKDemo"
+            ReferencedContainer = "container:SDKDemo.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

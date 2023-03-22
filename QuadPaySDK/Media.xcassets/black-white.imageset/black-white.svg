@@ -1,0 +1,14 @@
+      <svg
+
+        id="qp-logo-svg-black-white"
+        alt="Zip logo, when clicked, opens infographic about the option of buying this item with 4 installment payments"
+        version="1.1"
+        viewBox="0 0 50 19"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Zip - Buy now pay later.</title>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1.12589 14.7881L1.56239 18.3528H16.8419L16.3425 14.2708H9.2174L9.15577 13.7644L15.7173 9.16761L15.2789 5.59518H0L0.50004 9.67786H7.63595L7.69885 10.1881L1.12589 14.7881Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0544 5.59494L18.6168 18.3526H33.9084L32.3454 5.59494H17.0544Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5351 3.90208C19.5358 4.79455 20.9794 4.79455 21.759 3.90208C22.5393 3.00961 22.3601 1.5623 21.3594 0.669829C20.3593 -0.223276 18.9157 -0.223276 18.1355 0.669829C17.3559 1.5623 17.5344 3.00961 18.5351 3.90208Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M44.2924 12.2244L39.5067 12.2295L39.1318 9.16798L43.9423 9.1718C45.0732 9.18518 45.6527 9.82411 45.7461 10.6981C45.8058 11.2606 45.5491 12.2244 44.2924 12.2244ZM49.9447 10.1885C49.5914 7.32061 47.3447 5.58281 44.2911 5.59485H34.12L35.6824 18.3532H40.2577L39.9445 15.8013H44.7867C48.5977 15.8013 50.3418 13.4201 49.9447 10.1885Z" fill="black"/>
+      </svg>

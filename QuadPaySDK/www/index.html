@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta name='viewport'content='height=device-height,initial-scale=1.1,maximum-scale=1.1'/>
+
+<html>
+<body>
+<shadow-test></shadow-test>
+<script type="text/javascript">
+    customElements.define('shadow-test', class extends HTMLElement {
+      connectedCallback() {
+        const shadow = this.attachShadow({ mode: 'open' });
+        document.addEventListener('DOMContentLoaded', () => {
+          const script = document.createElement('script')
+          script.src = '%QuadPayJS%'
+
+          script.onload = function () {
+            const modalOptions = {
+              isMFPPMerchant: '%isMFPPMerchant%',
+              learnMoreUrl: '%learnMoreUrl%',
+              minModal: '%minModal%' ,
+              isMobileSDK: 'true'
+            }
+
+            const merchantId = '%merchantId%'
+
+            window.quadpay.insertModal(merchantId, modalOptions);
+          }
+
+          document.body.appendChild(script)
+        })
+      }
+    });
+  </script>
+</body>
+</html>
+
