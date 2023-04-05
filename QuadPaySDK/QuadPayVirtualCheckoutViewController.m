@@ -9,7 +9,7 @@
 }
 
 - (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
-{    
+{
     if (self = [super initWithNibName:nil bundle:nil]) {
         _delegate = delegate;
         self.messageDelegate = self;
@@ -82,9 +82,39 @@
     [self.webView loadRequest:request];
 }
 
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+//window.open needs this configuration to work.
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
 {
+  if (navigationAction.request.URL) {
+      NSLog(@"%@", navigationAction.request.URL.host);
+      if (![navigationAction.request.URL.resourceSpecifier containsString:@"ex path"]) {
+          if ([[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL]) {
+              UIApplication *application = [UIApplication sharedApplication];
+              [application openURL:navigationAction.request.URL options:@{} completionHandler:nil];
+          }
+      }
+  }
+  return nil;
+}
+
+// href need this configuration to work
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(nonnull WKNavigationAction *)navigationAction decisionHandler:(nonnull void (^)(WKNavigationActionPolicy))decisionHandler {
+if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+    if (navigationAction.request.URL) {
+        NSLog(@"%@", navigationAction.request.URL.host);
+        if (![navigationAction.request.URL.resourceSpecifier containsString:@"ex path"]) {
+            if ([[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL]) {
+                UIApplication *application = [UIApplication sharedApplication];
+                [application openURL:navigationAction.request.URL options:@{} completionHandler:nil];
+                decisionHandler(WKNavigationActionPolicyCancel);
+            }
+        } else {
+            decisionHandler(WKNavigationActionPolicyAllow);
+        }
+    }
+} else {
     decisionHandler(WKNavigationActionPolicyAllow);
+}
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
@@ -122,3 +152,4 @@
 }
 
 @end
+
