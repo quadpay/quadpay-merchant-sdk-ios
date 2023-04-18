@@ -17,6 +17,9 @@ public final class TimelapseGraphView: UIView {
     let initialAmount: String = "0"
     var amount: String?
     
+    let initialFeeTiers: [MerchantFeeTier] = []
+    var feeTiers: [MerchantFeeTier] = []
+    
     let initialHeight: CGFloat = 80
     
     let initialDepth: CGFloat = 3
@@ -45,8 +48,28 @@ extension TimelapseGraphView {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
+        
+        
+        var maxTier: Double = 0
+        var maxFee: Double = 0
+        
+    
+        
         let amountAsString: String = amount ?? initialAmount
-        let amountAsFloat  = Double(amountAsString) ?? 0.00
+        var amountAsFloat  = Double(amountAsString) ?? 0.00
+        
+        for(_,element) in feeTiers.enumerated() {
+            let tierAmount = element.feeStartsAt
+            if(tierAmount <= amountAsFloat ){
+                if(maxTier < tierAmount){
+                    maxTier = tierAmount
+                    maxFee = element.totalFeePerOrder
+                }
+            }
+        }
+        
+        amountAsFloat = amountAsFloat + maxFee
+        
         let transactionAmount = formatter.string(for: amountAsFloat/4) ?? "0"
         for _ in 0...4{
             amountLabels.append(transactionAmount)

@@ -48,10 +48,10 @@
 		BB0F0DEA2889889A00D1F8C6 /* InfoWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */; };
 		BB28FE972984143000310222 /* PaymentWidgetHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */; };
 		BB28FE992984149B00310222 /* PaymentWidgetSubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */; };
+		BB6305CD29EE8728003DEE0F /* WidgetDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6305CC29EE8728003DEE0F /* WidgetDataService.swift */; };
 		BB9E5EB728CA11460031C5C9 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB228CA11460031C5C9 /* LogoView.swift */; };
 		BB9E5EB828CA11460031C5C9 /* LinkTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB328CA11460031C5C9 /* LinkTextView.swift */; };
 		BB9E5EB928CA11460031C5C9 /* ModalLinkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB428CA11460031C5C9 /* ModalLinkConfig.swift */; };
-		BB9E5EBA28CA11460031C5C9 /* QuadPayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB528CA11460031C5C9 /* QuadPayWidget.swift */; };
 		BB9E5EBB28CA11460031C5C9 /* MoreInfoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */; };
 		BB9E5EDB28CA189D0031C5C9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED628CA18340031C5C9 /* Media.xcassets */; };
 		BB9E5EDC28CA189D0031C5C9 /* www in Resources */ = {isa = PBXBuildFile; fileRef = BB9E5ED428CA17AF0031C5C9 /* www */; };
@@ -118,10 +118,10 @@
 		BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWebViewController.swift; sourceTree = "<group>"; };
 		BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetHeaderText.swift; sourceTree = "<group>"; };
 		BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetSubText.swift; sourceTree = "<group>"; };
+		BB6305CC29EE8728003DEE0F /* WidgetDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataService.swift; sourceTree = "<group>"; };
 		BB9E5EB228CA11460031C5C9 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		BB9E5EB328CA11460031C5C9 /* LinkTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextView.swift; sourceTree = "<group>"; };
 		BB9E5EB428CA11460031C5C9 /* ModalLinkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalLinkConfig.swift; sourceTree = "<group>"; };
-		BB9E5EB528CA11460031C5C9 /* QuadPayWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadPayWidget.swift; sourceTree = "<group>"; };
 		BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoOptions.swift; sourceTree = "<group>"; };
 		BB9E5ED428CA17AF0031C5C9 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		BB9E5ED628CA18340031C5C9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -186,7 +186,6 @@
 				BB9E5EB228CA11460031C5C9 /* LogoView.swift */,
 				BB9E5EB428CA11460031C5C9 /* ModalLinkConfig.swift */,
 				BB9E5EB628CA11460031C5C9 /* MoreInfoOptions.swift */,
-				BB9E5EB528CA11460031C5C9 /* QuadPayWidget.swift */,
 				BB0F0DE62889889A00D1F8C6 /* AssetProvider.swift */,
 				BB0F0DE52889889A00D1F8C6 /* BundleFinder.swift */,
 				BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */,
@@ -215,6 +214,7 @@
 				251EC48D2469D64300679E88 /* Info.plist */,
 				BBFE02C52971AA6700453D9A /* Factories.swift */,
 				BB0D2D5729757D1600A615E6 /* MerchantService.swift */,
+				BB6305CC29EE8728003DEE0F /* WidgetDataService.swift */,
 			);
 			path = QuadPaySDK;
 			sourceTree = "<group>";
@@ -470,7 +470,6 @@
 				BB9E5EB928CA11460031C5C9 /* ModalLinkConfig.swift in Sources */,
 				251EC4D3246F0AB700679E88 /* QuadPay.m in Sources */,
 				251EC4D0246F01C100679E88 /* QuadPayCheckoutDetails.m in Sources */,
-				BB9E5EBA28CA11460031C5C9 /* QuadPayWidget.swift in Sources */,
 				BB0F0DE82889889A00D1F8C6 /* BundleFinder.swift in Sources */,
 				251EC4EF2473262200679E88 /* QuadPayURLBuilder.m in Sources */,
 				BBFE02C22971948100453D9A /* TimelapseGraphView.swift in Sources */,
@@ -481,6 +480,7 @@
 				BB28FE972984143000310222 /* PaymentWidgetHeaderText.swift in Sources */,
 				251EC4C2246B14CE00679E88 /* QuadPayCard.m in Sources */,
 				BBFE02C62971AA6700453D9A /* Factories.swift in Sources */,
+				BB6305CD29EE8728003DEE0F /* WidgetDataService.swift in Sources */,
 				251EC4B62469DC9100679E88 /* QuadPayWebViewController.m in Sources */,
 				251EC4DB2472EE9C00679E88 /* CheckoutSuccessfulMessage.m in Sources */,
 				251EC4C5246B14F800679E88 /* QuadPayCustomer.m in Sources */,

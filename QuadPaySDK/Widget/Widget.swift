@@ -22,9 +22,28 @@ public final class Widget : UIView{
                         self.layout()
                     }
              
-                case .failure(_):
-                    print("Error fetching merchant")
+                case .failure(let error):
+                    print(error)
                     self.grayLabelMerchant = false
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                
+                }
+            }
+            
+            WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
+                (result) in
+                switch result {
+                case .success(let result):
+                    print(result)
+                    self.feeTiers = result.feeTiers
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+             
+                case .failure(let error):
+                    print(error)
                     DispatchQueue.main.async {
                         self.layout()
                     }
@@ -113,6 +132,8 @@ public final class Widget : UIView{
     let formatter = NumberFormatter()
     
     var grayLabelMerchant: Bool = false
+    
+    var feeTiers: [MerchantFeeTier] = []
     
     var widgetText = NSAttributedString()
     
@@ -235,10 +256,26 @@ extension Widget{
     func calculateInstalment() -> String{
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-        formatter.currencyCode="USD"
+        formatter.currencyCode = "USD"
         formatter.numberStyle = .currency
         
-        let amount  = Double(amount) ?? 0.00
+        var maxTier: Double = 0
+        var maxFee: Double = 0
+        
+        for(_,element) in feeTiers.enumerated() {
+            let tierAmount = element.feeStartsAt
+            if(tierAmount <= Double(amount) ?? 0.00){
+                if(maxTier < tierAmount){
+                    maxTier = tierAmount
+                    maxFee = element.totalFeePerOrder
+                }
+            }
+        }
+        
+        
+        
+        var amount  = Double(amount) ?? 0.00
+        amount = amount + maxFee
         let min = Double(min) ?? 35.00
         let max = Double(max) ?? 1500.00
         if(amount<min){

@@ -30,7 +30,29 @@ public final class PaymentWidget: UIView {
                         self.timelapseGraphView.drawTimelapseGraph()
                     }
                     print("Error fetching merchant")
-                }}        }
+                }
+            }
+            
+            WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
+                (result) in
+                switch result {
+                case .success(let result):
+                    print(result)
+                    self.timelapseGraphView.feeTiers = result.feeTiers
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+             
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                
+                }
+            }
+            
+        }
     }
     
     @objc public var amount: String = "0" {
@@ -80,6 +102,8 @@ public final class PaymentWidget: UIView {
             layoutSubviews()
         }
     }
+    
+    var feeTiers: [MerchantFeeTier] = []
     
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
