@@ -38,7 +38,25 @@ public final class PaymentWidget: UIView {
                 switch result {
                 case .success(let result):
                     print(result)
-                    self.timelapseGraphView.feeTiers = result.feeTiers
+                    
+                    var maxTier: Double = 0
+                    let amountAsFloat  = Double(self.amount) ?? 0.00
+                    
+           
+                    for(_,element) in result.feeTiers.enumerated() {
+                        let tierAmount = element.feeStartsAt
+                        if(tierAmount <= amountAsFloat ){
+                            if(maxTier < tierAmount){
+                                maxTier = tierAmount
+                                self.maxFee = element.totalFeePerOrder
+                            }
+                        }
+                    }
+                        
+                    self.timelapseGraphView.maxFee = self.maxFee
+                   
+                    
+                    self.applyFeeTiers = true
                     DispatchQueue.main.async {
                         self.layout()
                     }
@@ -103,11 +121,14 @@ public final class PaymentWidget: UIView {
         }
     }
     
-    var feeTiers: [MerchantFeeTier] = []
+    var maxFee: Double = 0.0
+    
+    var applyFeeTiers: Bool = false
     
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
+    var feeTierView = FeeTierText()
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
@@ -129,6 +150,7 @@ extension PaymentWidget {
         paymentWidgetHeaderText.translatesAutoresizingMaskIntoConstraints = true
         paymentWidgetSubText.translatesAutoresizingMaskIntoConstraints = true
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = true
+        feeTierView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     func layout(){
@@ -136,6 +158,9 @@ extension PaymentWidget {
         stackView.addArrangedSubview(paymentWidgetHeaderText)
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
+        if(applyFeeTiers){
+            stackView.addArrangedSubview(feeTierView)
+        }
     
         
         NSLayoutConstraint.activate([
@@ -194,6 +219,8 @@ extension PaymentWidget {
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
         paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
         paymentWidgetHeaderText.style()
-
+        
+        feeTierView.maxFee = maxFee
+        feeTierView.style()
     }
 }

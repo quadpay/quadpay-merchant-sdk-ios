@@ -17,15 +17,14 @@ public final class TimelapseGraphView: UIView {
     let initialAmount: String = "0"
     var amount: String?
     
-    let initialFeeTiers: [MerchantFeeTier] = []
-    var feeTiers: [MerchantFeeTier] = []
-    
     let initialHeight: CGFloat = 80
     
     let initialDepth: CGFloat = 3
     var depth: CGFloat?
     
     var deviceAdjustment: CGFloat = 1.0
+    
+    var maxFee: Double?
     
     let initialTimelineColor: CGColor = UIColor.zipPurple.cgColor
     var actualTimelineColor: CGColor?
@@ -50,25 +49,11 @@ extension TimelapseGraphView {
         formatter.minimumFractionDigits = 2
         
         
-        var maxTier: Double = 0
-        var maxFee: Double = 0
-        
-    
-        
         let amountAsString: String = amount ?? initialAmount
         var amountAsFloat  = Double(amountAsString) ?? 0.00
         
-        for(_,element) in feeTiers.enumerated() {
-            let tierAmount = element.feeStartsAt
-            if(tierAmount <= amountAsFloat ){
-                if(maxTier < tierAmount){
-                    maxTier = tierAmount
-                    maxFee = element.totalFeePerOrder
-                }
-            }
-        }
         
-        amountAsFloat = amountAsFloat + maxFee
+        amountAsFloat = amountAsFloat + (maxFee ?? 0.0)
         
         let transactionAmount = formatter.string(for: amountAsFloat/4) ?? "0"
         for _ in 0...4{
