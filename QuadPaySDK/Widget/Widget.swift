@@ -13,24 +13,24 @@ public final class Widget : UIView{
     
     @objc public var merchantId: String = ""{
         didSet{
-            MerchantService.shared.fetchMerchants(merchantId: merchantId){
-                (result) in
-                switch result {
-                case .success(_):
-                    self.grayLabelMerchant = true
-                    DispatchQueue.main.async {
-                        self.layout()
-                    }
-             
-                case .failure(let error):
-                    print(error)
-                    self.grayLabelMerchant = false
-                    DispatchQueue.main.async {
-                        self.layout()
-                    }
-                
-                }
-            }
+//            MerchantService.shared.fetchMerchants(merchantId: merchantId){
+//                (result) in
+//                switch result {
+//                case .success(_):
+//                    self.grayLabelMerchant = true
+//                    DispatchQueue.main.async {
+//                        self.layout()
+//                    }
+//
+//                case .failure(let error):
+//                    print(error)
+//                    self.grayLabelMerchant = false
+//                    DispatchQueue.main.async {
+//                        self.layout()
+//                    }
+//
+//                }
+//            }
             
             if(amount != "0"){
                 WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){

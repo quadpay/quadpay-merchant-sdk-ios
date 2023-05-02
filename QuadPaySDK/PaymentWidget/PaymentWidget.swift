@@ -15,23 +15,23 @@ public final class PaymentWidget: UIView {
     
     @objc public var merchantId: String = "" {
         didSet{
-            MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
-                switch result {
-                case .success(_):
-                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."
-                    self.paymentWidgetHeaderText.style()
-                    self.timelapseGraphView.depth = 0
-                    self.timelapseGraphView.drawTimelapseGraph()
-                case .failure(_):
-                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Zip."
-                    self.timelapseGraphView.depth = 3
-                    DispatchQueue.main.async {
-                        self.paymentWidgetHeaderText.style()
-                        self.timelapseGraphView.drawTimelapseGraph()
-                    }
-                    print("Error fetching merchant")
-                }
-            }
+//            MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
+//                switch result {
+//                case .success(_):
+//                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."
+//                    self.paymentWidgetHeaderText.style()
+//                    self.timelapseGraphView.depth = 0
+//                    self.timelapseGraphView.drawTimelapseGraph()
+//                case .failure(_):
+//                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Zip."
+//                    self.timelapseGraphView.depth = 3
+//                    DispatchQueue.main.async {
+//                        self.paymentWidgetHeaderText.style()
+//                        self.timelapseGraphView.drawTimelapseGraph()
+//                    }
+//                    print("Error fetching merchant")
+//                }
+//            }
             if(amount != "0"){
                 WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
                     (result) in
