@@ -158,7 +158,7 @@ extension PaymentWidget {
         stackView.addArrangedSubview(paymentWidgetHeaderText)
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
-        if(applyFeeTiers){
+        if(applyFeeTiers && maxFee != 0){
             stackView.addArrangedSubview(feeTierView)
         }
     
