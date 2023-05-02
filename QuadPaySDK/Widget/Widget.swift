@@ -32,22 +32,24 @@ public final class Widget : UIView{
                 }
             }
             
-            WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
-                (result) in
-                switch result {
-                case .success(let result):
-                    print(result)
-                    self.feeTiers = result.feeTiers
-                    DispatchQueue.main.async {
-                        self.layout()
+            if(amount != "0"){
+                WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
+                    (result) in
+                    switch result {
+                    case .success(let result):
+                        print(result)
+                        self.feeTiers = result.feeTiers
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        
+                    case .failure(let error):
+                        print(error)
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        
                     }
-             
-                case .failure(let error):
-                    print(error)
-                    DispatchQueue.main.async {
-                        self.layout()
-                    }
-                
                 }
             }
         }

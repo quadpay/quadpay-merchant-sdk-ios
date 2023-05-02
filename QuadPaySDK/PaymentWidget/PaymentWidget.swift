@@ -32,41 +32,42 @@ public final class PaymentWidget: UIView {
                     print("Error fetching merchant")
                 }
             }
-            
-            WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
-                (result) in
-                switch result {
-                case .success(let result):
-                    print(result)
-                    
-                    var maxTier: Double = 0
-                    let amountAsFloat  = Double(self.amount) ?? 0.00
-                    
-           
-                    for(_,element) in result.feeTiers.enumerated() {
-                        let tierAmount = element.feeStartsAt
-                        if(tierAmount <= amountAsFloat ){
-                            if(maxTier < tierAmount){
-                                maxTier = tierAmount
-                                self.maxFee = element.totalFeePerOrder
+            if(amount != "0"){
+                WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
+                    (result) in
+                    switch result {
+                    case .success(let result):
+                        print(result)
+                        
+                        var maxTier: Double = 0
+                        let amountAsFloat  = Double(self.amount) ?? 0.00
+                        
+                        
+                        for(_,element) in result.feeTiers.enumerated() {
+                            let tierAmount = element.feeStartsAt
+                            if(tierAmount <= amountAsFloat ){
+                                if(maxTier < tierAmount){
+                                    maxTier = tierAmount
+                                    self.maxFee = element.totalFeePerOrder
+                                }
                             }
                         }
-                    }
                         
-                    self.timelapseGraphView.maxFee = self.maxFee
-                   
-                    
-                    self.applyFeeTiers = true
-                    DispatchQueue.main.async {
-                        self.layout()
+                        self.timelapseGraphView.maxFee = self.maxFee
+                        
+                        
+                        self.applyFeeTiers = true
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        
+                    case .failure(let error):
+                        print(error)
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        
                     }
-             
-                case .failure(let error):
-                    print(error)
-                    DispatchQueue.main.async {
-                        self.layout()
-                    }
-                
                 }
             }
             
