@@ -238,7 +238,6 @@ extension Widget{
         default:
             widget.textAlignment = NSTextAlignment.left
         }
-        
     }
     
     func style(){
@@ -259,12 +258,13 @@ extension Widget{
         formatter.currencyCode = "USD"
         formatter.numberStyle = .currency
         
+        var amount  = Double(amount) ?? 0.00
         var maxTier: Double = 0
         var maxFee: Double = 0
         
         for(_,element) in feeTiers.enumerated() {
             let tierAmount = element.feeStartsAt
-            if(tierAmount <= Double(amount) ?? 0.00){
+            if(tierAmount <= amount){
                 if(maxTier < tierAmount){
                     maxTier = tierAmount
                     maxFee = element.totalFeePerOrder
@@ -274,7 +274,7 @@ extension Widget{
         
         
         
-        var amount  = Double(amount) ?? 0.00
+     
         amount = amount + maxFee
         let min = Double(min) ?? 35.00
         let max = Double(max) ?? 1500.00
