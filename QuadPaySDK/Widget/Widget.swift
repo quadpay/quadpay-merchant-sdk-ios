@@ -13,25 +13,6 @@ public final class Widget : UIView{
     
     @objc public var merchantId: String = ""{
         didSet{
-//            MerchantService.shared.fetchMerchants(merchantId: merchantId){
-//                (result) in
-//                switch result {
-//                case .success(_):
-//                    self.grayLabelMerchant = true
-//                    DispatchQueue.main.async {
-//                        self.layout()
-//                    }
-//
-//                case .failure(let error):
-//                    print(error)
-//                    self.grayLabelMerchant = false
-//                    DispatchQueue.main.async {
-//                        self.layout()
-//                    }
-//
-//                }
-//            }
-            
             if(amount != "0"){
                 WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
                     (result) in
@@ -156,7 +137,7 @@ public final class Widget : UIView{
 extension Widget{
     func layout(){
         
-        
+    
         let orText = makeText(text: "or", size: size)
         let withText = makeText(text: "with", size: size)
         let space = makeText(text: " ", size: size)
