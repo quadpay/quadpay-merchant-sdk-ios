@@ -33,13 +33,13 @@ struct WidgetDataService {
     
     func fetchWidgetData(merchantId: String ,completion: @escaping((Result<WidgetDataModel, Error>) -> Void )){
       
-        let WidgetDataUrl = URL(string: "https://gateway.dev.us.zip.co/virtual/widget-data")!
+        let WidgetDataUrl = URL(string: "\(Configuration.gatewayUrl.absoluteString)virtual/widget-data")!
         var components = URLComponents(url: WidgetDataUrl, resolvingAgainstBaseURL: false)
         components?.queryItems = [URLQueryItem(name: "merchantId", value: merchantId),
                                   URLQueryItem(name: "websiteUrl", value: nil),
                                   URLQueryItem(name: "environmentName", value: nil),
                                   URLQueryItem(name: "userId", value: nil)]
-        
+
         let task = URLSession.shared.dataTask(with: (components?.url!)!) { data, response, error in
             
             if let error = error {
@@ -58,7 +58,6 @@ struct WidgetDataService {
             
             let decoder = JSONDecoder()
 
-            
             do {
                 let result = try decoder.decode(WidgetDataModel.self, from: data)
                 DispatchQueue.main.async {
