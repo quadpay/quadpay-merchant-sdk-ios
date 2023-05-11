@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source						= { :git => 'https://github.com/quadpay/quadpay-merchant-sdk-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target		= '13.0'
   s.source_files				    = 'QuadPaySDK/**/*.{h,m,swift}'
-  s.resource_bundles        = {'QuadPaySDK' => ['QuadPaySDK/*.xcassets','QuadPaySDK/www'] } 
+  s.resource_bundles        = {'QuadPaySDK' => ['QuadPaySDK/*.xcassets','QuadPaySDK/www', 'QuadPaySDK/Configuration/*.plist'] } 
   s.requires_arc            = true
   s.frameworks					    = 'UIKit', 'Foundation', 'Security', 'WebKit'
   s.swift_version = '5.7'
