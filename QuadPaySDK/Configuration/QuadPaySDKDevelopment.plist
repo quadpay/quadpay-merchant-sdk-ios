@@ -4,6 +4,10 @@
 <dict>
 	<key>GATEWAY_URL</key>
 	<string>https://gateway.dev.us.zip.co/</string>
+	<key>CDN_URL</key>
+	<string>https://qp-merchant-configs-dev.azureedge.net/</string>
+	<key>QUADPAY_JS_URL</key>
+	<string>https://cdn.dev.us.zip.co/v1/quadpay.js</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

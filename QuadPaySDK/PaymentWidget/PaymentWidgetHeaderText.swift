@@ -26,6 +26,9 @@ public final class PaymentWidgetHeaderText: UIView {
     var initialMinModal : String = ""
     var minModal : String?
     
+    //var initialHasFees : String = ""
+    var hasFees : String?
+    
     var initialMerchantId : String = ""
     var merchantId : String?
     
@@ -47,7 +50,7 @@ extension PaymentWidgetHeaderText {
     func style(){
         let headerText = makeHeaderText(headerText: actualPaymentWidgetLabelText ?? initialPaymentWidgetLabelText, link: infoLink)
         
-        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl ?? initialLearnMoreUrl, merchantId: merchantId ?? initialMerchantId, isMFPPMerchant: isMFPPMerchant ?? initialIsMFPPMerchant, minModal: minModal ?? initialMinModal)
+        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl ?? initialLearnMoreUrl, merchantId: merchantId ?? initialMerchantId, isMFPPMerchant: isMFPPMerchant ?? initialIsMFPPMerchant, minModal: minModal ?? initialMinModal, hasFees: hasFees ?? "false")
         
         paymentWidgetLabel.linkHandler = { [weak self ] url in
             if let rnController = self?.ReactNativeController(){

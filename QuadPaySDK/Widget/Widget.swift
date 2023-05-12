@@ -118,7 +118,11 @@ public final class Widget : UIView{
     
     var feeTiers: [MerchantFeeTier] = []
     
+    var maxFee : Double = 0
+    
     var widgetText = NSAttributedString()
+    
+    var hasFees : String = ""
     
     
     
@@ -149,7 +153,8 @@ extension Widget{
         let link = createInfoLink(link: infoLink)
         let attributedString = NSMutableAttributedString()
         
-        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal)
+
+        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees)
         
         if(grayLabelMerchant){
             let merchantLogo = createMerchantLogo()
@@ -243,7 +248,7 @@ extension Widget{
         
         var amount  = Double(amount) ?? 0.00
         var maxTier: Double = 0
-        var maxFee: Double = 0
+    
         
         for(_,element) in feeTiers.enumerated() {
             let tierAmount = element.feeStartsAt
@@ -256,7 +261,7 @@ extension Widget{
         }
         
         
-        
+        hasFees = maxFee != 0 ? "true" : "false"
      
         amount = amount + maxFee
         let min = Double(min) ?? 35.00

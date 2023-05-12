@@ -183,6 +183,13 @@ extension PaymentWidget {
         DispatchQueue.main.async {
             self.timelapseGraphView.drawTimelapseGraph()
         }
+        
+        if(maxFee != 0){
+            paymentWidgetHeaderText.hasFees = "true"
+        }else{
+            paymentWidgetHeaderText.hasFees = "false"
+        }
+  
    
         if(hideHeader == "true"){
             paymentWidgetHeaderText.isHidden = true

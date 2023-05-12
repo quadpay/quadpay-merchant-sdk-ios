@@ -20,6 +20,8 @@ enum Configuration {
     enum Keys {
         enum PList {
             static let gatewayUrl = "GATEWAY_URL"
+            static let quadPayJSUrl = "QUADPAY_JS_URL"
+            static let cdnUrl = "CDN_URL"
         }
     }
     
@@ -40,6 +42,30 @@ enum Configuration {
         
         guard let url = URL(string: gatewayUrlString) else {
             fatalError("Gateway URL is invalid")
+        }
+        
+        return url
+    }()
+    
+    static let quadPayJSUrl: URL = {
+        guard let quadpayJSUrlString = Configuration.infoDictionary[Keys.PList.quadPayJSUrl] as? String else{
+            fatalError("Quadpay JS URL is missing")
+        }
+        
+        guard let url = URL(string: quadpayJSUrlString) else {
+            fatalError("Quadpay JS URL is invalid")
+        }
+        
+        return url
+    }()
+    
+    static let cdnUrl: URL = {
+        guard let cdnUrlString = Configuration.infoDictionary[Keys.PList.quadPayJSUrl] as? String else{
+            fatalError("CDN URL is missing")
+        }
+        
+        guard let url = URL(string: cdnUrlString) else {
+            fatalError("CDN URL is invalid")
         }
         
         return url
