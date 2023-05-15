@@ -11,15 +11,28 @@ import UIKit
 
 public final class Widget : UIView{
     
+    private var request: ApiRequest<WidgetDataResource>?
+    
     @objc public var merchantId: String = ""{
         didSet{
             if(amount != "0"){
-                WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
+                self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId){ [weak self]
                     (result) in
+                    
+                    guard let self = self else {
+                        return
+                    }
+                    
                     switch result {
                     case .success(let result):
-                        print(result)
-                        self.feeTiers = result.feeTiers
+                        guard let widgetData = result else {
+                            DispatchQueue.main.async {
+                                self.layout()
+                            }
+                            return
+                        }
+                        
+                        self.feeTiers = widgetData.feeTiers
                         DispatchQueue.main.async {
                             self.layout()
                         }
@@ -116,7 +129,7 @@ public final class Widget : UIView{
     
     var grayLabelMerchant: Bool = false
     
-    var feeTiers: [MerchantFeeTier] = []
+    var feeTiers: [FeeTier] = []
     
     var maxFee : Double = 0
     
