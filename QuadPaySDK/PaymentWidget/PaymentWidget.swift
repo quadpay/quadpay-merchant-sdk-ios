@@ -13,20 +13,33 @@ public final class PaymentWidget: UIView {
     
     let stackView = UIStackView()
     
+    private var request: ApiRequest<WidgetDataResource>?
+    
     @objc public var merchantId: String = "" {
         didSet{
             if(amount != "0"){
-                WidgetDataService.shared.fetchWidgetData(merchantId: merchantId){
+                self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId) { [weak self]
                     (result) in
+                    
+                    guard let self = self else {
+                        return
+                    }
+                    
                     switch result {
                     case .success(let result):
-                        print(result)
+                        print(result as Any)
+                        
+                        guard let widgetData = result else {
+                            DispatchQueue.main.async {
+                                self.layout()
+                            }
+                            return
+                        }
                         
                         var maxTier: Double = 0
                         let amountAsFloat  = Double(self.amount) ?? 0.00
                         
-                        
-                        for(_,element) in result.feeTiers.enumerated() {
+                        for(_,element) in widgetData.feeTiers.enumerated() {
                             let tierAmount = element.feeStartsAt
                             if(tierAmount <= amountAsFloat ){
                                 if(maxTier < tierAmount){
