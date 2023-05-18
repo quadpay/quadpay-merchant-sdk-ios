@@ -199,11 +199,9 @@ extension PaymentWidget {
             self.timelapseGraphView.drawTimelapseGraph()
         }
         
-        if(maxFee != 0){
-            paymentWidgetHeaderText.hasFees = true
-        }else{
-            paymentWidgetHeaderText.hasFees = false
-        }
+    
+        paymentWidgetHeaderText.hasFees = maxFee != 0
+       
   
    
         if(hideHeader == "true"){

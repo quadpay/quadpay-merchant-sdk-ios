@@ -249,7 +249,7 @@ extension Widget{
                     }
                     
                     
-                    self.hasFees = self.maxFee != 0 ? true : false
+                    self.hasFees = self.maxFee != 0
                     
                     DispatchQueue.main.async {
                         self.layout()
