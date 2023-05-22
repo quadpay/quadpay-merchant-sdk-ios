@@ -72,6 +72,8 @@ public final class PaymentWidget: UIView {
     
     var maxFee: Double = 0.0
     
+    var bankPartner: String = ""
+    
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
@@ -141,6 +143,9 @@ extension PaymentWidget {
                     var maxTier: Double = 0
                     let amountAsFloat  = Double(self.amount) ?? 0.00
                     
+                    self.bankPartner = widgetData.bankPartner
+                    print(self.bankPartner)
+                    
                     for(_,element) in widgetData.feeTiers.enumerated() {
                         let tierAmount = element.feeStartsAt
                         if(tierAmount <= amountAsFloat ){
@@ -201,6 +206,7 @@ extension PaymentWidget {
         
     
         paymentWidgetHeaderText.hasFees = maxFee != 0
+        paymentWidgetHeaderText.bankPartner = bankPartner
        
   
    
@@ -225,6 +231,8 @@ extension PaymentWidget {
         paymentWidgetHeaderText.style()
         
         feeTierView.maxFee = maxFee
+        feeTierView.hideTimeline = hideTimeline == "true"
+        
         feeTierView.style()
     }
 }

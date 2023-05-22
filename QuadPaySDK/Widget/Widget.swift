@@ -105,6 +105,8 @@ public final class Widget : UIView{
     
     var hasFees : Bool?
     
+    var bankPartner: String = ""
+    
     override public init(frame: CGRect) {
         super.init(frame: .zero)
         style()
@@ -132,7 +134,7 @@ extension Widget{
         let attributedString = NSMutableAttributedString()
         
 
-        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees ?? false)
+        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees ?? false, bankPartner: bankPartner)
         
         if(grayLabelMerchant){
             let merchantLogo = createMerchantLogo()
@@ -237,6 +239,8 @@ extension Widget{
                     }
                     
                     var maxTier: Double = 0
+                    
+                    self.bankPartner = widgetData.bankPartner
                     
                     for(_,element) in widgetData.feeTiers.enumerated() {
                         let tierAmount = element.feeStartsAt

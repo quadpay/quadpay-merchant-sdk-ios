@@ -13,7 +13,15 @@ public final class FeeTierText: UIView{
     
     let feeTierLabel = UILabel()
     
+    let PRE_FEE_TEXT : String = "There may be "
+    
+    let POST_FEE_TEXT : String = "finance charge to use Zip."
+    
+    let CHARGE_INCLUDED_TEXT : String = " This charge is included above."
+    
     var maxFee: Double?
+    
+    var hideTimeline : Bool?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -35,13 +43,23 @@ public final class FeeTierText: UIView{
             formatter.maximumFractionDigits = 0
             formatter.minimumFractionDigits = 0
             let feeAsString = formatter.string(for: maxFee) ?? "0"
-            feeMessage = "There may be a $\(feeAsString) finance charge to use Zip. This charge is included above."
+            if(hideTimeline ?? false){
+                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT
+            }else{
+                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
+            }
         }else{
             formatter.maximumFractionDigits = 2
             formatter.minimumFractionDigits = 2
             let feeAsString = formatter.string(for: maxFee) ?? "0"
-            feeMessage = "There may be a $\(feeAsString) finance charge to use Zip. This charge is included above."
+            if(hideTimeline ?? false){
+                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT
+            }else{
+                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
+            }
         }
+        
+        
     
         feeTierLabel.text = feeMessage
         feeTierLabel.textColor = .gray
