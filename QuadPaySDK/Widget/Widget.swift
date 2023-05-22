@@ -105,7 +105,7 @@ public final class Widget : UIView{
     
     var hasFees : Bool?
     
-    var bankPartner: String = ""
+    var bankPartner: String = NO_BANK_PARTNER
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)

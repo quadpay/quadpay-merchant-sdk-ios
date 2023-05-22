@@ -78,6 +78,8 @@ public enum LogoType {
 
 public var logoType: LogoType = .badge
 
+public let NO_BANK_PARTNER : String = "None"
+
 public var infoLink: URL {
     let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
     let url  = URL(fileURLWithPath: urlPath!)

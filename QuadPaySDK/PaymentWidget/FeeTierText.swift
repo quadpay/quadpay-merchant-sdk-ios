@@ -42,23 +42,17 @@ public final class FeeTierText: UIView{
         if(maxFee?.truncatingRemainder(dividingBy: 1) == 0){
             formatter.maximumFractionDigits = 0
             formatter.minimumFractionDigits = 0
-            let feeAsString = formatter.string(for: maxFee) ?? "0"
-            if(hideTimeline ?? false){
-                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT
-            }else{
-                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
-            }
         }else{
             formatter.maximumFractionDigits = 2
             formatter.minimumFractionDigits = 2
-            let feeAsString = formatter.string(for: maxFee) ?? "0"
-            if(hideTimeline ?? false){
-                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT
-            }else{
-                feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
-            }
         }
         
+        let feeAsString = formatter.string(for: maxFee) ?? "0"
+        if(hideTimeline ?? false){
+            feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT
+        }else{
+            feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
+        }
         
     
         feeTierLabel.text = feeMessage
