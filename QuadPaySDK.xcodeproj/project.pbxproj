@@ -20,6 +20,7 @@
 		106DA9DE2A1242FB00A7E2DC /* MerchantConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106DA9DD2A1242FB00A7E2DC /* MerchantConfigService.swift */; };
 		106DA9E02A12437800A7E2DC /* MerchantConfigResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106DA9DF2A12437800A7E2DC /* MerchantConfigResource.swift */; };
 		106DA9E22A12480200A7E2DC /* RNPaymentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106DA9E12A12480200A7E2DC /* RNPaymentWidget.swift */; };
+		106DA9EB2A1C037A00A7E2DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106DA9EA2A1C037A00A7E2DC /* Constants.swift */; };
 		251EC4932469D64300679E88 /* QuadPaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251EC4892469D64300679E88 /* QuadPaySDK.framework */; };
 		251EC4982469D64300679E88 /* QuadPaySDKVirtualCheckoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 251EC4972469D64300679E88 /* QuadPaySDKVirtualCheckoutTests.m */; };
 		251EC49A2469D64300679E88 /* QuadPaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 251EC48C2469D64300679E88 /* QuadPaySDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,6 +98,7 @@
 		106DA9DD2A1242FB00A7E2DC /* MerchantConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantConfigService.swift; sourceTree = "<group>"; };
 		106DA9DF2A12437800A7E2DC /* MerchantConfigResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantConfigResource.swift; sourceTree = "<group>"; };
 		106DA9E12A12480200A7E2DC /* RNPaymentWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNPaymentWidget.swift; sourceTree = "<group>"; };
+		106DA9EA2A1C037A00A7E2DC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1FF222717018601DF0CF0EF5 /* Pods-QuadPaySDK-QuadPaySDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuadPaySDK-QuadPaySDKTests.debug.xcconfig"; path = "Target Support Files/Pods-QuadPaySDK-QuadPaySDKTests/Pods-QuadPaySDK-QuadPaySDKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		251EC4892469D64300679E88 /* QuadPaySDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuadPaySDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		251EC48C2469D64300679E88 /* QuadPaySDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuadPaySDK.h; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				106DA9BF2A0CF96F00A7E2DC /* QuadPaySDKProduction.plist */,
 				251EC48D2469D64300679E88 /* QuadPaySDKDevelopment.plist */,
 				BB6305DF2A029A4C003DEE0F /* Configuration.swift */,
+				106DA9EA2A1C037A00A7E2DC /* Constants.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				BBFE02C22971948100453D9A /* TimelapseGraphView.swift in Sources */,
 				251EC4B82469DC9600679E88 /* QuadPayCheckoutViewController.m in Sources */,
 				BB6305CF29F96C34003DEE0F /* FeeTierText.swift in Sources */,
+				106DA9EB2A1C037A00A7E2DC /* Constants.swift in Sources */,
 				BB0F0DE92889889A00D1F8C6 /* AssetProvider.swift in Sources */,
 				251EC4C6246B14F800679E88 /* QuadPayCardholder.m in Sources */,
 				BB9E5EB828CA11460031C5C9 /* LinkTextView.swift in Sources */,

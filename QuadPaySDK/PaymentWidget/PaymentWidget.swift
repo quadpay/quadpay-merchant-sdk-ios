@@ -72,7 +72,7 @@ public final class PaymentWidget: UIView {
     
     var maxFee: Double = 0.0
     
-    var bankPartner: String = ""
+    var bankPartner: String = NO_BANK_PARTNER
     
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
