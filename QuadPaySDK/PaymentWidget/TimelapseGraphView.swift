@@ -24,6 +24,8 @@ public final class TimelapseGraphView: UIView {
     
     var deviceAdjustment: CGFloat = 1.0
     
+    var maxFee: Double?
+    
     let initialTimelineColor: CGColor = UIColor.zipPurple.cgColor
     var actualTimelineColor: CGColor?
     
@@ -45,8 +47,14 @@ extension TimelapseGraphView {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
+        
+        
         let amountAsString: String = amount ?? initialAmount
-        let amountAsFloat  = Double(amountAsString) ?? 0.00
+        var amountAsFloat  = Double(amountAsString) ?? 0.00
+        
+        
+        amountAsFloat = amountAsFloat + (maxFee ?? 0.0)
+        
         let transactionAmount = formatter.string(for: amountAsFloat/4) ?? "0"
         for _ in 0...4{
             amountLabels.append(transactionAmount)

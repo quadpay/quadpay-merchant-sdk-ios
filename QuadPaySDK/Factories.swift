@@ -95,7 +95,7 @@ func makeSymbolImageView(systemName: String, scale: UIImage.SymbolScale = .large
     return UIImageView(image: image)
 }
 
-func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant: String, minModal: String) -> String {
+func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant: String, minModal: String, hasFees: Bool, bankPartner: String) -> String {
     let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
     do{
         var strHTMLContent = try String(contentsOfFile: urlPath!)
@@ -103,8 +103,12 @@ func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant:
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%merchantId%", with: merchantId)
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%isMFPPMerchant%", with: isMFPPMerchant)
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: minModal)
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%hasFees%", with: String(hasFees))
+        strHTMLContent = strHTMLContent.replacingOccurrences(of: "%bankPartner%", with: bankPartner)
+        
+        print(strHTMLContent)
     
-        let quadpayJS : String = "https://cdn.us.zip.co/v1/quadpay.js"
+        let quadpayJS : String = Configuration.quadPayJSUrl.absoluteString
         
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%QuadPayJS%", with: quadpayJS)
         return strHTMLContent

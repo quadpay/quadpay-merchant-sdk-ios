@@ -11,11 +11,18 @@ import Foundation
 
 public final class RNPaymentWidget: UIView {
     
+    private var request: ApiRequest<MerchantConfigResource>?
+    
     let stackView = UIStackView()
     
     @objc public var merchantId: String = "" {
         didSet{
-            MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
+            self.request = MerchantConfigService.instance.fetchMerchants(merchantId: merchantId){ [weak self] (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
                 switch result {
                 case .success(_):
                     self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."

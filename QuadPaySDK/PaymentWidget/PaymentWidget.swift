@@ -13,28 +13,17 @@ public final class PaymentWidget: UIView {
     
     let stackView = UIStackView()
     
+    private var request: ApiRequest<WidgetDataResource>?
+    
     @objc public var merchantId: String = "" {
         didSet{
-            MerchantService.shared.fetchMerchants(merchantId: merchantId){ (result) in
-                switch result {
-                case .success(_):
-                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."
-                    self.paymentWidgetHeaderText.style()
-                    self.timelapseGraphView.depth = 0
-                    self.timelapseGraphView.drawTimelapseGraph()
-                case .failure(_):
-                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Zip."
-                    self.timelapseGraphView.depth = 3
-                    DispatchQueue.main.async {
-                        self.paymentWidgetHeaderText.style()
-                        self.timelapseGraphView.drawTimelapseGraph()
-                    }
-                    print("Error fetching merchant")
-                }}        }
+            setWidgetData()
+        }
     }
     
     @objc public var amount: String = "0" {
         didSet{
+            setWidgetData()
             layoutSubviews()
         }
     }
@@ -81,9 +70,14 @@ public final class PaymentWidget: UIView {
         }
     }
     
+    var maxFee: Double = 0.0
+    
+    var bankPartner: String = NO_BANK_PARTNER
+    
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
+    var feeTierView = FeeTierText()
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
@@ -105,6 +99,7 @@ extension PaymentWidget {
         paymentWidgetHeaderText.translatesAutoresizingMaskIntoConstraints = true
         paymentWidgetSubText.translatesAutoresizingMaskIntoConstraints = true
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = true
+        feeTierView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     func layout(){
@@ -112,6 +107,9 @@ extension PaymentWidget {
         stackView.addArrangedSubview(paymentWidgetHeaderText)
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
+        if(maxFee != 0){
+            stackView.addArrangedSubview(feeTierView)
+        }
     
         
         NSLayoutConstraint.activate([
@@ -121,6 +119,61 @@ extension PaymentWidget {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
      
         ])
+    }
+    
+    func setWidgetData(){
+        if(amount != "0"){
+            self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId) { [weak self]
+                (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                switch result {
+                case .success(let result):
+                    
+                    guard let widgetData = result else {
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        return
+                    }
+                    
+                    var maxTier: Double = 0
+                    let amountAsFloat  = Double(self.amount) ?? 0.00
+                    
+                    self.bankPartner = widgetData.bankPartner
+                    print(self.bankPartner)
+                    
+                    for(_,element) in widgetData.feeTiers.enumerated() {
+                        let tierAmount = element.feeStartsAt
+                        if(tierAmount <= amountAsFloat ){
+                            if(maxTier < tierAmount){
+                                maxTier = tierAmount
+                                self.maxFee = element.totalFeePerOrder
+                            }
+                        }
+                    }
+                    
+                    self.timelapseGraphView.maxFee = self.maxFee
+                    
+                    
+          
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                    
+                }
+            }
+        }
+        layoutSubviews()
     }
     
     
@@ -150,6 +203,12 @@ extension PaymentWidget {
         DispatchQueue.main.async {
             self.timelapseGraphView.drawTimelapseGraph()
         }
+        
+    
+        paymentWidgetHeaderText.hasFees = maxFee != 0
+        paymentWidgetHeaderText.bankPartner = bankPartner
+       
+  
    
         if(hideHeader == "true"){
             paymentWidgetHeaderText.isHidden = true
@@ -170,6 +229,10 @@ extension PaymentWidget {
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
         paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
         paymentWidgetHeaderText.style()
-
+        
+        feeTierView.maxFee = maxFee
+        feeTierView.hideTimeline = hideTimeline == "true"
+        
+        feeTierView.style()
     }
 }

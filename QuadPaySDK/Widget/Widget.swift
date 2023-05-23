@@ -11,32 +11,17 @@ import UIKit
 
 public final class Widget : UIView{
     
+    private var request: ApiRequest<WidgetDataResource>?
+    
     @objc public var merchantId: String = ""{
         didSet{
-            MerchantService.shared.fetchMerchants(merchantId: merchantId){
-                (result) in
-                switch result {
-                case .success(_):
-                    self.grayLabelMerchant = true
-                    DispatchQueue.main.async {
-                        self.layout()
-                    }
-             
-                case .failure(_):
-                    print("Error fetching merchant")
-                    self.grayLabelMerchant = false
-                    DispatchQueue.main.async {
-                        self.layout()
-                    }
-                
-                }
-            }
+            setWidgetData()
         }
     }
     
     @objc public var amount: String = "0"{
         didSet{
-            layout()
+            setWidgetData()
         }
     }
     
@@ -114,9 +99,13 @@ public final class Widget : UIView{
     
     var grayLabelMerchant: Bool = false
     
+    var maxFee : Double = 0
+    
     var widgetText = NSAttributedString()
     
+    var hasFees : Bool?
     
+    var bankPartner: String = NO_BANK_PARTNER
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
@@ -133,7 +122,6 @@ public final class Widget : UIView{
 extension Widget{
     func layout(){
         
-        
         let orText = makeText(text: "or", size: size)
         let withText = makeText(text: "with", size: size)
         let space = makeText(text: " ", size: size)
@@ -145,7 +133,8 @@ extension Widget{
         let link = createInfoLink(link: infoLink)
         let attributedString = NSMutableAttributedString()
         
-        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal)
+
+        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees ?? false, bankPartner: bankPartner)
         
         if(grayLabelMerchant){
             let merchantLogo = createMerchantLogo()
@@ -217,7 +206,6 @@ extension Widget{
         default:
             widget.textAlignment = NSTextAlignment.left
         }
-        
     }
     
     func style(){
@@ -232,13 +220,68 @@ extension Widget{
         ])
     }
     
+    func setWidgetData(){
+        if(amount != "0"){
+            self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId){ [weak self]
+                (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                switch result {
+                case .success(let result):
+                    guard let widgetData = result else {
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        return
+                    }
+                    
+                    var maxTier: Double = 0
+                    
+                    self.bankPartner = widgetData.bankPartner
+                    
+                    for(_,element) in widgetData.feeTiers.enumerated() {
+                        let tierAmount = element.feeStartsAt
+                        if(tierAmount <= Double(self.amount) ?? 0){
+                            if(maxTier < tierAmount){
+                                maxTier = tierAmount
+                                self.maxFee = element.totalFeePerOrder
+                            }
+                        }
+                    }
+                    
+                    
+                    self.hasFees = self.maxFee != 0
+                    
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                    
+                }
+            }
+        }
+        layout()
+    }
+    
+    
     func calculateInstalment() -> String{
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-        formatter.currencyCode="USD"
+        formatter.currencyCode = "USD"
         formatter.numberStyle = .currency
         
-        let amount  = Double(amount) ?? 0.00
+        var amount  = Double(amount) ?? 0.00
+
+    
+        amount = amount + maxFee
         let min = Double(min) ?? 35.00
         let max = Double(max) ?? 1500.00
         if(amount<min){
