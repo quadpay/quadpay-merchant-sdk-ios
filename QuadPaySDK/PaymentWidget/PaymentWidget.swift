@@ -107,8 +107,11 @@ extension PaymentWidget {
         stackView.addArrangedSubview(paymentWidgetHeaderText)
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
+        stackView.addArrangedSubview(feeTierView)
         if(maxFee != 0){
-            stackView.addArrangedSubview(feeTierView)
+            feeTierView.isHidden = false
+        }else{
+            feeTierView.isHidden = true
         }
     
         
@@ -140,11 +143,12 @@ extension PaymentWidget {
                         return
                     }
                     
+                    self.maxFee = 0
                     var maxTier: Double = 0
                     let amountAsFloat  = Double(self.amount) ?? 0.00
                     
                     self.bankPartner = widgetData.bankPartner
-                    print(self.bankPartner)
+
                     
                     for(_,element) in widgetData.feeTiers.enumerated() {
                         let tierAmount = element.feeStartsAt
@@ -159,13 +163,13 @@ extension PaymentWidget {
                     self.timelapseGraphView.maxFee = self.maxFee
                     
                     
-          
                     DispatchQueue.main.async {
                         self.layout()
                     }
                     
                 case .failure(let error):
                     print(error)
+                    self.maxFee = 0
                     DispatchQueue.main.async {
                         self.layout()
                     }
@@ -173,6 +177,7 @@ extension PaymentWidget {
                 }
             }
         }
+        maxFee = 0
         layoutSubviews()
     }
     
