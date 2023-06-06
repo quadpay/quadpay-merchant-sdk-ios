@@ -108,11 +108,7 @@ extension PaymentWidget {
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
         stackView.addArrangedSubview(feeTierView)
-        if(maxFee != 0){
-            feeTierView.isHidden = false
-        }else{
-            feeTierView.isHidden = true
-        }
+        feeTierView.isHidden = maxFee == 0
     
         
         NSLayoutConstraint.activate([
@@ -120,7 +116,6 @@ extension PaymentWidget {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-     
         ])
     }
     
@@ -166,6 +161,7 @@ extension PaymentWidget {
                     DispatchQueue.main.async {
                         self.layout()
                     }
+               
                     
                 case .failure(let error):
                     print(error)
@@ -173,11 +169,13 @@ extension PaymentWidget {
                     DispatchQueue.main.async {
                         self.layout()
                     }
+                  
                     
                 }
             }
+        }else{
+            maxFee = 0
         }
-        maxFee = 0
         layoutSubviews()
     }
     

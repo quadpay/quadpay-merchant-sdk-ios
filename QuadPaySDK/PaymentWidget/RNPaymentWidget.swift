@@ -105,11 +105,7 @@ extension RNPaymentWidget {
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
         stackView.addArrangedSubview(feeTierView)
-        if(maxFee != 0){
-            feeTierView.isHidden = false
-        }else{
-            feeTierView.isHidden = true
-        }
+        feeTierView.isHidden = maxFee == 0
             
         
         NSLayoutConstraint.activate([
@@ -119,7 +115,7 @@ extension RNPaymentWidget {
     }
     
     func setWidgetData(){
-        if(amount != "0"){
+        if(amount != "0" && amount != ""){
             self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId) { [weak self]
                 (result) in
                 
@@ -168,6 +164,8 @@ extension RNPaymentWidget {
                     
                 }
             }
+        }else{
+            maxFee = 0
         }
         layoutSubviews()
     }
