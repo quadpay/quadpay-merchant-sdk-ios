@@ -120,7 +120,7 @@ extension PaymentWidget {
     }
     
     func setWidgetData(){
-        if(amount != "0"){
+        if(amount != "0" && amount != ""){
             self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId) { [weak self]
                 (result) in
                 
