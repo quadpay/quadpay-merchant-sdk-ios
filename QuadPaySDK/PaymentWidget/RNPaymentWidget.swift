@@ -11,38 +11,19 @@ import Foundation
 
 public final class RNPaymentWidget: UIView {
     
-    private var request: ApiRequest<MerchantConfigResource>?
+    private var request: ApiRequest<WidgetDataResource>?
     
     let stackView = UIStackView()
     
     @objc public var merchantId: String = "" {
         didSet{
-            self.request = MerchantConfigService.instance.fetchMerchants(merchantId: merchantId){ [weak self] (result) in
-                
-                guard let self = self else {
-                    return
-                }
-                
-                switch result {
-                case .success(_):
-                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Welcome Pay (powered by Zip)."
-                    self.paymentWidgetHeaderText.style()
-                    self.timelapseGraphView.depth = 0
-                    self.timelapseGraphView.drawTimelapseGraph()
-                case .failure(_):
-                    self.paymentWidgetHeaderText.actualPaymentWidgetLabelText = "Split your order in 4 easy payments with Zip."
-                    self.timelapseGraphView.depth = 3
-                    DispatchQueue.main.async {
-                        self.paymentWidgetHeaderText.style()
-                        self.timelapseGraphView.drawTimelapseGraph()
-                    }
-                    print("Error fetching merchant")
-                }}        }
+            setWidgetData()
+        }
     }
     
     @objc public var amount: String = "0" {
         didSet{
-            layoutSubviews()
+            setWidgetData()
         }
     }
     
@@ -88,9 +69,14 @@ public final class RNPaymentWidget: UIView {
         }
     }
     
+    var maxFee: Double = 0.0
+    
+    var bankPartner: String = NO_BANK_PARTNER
+    
     var paymentWidgetHeaderText = PaymentWidgetHeaderText()
     var paymentWidgetSubText = PaymentWidgetSubText()
     var timelapseGraphView = TimelapseGraphView()
+    var feeTierView = FeeTierText()
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
@@ -110,6 +96,7 @@ extension RNPaymentWidget {
         paymentWidgetHeaderText.translatesAutoresizingMaskIntoConstraints = true
         paymentWidgetSubText.translatesAutoresizingMaskIntoConstraints = true
         timelapseGraphView.translatesAutoresizingMaskIntoConstraints = true
+        feeTierView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     func layout(){
@@ -117,13 +104,73 @@ extension RNPaymentWidget {
         stackView.addArrangedSubview(paymentWidgetHeaderText)
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
-    
+        stackView.addArrangedSubview(feeTierView)
+        feeTierView.isHidden = maxFee == 0
+            
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
+    
+    func setWidgetData(){
+        if(amount != "0" && amount != ""){
+            self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId) { [weak self]
+                (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                switch result {
+                case .success(let result):
+                    
+                    guard let widgetData = result else {
+                        DispatchQueue.main.async {
+                            self.layout()
+                        }
+                        return
+                    }
+                    self.maxFee = 0
+                    var maxTier: Double = 0
+                    let amountAsFloat  = Double(self.amount) ?? 0.00
+                    
+                    self.bankPartner = widgetData.bankPartner
+                    
+                    for(_,element) in widgetData.feeTiers.enumerated() {
+                        let tierAmount = element.feeStartsAt
+                        if(tierAmount <= amountAsFloat ){
+                            if(maxTier < tierAmount){
+                                maxTier = tierAmount
+                                self.maxFee = element.totalFeePerOrder
+                            }
+                        }
+                    }
+                    
+                    self.timelapseGraphView.maxFee = self.maxFee
+                    
+                    
+          
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                    
+                case .failure(let error):
+                    self.maxFee = 0
+                    DispatchQueue.main.async {
+                        self.layout()
+                    }
+                    
+                }
+            }
+        }else{
+            maxFee = 0
+        }
+        layoutSubviews()
+    }
+    
+    
     
     
     //Redraw timelapse
@@ -141,7 +188,6 @@ extension RNPaymentWidget {
                 timelapseGraphView.actualFrameWidth = 300
             }else{
                 timelapseGraphView.actualFrameWidth = frame.width
-                print(frame.width)
             }
             timelapseGraphView.amount = amount
             if(timelineColor.lowercased() == "black") {
@@ -151,6 +197,9 @@ extension RNPaymentWidget {
             }
 
         }
+        
+        paymentWidgetHeaderText.hasFees = maxFee != 0
+        paymentWidgetHeaderText.bankPartner = bankPartner
 
         DispatchQueue.main.async {
             self.timelapseGraphView.drawTimelapseGraph()
@@ -175,6 +224,11 @@ extension RNPaymentWidget {
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
         paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
         paymentWidgetHeaderText.style()
+        
+        feeTierView.maxFee = maxFee
+        feeTierView.hideTimeline = hideTimeline == "true"
+        
+        feeTierView.style()
 
     }
 }

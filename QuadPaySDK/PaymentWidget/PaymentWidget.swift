@@ -107,9 +107,8 @@ extension PaymentWidget {
         stackView.addArrangedSubview(paymentWidgetHeaderText)
         stackView.addArrangedSubview(paymentWidgetSubText)
         stackView.addArrangedSubview(timelapseGraphView)
-        if(maxFee != 0){
-            stackView.addArrangedSubview(feeTierView)
-        }
+        stackView.addArrangedSubview(feeTierView)
+        feeTierView.isHidden = maxFee == 0
     
         
         NSLayoutConstraint.activate([
@@ -117,12 +116,11 @@ extension PaymentWidget {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-     
         ])
     }
     
     func setWidgetData(){
-        if(amount != "0"){
+        if(amount != "0" && amount != ""){
             self.request = GatewayService.instance.fetchWidgetData(merchantId: merchantId) { [weak self]
                 (result) in
                 
@@ -140,11 +138,12 @@ extension PaymentWidget {
                         return
                     }
                     
+                    self.maxFee = 0
                     var maxTier: Double = 0
                     let amountAsFloat  = Double(self.amount) ?? 0.00
                     
                     self.bankPartner = widgetData.bankPartner
-                    print(self.bankPartner)
+
                     
                     for(_,element) in widgetData.feeTiers.enumerated() {
                         let tierAmount = element.feeStartsAt
@@ -159,19 +158,23 @@ extension PaymentWidget {
                     self.timelapseGraphView.maxFee = self.maxFee
                     
                     
-          
                     DispatchQueue.main.async {
                         self.layout()
                     }
+               
                     
                 case .failure(let error):
                     print(error)
+                    self.maxFee = 0
                     DispatchQueue.main.async {
                         self.layout()
                     }
+                  
                     
                 }
             }
+        }else{
+            maxFee = 0
         }
         layoutSubviews()
     }

@@ -105,8 +105,7 @@ func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant:
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%minModal%", with: minModal)
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%hasFees%", with: String(hasFees))
         strHTMLContent = strHTMLContent.replacingOccurrences(of: "%bankPartner%", with: bankPartner)
-        
-        print(strHTMLContent)
+  
     
         let quadpayJS : String = Configuration.quadPayJSUrl.absoluteString
         
