@@ -34,12 +34,6 @@ public final class PaymentWidget: UIView {
         }
     }
     
-    @objc public var hideHeader: String = "false" {
-        didSet{
-            layoutSubviews()
-        }
-    }
-    
     @objc public var hideSubtitle: String = "false" {
         didSet{
             layoutSubviews()
@@ -211,13 +205,6 @@ extension PaymentWidget {
         paymentWidgetHeaderText.hasFees = maxFee != 0
         paymentWidgetHeaderText.bankPartner = bankPartner
        
-  
-   
-        if(hideHeader == "true"){
-            paymentWidgetHeaderText.isHidden = true
-        }else{
-            paymentWidgetHeaderText.isHidden = false
-        }
 
         if(hideSubtitle.lowercased() == "true"){
             paymentWidgetSubText.isHidden = true

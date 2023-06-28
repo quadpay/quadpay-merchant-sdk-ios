@@ -33,12 +33,6 @@ public final class RNPaymentWidget: UIView {
         }
     }
     
-    @objc public var hideHeader: String = "false" {
-        didSet{
-            layoutSubviews()
-        }
-    }
-    
     @objc public var hideSubtitle: String = "false" {
         didSet{
             layoutSubviews()
@@ -205,12 +199,6 @@ extension RNPaymentWidget {
             self.timelapseGraphView.drawTimelapseGraph()
         }
    
-        if(hideHeader == "true"){
-            paymentWidgetHeaderText.isHidden = true
-        }else{
-            paymentWidgetHeaderText.isHidden = false
-        }
-
         if(hideSubtitle.lowercased() == "true"){
             paymentWidgetSubText.isHidden = true
         }else{

@@ -92,7 +92,6 @@ final class WidgetViewContoller : UIViewController {
 
         
         paymentWidgetWithoutHeader.amount = "200"
-        paymentWidgetWithoutHeader.hideHeader = "true"
         
         paymentWidgetWithoutSubtitle.merchantId = "8f52d93d-f308-4067-a8ef-7d98cc2b0f1b"// Not valid merchant
         paymentWidgetWithoutSubtitle.amount = "300"
@@ -103,7 +102,6 @@ final class WidgetViewContoller : UIViewController {
         paymentWidgetWithoutBothHeaders.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"
         paymentWidgetWithoutBothHeaders.learnMoreUrl = "www.google.com"
         paymentWidgetWithoutBothHeaders.hideSubtitle = "true"
-        paymentWidgetWithoutBothHeaders.hideHeader = "true"
 //        
         paymentWidgetWithoutTimeline.hideTimeline = "true"
         
