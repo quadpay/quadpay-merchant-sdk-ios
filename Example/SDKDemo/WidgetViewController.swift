@@ -93,10 +93,8 @@ final class WidgetViewContoller : UIViewController {
         
         paymentWidgetWithoutHeader.amount = "200"
         
-        paymentWidgetWithoutSubtitle.merchantId = "8f52d93d-f308-4067-a8ef-7d98cc2b0f1b"// Not valid merchant
+        paymentWidgetWithoutSubtitle.merchantId = "897af3af-265b-4f69-b40e-5fb2d206a622"// Not valid merchant
         paymentWidgetWithoutSubtitle.amount = "300"
-        paymentWidgetWithoutSubtitle.timelineColor = "black"
-        paymentWidgetWithoutSubtitle.hideSubtitle = "true"
         paymentWidgetWithoutSubtitle.isMFPPMerchant = "true"
 //        
         paymentWidgetWithoutBothHeaders.merchantId = "a77c291d-fec0-4b04-9daf-c165f5be8313"

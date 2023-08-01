@@ -14,7 +14,7 @@ public final class PaymentWidgetHeaderText: UIView {
     
     var paymentWidgetLabel = LinkTextView()
     
-    var initialPaymentWidgetLabelText : String = "Split your order in 4 easy payments with Zip."
+    var initialPaymentWidgetLabelText : String = "Split your order in 4 easy payments with Zip. "
     var actualPaymentWidgetLabelText : String?
     
     var initialLearnMoreUrl : String = ""
@@ -62,11 +62,10 @@ extension PaymentWidgetHeaderText {
                   UIApplication.shared.open(url)
               }
           }
-  
+
         paymentWidgetLabel.translatesAutoresizingMaskIntoConstraints  = false
-        paymentWidgetLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
         paymentWidgetLabel.attributedText = headerText
-        paymentWidgetLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        paymentWidgetLabel.font = UIFont(name: "SharpGroteskMedium25", size: 12)
         paymentWidgetLabel.linkTextAttributes = [
             .foregroundColor: UIColor.zipBlack,
            

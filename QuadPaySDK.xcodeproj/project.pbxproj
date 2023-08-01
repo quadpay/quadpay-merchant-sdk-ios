@@ -58,6 +58,14 @@
 		BB0F0DE82889889A00D1F8C6 /* BundleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE52889889A00D1F8C6 /* BundleFinder.swift */; };
 		BB0F0DE92889889A00D1F8C6 /* AssetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE62889889A00D1F8C6 /* AssetProvider.swift */; };
 		BB0F0DEA2889889A00D1F8C6 /* InfoWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */; };
+		BB1C9D7E2A7810B6000E8B0F /* SharpGroteskMedium20.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D762A7810B5000E8B0F /* SharpGroteskMedium20.ttf */; };
+		BB1C9D7F2A7810B6000E8B0F /* SharpGroteskBook25.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D772A7810B6000E8B0F /* SharpGroteskBook25.ttf */; };
+		BB1C9D802A7810B6000E8B0F /* SharpGroteskLight20.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D782A7810B6000E8B0F /* SharpGroteskLight20.ttf */; };
+		BB1C9D812A7810B6000E8B0F /* SharpGroteskMedium25.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D792A7810B6000E8B0F /* SharpGroteskMedium25.ttf */; };
+		BB1C9D822A7810B6000E8B0F /* SharpGroteskSmBold20.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D7A2A7810B6000E8B0F /* SharpGroteskSmBold20.ttf */; };
+		BB1C9D832A7810B6000E8B0F /* SharpGroteskSmBold25.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D7B2A7810B6000E8B0F /* SharpGroteskSmBold25.ttf */; };
+		BB1C9D842A7810B6000E8B0F /* SharpGroteskBook20.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D7C2A7810B6000E8B0F /* SharpGroteskBook20.ttf */; };
+		BB1C9D852A7810B6000E8B0F /* SharpGroteskLight25.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1C9D7D2A7810B6000E8B0F /* SharpGroteskLight25.ttf */; };
 		BB28FE972984143000310222 /* PaymentWidgetHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */; };
 		BB28FE992984149B00310222 /* PaymentWidgetSubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */; };
 		BB6305CF29F96C34003DEE0F /* FeeTierText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6305CE29F96C34003DEE0F /* FeeTierText.swift */; };
@@ -141,6 +149,14 @@
 		BB0F0DE52889889A00D1F8C6 /* BundleFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleFinder.swift; sourceTree = "<group>"; };
 		BB0F0DE62889889A00D1F8C6 /* AssetProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetProvider.swift; sourceTree = "<group>"; };
 		BB0F0DE72889889A00D1F8C6 /* InfoWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWebViewController.swift; sourceTree = "<group>"; };
+		BB1C9D762A7810B5000E8B0F /* SharpGroteskMedium20.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskMedium20.ttf; sourceTree = "<group>"; };
+		BB1C9D772A7810B6000E8B0F /* SharpGroteskBook25.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskBook25.ttf; sourceTree = "<group>"; };
+		BB1C9D782A7810B6000E8B0F /* SharpGroteskLight20.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskLight20.ttf; sourceTree = "<group>"; };
+		BB1C9D792A7810B6000E8B0F /* SharpGroteskMedium25.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskMedium25.ttf; sourceTree = "<group>"; };
+		BB1C9D7A2A7810B6000E8B0F /* SharpGroteskSmBold20.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskSmBold20.ttf; sourceTree = "<group>"; };
+		BB1C9D7B2A7810B6000E8B0F /* SharpGroteskSmBold25.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskSmBold25.ttf; sourceTree = "<group>"; };
+		BB1C9D7C2A7810B6000E8B0F /* SharpGroteskBook20.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskBook20.ttf; sourceTree = "<group>"; };
+		BB1C9D7D2A7810B6000E8B0F /* SharpGroteskLight25.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SharpGroteskLight25.ttf; sourceTree = "<group>"; };
 		BB28FE962984143000310222 /* PaymentWidgetHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetHeaderText.swift; sourceTree = "<group>"; };
 		BB28FE982984149B00310222 /* PaymentWidgetSubText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidgetSubText.swift; sourceTree = "<group>"; };
 		BB6305CE29F96C34003DEE0F /* FeeTierText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeTierText.swift; sourceTree = "<group>"; };
@@ -254,6 +270,7 @@
 		251EC48B2469D64300679E88 /* QuadPaySDK */ = {
 			isa = PBXGroup;
 			children = (
+				BB1C9D752A7810AB000E8B0F /* Font */,
 				106DA9C12A0D003600A7E2DC /* Configuration */,
 				BB6305D82A0299F5003DEE0F /* Network */,
 				BBFDDA9029B84BF000DB5533 /* Widget */,
@@ -327,6 +344,21 @@
 				46789CD88D005844E7A0888A /* Pods_QuadPaySDK_QuadPaySDKTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB1C9D752A7810AB000E8B0F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				BB1C9D7C2A7810B6000E8B0F /* SharpGroteskBook20.ttf */,
+				BB1C9D772A7810B6000E8B0F /* SharpGroteskBook25.ttf */,
+				BB1C9D782A7810B6000E8B0F /* SharpGroteskLight20.ttf */,
+				BB1C9D7D2A7810B6000E8B0F /* SharpGroteskLight25.ttf */,
+				BB1C9D762A7810B5000E8B0F /* SharpGroteskMedium20.ttf */,
+				BB1C9D792A7810B6000E8B0F /* SharpGroteskMedium25.ttf */,
+				BB1C9D7A2A7810B6000E8B0F /* SharpGroteskSmBold20.ttf */,
+				BB1C9D7B2A7810B6000E8B0F /* SharpGroteskSmBold25.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		BB6305D82A0299F5003DEE0F /* Network */ = {
@@ -482,8 +514,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB1C9D802A7810B6000E8B0F /* SharpGroteskLight20.ttf in Resources */,
+				BB1C9D832A7810B6000E8B0F /* SharpGroteskSmBold25.ttf in Resources */,
 				BB9E5EDB28CA189D0031C5C9 /* Media.xcassets in Resources */,
+				BB1C9D7F2A7810B6000E8B0F /* SharpGroteskBook25.ttf in Resources */,
 				BB9E5EDC28CA189D0031C5C9 /* www in Resources */,
+				BB1C9D852A7810B6000E8B0F /* SharpGroteskLight25.ttf in Resources */,
+				BB1C9D7E2A7810B6000E8B0F /* SharpGroteskMedium20.ttf in Resources */,
+				BB1C9D812A7810B6000E8B0F /* SharpGroteskMedium25.ttf in Resources */,
+				BB1C9D842A7810B6000E8B0F /* SharpGroteskBook20.ttf in Resources */,
+				BB1C9D822A7810B6000E8B0F /* SharpGroteskSmBold20.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
