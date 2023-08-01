@@ -145,13 +145,13 @@ extension TimelapseGraphView {
             paragraphStyle.alignment = .natural
             
             let attrs: [NSAttributedString.Key: Any] = [
-                .font: UIFont(name: "SharpGroteskMedium25", size: 12),
+                .font: UIFont(name: "SharpGroteskMedium20", size: 12),
                 .paragraphStyle: paragraphStyle,
               
             ]
             
             let attrsWeeks: [NSAttributedString.Key: Any] = [
-                .font: UIFont(name: "SharpGroteskBook25", size: 12),
+                .font: UIFont(name: "SharpGroteskBook20", size: 12),
                 .paragraphStyle: paragraphStyle,
                 .foregroundColor: UIColor.gray
 

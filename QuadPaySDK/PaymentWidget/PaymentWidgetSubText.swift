@@ -28,7 +28,7 @@ public final class PaymentWidgetSubText: UIView {
     
     func style(){
         paymentWidgetSubLabel.translatesAutoresizingMaskIntoConstraints = false
-        paymentWidgetSubLabel.font = UIFont(name: "SharpGroteskBook25", size: 12)
+        paymentWidgetSubLabel.font = UIFont(name: "SharpGroteskBook20", size: 12)
         paymentWidgetSubLabel.text = "You will be redirected to Zip to complete your order."
         paymentWidgetSubLabel.textColor = .gray
         paymentWidgetSubLabel.numberOfLines = 0
