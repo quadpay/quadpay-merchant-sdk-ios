@@ -246,6 +246,11 @@ extension RNPaymentWidget {
 
         //Passed parameters to the header for pop up
         //{minModal, merchantId,isMFPPMerchant, learnmoreURL}
+        if(learnMoreUrl != ""){
+            if(!learnMoreUrl.contains("https://")){
+                learnMoreUrl = "https://" + learnMoreUrl
+            }
+        }
         paymentWidgetHeaderText.minModal = minModal
         paymentWidgetHeaderText.merchantId = merchantId
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant

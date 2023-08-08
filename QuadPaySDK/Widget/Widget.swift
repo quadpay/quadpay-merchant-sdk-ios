@@ -132,8 +132,12 @@ extension Widget{
         let amountText = makeAmountText(text: amount, color: amountColor, size: size)
         let link = createInfoLink(link: infoLink)
         let attributedString = NSMutableAttributedString()
-        
-
+        if(learnMoreUrl != ""){
+            if(!learnMoreUrl.contains("https://")){
+                learnMoreUrl = "https://" + learnMoreUrl
+            }
+        }
+   
         contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees ?? false, bankPartner: bankPartner)
         
         if(grayLabelMerchant){
