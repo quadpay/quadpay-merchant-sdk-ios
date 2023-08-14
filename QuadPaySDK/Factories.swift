@@ -19,7 +19,7 @@ extension UIFont {
         return withTraits(traits: .traitBold)
     }
 
-    public static func jbs_registerFont(withFilenameString filenameString: String, bundle: Bundle) {
+    public static func registerFont(withFilenameString filenameString: String, bundle: Bundle) {
 
            guard let pathForResourceString = bundle.path(forResource: filenameString, ofType: nil, inDirectory: "Font") else {
                print("UIFont+:  Failed to register font - path for resource not found.")
@@ -121,6 +121,16 @@ func makeSymbolImageView(systemName: String, scale: UIImage.SymbolScale = .large
     let image = UIImage(systemName: systemName, withConfiguration: configuration)
     
     return UIImageView(image: image)
+}
+
+func checkValidUrl(url: String) -> String{
+    var learnMoreUrl = url;
+    if(learnMoreUrl != ""){
+        if(!learnMoreUrl.contains("https://")){
+            learnMoreUrl = "https://" + learnMoreUrl
+        }
+    }
+    return learnMoreUrl;
 }
 
 func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant: String, minModal: String, hasFees: Bool, bankPartner: String) -> String {

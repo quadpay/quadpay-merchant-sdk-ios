@@ -75,41 +75,41 @@ public final class PaymentWidget: UIView {
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskMedium20.ttf",
             bundle: Bundle.qpResource
         )
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskMedium25.ttf",
             bundle: Bundle.qpResource
         )
         
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskLight20.ttf",
             bundle: Bundle.qpResource
         )
         
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskLight25.ttf",
             bundle: Bundle.qpResource
         )
         
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskBook20.ttf",
             bundle: Bundle.qpResource
         )
         
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskBook25.ttf",
             bundle: Bundle.qpResource
         )
         
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskSmBold20.ttf",
             bundle: Bundle.qpResource
         )
         
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskSmBold25.ttf",
             bundle: Bundle.qpResource
         )
@@ -253,15 +253,10 @@ extension PaymentWidget {
 
         //Passed parameters to the header for pop up
         //{minModal, merchantId,isMFPPMerchant, learnmoreURL}
-        if(learnMoreUrl != ""){
-            if(!learnMoreUrl.contains("https://")){
-                learnMoreUrl = "https://" + learnMoreUrl
-            }
-        }
         paymentWidgetHeaderText.minModal = minModal
         paymentWidgetHeaderText.merchantId = merchantId
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
-        paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
+        paymentWidgetHeaderText.learnMoreUrl = checkValidUrl(url: learnMoreUrl)
         paymentWidgetHeaderText.style()
         
         feeTierView.maxFee = maxFee

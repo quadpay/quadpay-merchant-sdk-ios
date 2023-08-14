@@ -30,7 +30,7 @@ public final class PaymentWidgetSubText: UIView {
         //Had to enable the font here since is getting initialized on calling the Subtitle and since
         //there is no change to it redraw for it is not getting called. Since no parameters are coming
         //here
-        UIFont.jbs_registerFont(
+        UIFont.registerFont(
             withFilenameString: "SharpGroteskBook20.ttf",
             bundle: Bundle.qpResource
         )
