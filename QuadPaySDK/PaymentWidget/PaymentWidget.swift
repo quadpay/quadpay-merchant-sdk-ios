@@ -75,45 +75,7 @@ public final class PaymentWidget: UIView {
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskMedium20.ttf",
-            bundle: Bundle.qpResource
-        )
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskMedium25.ttf",
-            bundle: Bundle.qpResource
-        )
-        
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskLight20.ttf",
-            bundle: Bundle.qpResource
-        )
-        
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskLight25.ttf",
-            bundle: Bundle.qpResource
-        )
-        
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskBook20.ttf",
-            bundle: Bundle.qpResource
-        )
-        
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskBook25.ttf",
-            bundle: Bundle.qpResource
-        )
-        
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskSmBold20.ttf",
-            bundle: Bundle.qpResource
-        )
-        
-        UIFont.registerFont(
-            withFilenameString: "SharpGroteskSmBold25.ttf",
-            bundle: Bundle.qpResource
-        )
-        
+        UIFont.registerFonts()
         style()
         layout()
     }
