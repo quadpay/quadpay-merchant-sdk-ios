@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>QUADPAY_JS_URL</key>
-	<string>https://cdn.dev.us.zip.co/v1/quadpay.js</string>
+	<string>https://cdn.us.zip.co/v1/quadpay.js</string>
 	<key>CDN_URL</key>
 	<string>https://qpmerchconfigsprd.blob.core.windows.net/</string>
 	<key>GATEWAY_URL</key>
-	<string>https://gateway.dev.us.zip.co/</string>
+	<string>https://gateway.us.zip.co/</string>
 </dict>
 </plist>
