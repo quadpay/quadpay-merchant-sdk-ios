@@ -75,6 +75,7 @@ public final class PaymentWidget: UIView {
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
+        UIFont.registerFonts()
         style()
         layout()
     }
@@ -217,7 +218,7 @@ extension PaymentWidget {
         paymentWidgetHeaderText.minModal = minModal
         paymentWidgetHeaderText.merchantId = merchantId
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
-        paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
+        paymentWidgetHeaderText.learnMoreUrl = checkValidUrl(url: learnMoreUrl)
         paymentWidgetHeaderText.style()
         
         feeTierView.maxFee = maxFee

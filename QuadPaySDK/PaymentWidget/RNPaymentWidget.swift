@@ -74,6 +74,7 @@ public final class RNPaymentWidget: UIView {
     
     override public init(frame: CGRect) {
         super.init(frame: .zero)
+        UIFont.registerFonts()
         style()
         layout()
     }
@@ -150,7 +151,7 @@ extension RNPaymentWidget {
                         self.layout()
                     }
                     
-                case .failure(let error):
+                case .failure(_):
                     self.maxFee = 0
                     DispatchQueue.main.async {
                         self.layout()
@@ -210,7 +211,7 @@ extension RNPaymentWidget {
         paymentWidgetHeaderText.minModal = minModal
         paymentWidgetHeaderText.merchantId = merchantId
         paymentWidgetHeaderText.isMFPPMerchant = isMFPPMerchant
-        paymentWidgetHeaderText.learnMoreUrl = learnMoreUrl
+        paymentWidgetHeaderText.learnMoreUrl = checkValidUrl(url: learnMoreUrl)
         paymentWidgetHeaderText.style()
         
         feeTierView.maxFee = maxFee

@@ -132,9 +132,9 @@ extension Widget{
         let amountText = makeAmountText(text: amount, color: amountColor, size: size)
         let link = createInfoLink(link: infoLink)
         let attributedString = NSMutableAttributedString()
-        
 
-        contentHtml = updateHtmlContent(learnMoreUrl: learnMoreUrl, merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees ?? false, bankPartner: bankPartner)
+   
+        contentHtml = updateHtmlContent(learnMoreUrl: checkValidUrl(url: learnMoreUrl), merchantId: merchantId, isMFPPMerchant: isMFPPMerchant, minModal: minModal, hasFees: hasFees ?? false, bankPartner: bankPartner)
         
         if(grayLabelMerchant){
             let merchantLogo = createMerchantLogo()

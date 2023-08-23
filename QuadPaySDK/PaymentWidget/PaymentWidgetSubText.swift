@@ -27,8 +27,15 @@ public final class PaymentWidgetSubText: UIView {
     }
     
     func style(){
+        //Had to enable the font here since is getting initialized on calling the Subtitle and since
+        //there is no change to it redraw for it is not getting called. Since no parameters are coming
+        //here
+        UIFont.registerFonts()
+        
         paymentWidgetSubLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         paymentWidgetSubLabel.text = "You will be redirected to Zip to complete your order."
+        paymentWidgetSubLabel.font = UIFont(name: "SharpGroteskBook20", size: 12)
         paymentWidgetSubLabel.textColor = .gray
         paymentWidgetSubLabel.numberOfLines = 0
         paymentWidgetSubLabel.lineBreakMode = .byWordWrapping

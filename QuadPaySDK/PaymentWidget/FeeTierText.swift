@@ -13,7 +13,7 @@ public final class FeeTierText: UIView{
     
     let feeTierLabel = UILabel()
     
-    let PRE_FEE_TEXT : String = "There may be "
+    let PRE_FEE_TEXT : String = "There may be a "
     
     let POST_FEE_TEXT : String = "finance charge to use Zip."
     
@@ -49,12 +49,12 @@ public final class FeeTierText: UIView{
         
         let feeAsString = formatter.string(for: maxFee) ?? "0"
         if(hideTimeline ?? false){
-            feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT
+            feeMessage = PRE_FEE_TEXT + "$\(feeAsString) " + POST_FEE_TEXT
         }else{
-            feeMessage = PRE_FEE_TEXT + " $\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
+            feeMessage = PRE_FEE_TEXT + "$\(feeAsString) " + POST_FEE_TEXT + CHARGE_INCLUDED_TEXT
         }
         
-    
+        feeTierLabel.font = UIFont(name: "SharpGroteskMedium20", size: 10)
         feeTierLabel.text = feeMessage
         feeTierLabel.textColor = .gray
         feeTierLabel.numberOfLines = 0

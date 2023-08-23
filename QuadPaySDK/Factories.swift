@@ -18,6 +18,24 @@ extension UIFont {
     func bold() -> UIFont {
         return withTraits(traits: .traitBold)
     }
+    
+    public static func registerFonts(){
+        let fonts = ["SharpGroteskMedium20.ttf",
+                     "SharpGroteskMedium25.ttf",
+                     "SharpGroteskLight20.ttf",
+                     "SharpGroteskLight25.ttf",
+                     "SharpGroteskBook20.ttf",
+                     "SharpGroteskBook25.ttf",
+                     "SharpGroteskSmBold20.ttf",
+                     "SharpGroteskSmBold25.ttf"]
+        
+        for font in fonts{
+            registerFont(withFilenameString: font, bundle: Bundle.qpResource)
+        }
+
+    }
+
+    
 }
 
 extension UIColor {
@@ -94,6 +112,44 @@ func makeSymbolImageView(systemName: String, scale: UIImage.SymbolScale = .large
     
     return UIImageView(image: image)
 }
+
+func checkValidUrl(url: String) -> String{
+    var learnMoreUrl = url;
+    if(learnMoreUrl != ""){
+        if(!learnMoreUrl.contains("https://")){
+            learnMoreUrl = "https://" + learnMoreUrl
+        }
+    }
+    return learnMoreUrl;
+}
+
+func registerFont(withFilenameString filenameString: String, bundle: Bundle) {
+
+       guard let pathForResourceString = bundle.path(forResource: filenameString, ofType: nil, inDirectory: "Font") else {
+           print("UIFont+:  Failed to register font - path for resource not found.")
+           return
+       }
+
+       guard let fontData = NSData(contentsOfFile: pathForResourceString) else {
+           print("UIFont+:  Failed to register font - font data could not be loaded.")
+           return
+       }
+
+       guard let dataProvider = CGDataProvider(data: fontData) else {
+           print("UIFont+:  Failed to register font - data provider could not be loaded.")
+           return
+       }
+
+       guard let font = CGFont(dataProvider) else {
+           print("UIFont+:  Failed to register font - font could not be loaded.")
+           return
+       }
+
+       var errorRef: Unmanaged<CFError>? = nil
+       if (CTFontManagerRegisterGraphicsFont(font, &errorRef) == false) {
+           print("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
+       }
+   }
 
 func updateHtmlContent(learnMoreUrl: String, merchantId: String, isMFPPMerchant: String, minModal: String, hasFees: Bool, bankPartner: String) -> String {
     let urlPath = Bundle.qpResource.path(forResource: "index", ofType: "html", inDirectory: "www")
