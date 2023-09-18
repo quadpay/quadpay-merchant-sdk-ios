@@ -13,7 +13,7 @@ internal extension Foundation.Bundle {
 
 
   static var qpResource: Bundle = {
-    let moduleName = "QuadPaySDK"
+    let moduleName = "ZipSDK"
     #if COCOAPODS
       let bundleName = moduleName
     #else

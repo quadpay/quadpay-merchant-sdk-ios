@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <QuadPaySDK/QuadPaySDK.h>
+#import <ZipSDK/QuadPaySDK.h>
 
 @interface AppDelegate ()
 
@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     //CI a3ef4ac2-4b26-46be-b516-2b86f1f0959e
-    [[QuadPay sharedInstance] initialize:@"a3ef4ac2-4b26-46be-b516-2b86f1f0959e" environment:@"development" locale:@"US"];
+    [[Zip sharedInstance] initialize:@"a3ef4ac2-4b26-46be-b516-2b86f1f0959e" environment:@"development" locale:@"US"];
     return YES;
 }
 

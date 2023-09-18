@@ -11,14 +11,14 @@
 @implementation  QuadPayURLBuilder
 
 + (NSString *) buildVirtualCheckoutURL:(QuadPayCheckoutDetails*) details {
-    NSString* base = [[QuadPay sharedInstance] getBaseUrl];
+    NSString* base = [[Zip sharedInstance] getBaseUrl];
     base = [base stringByAppendingString:@"mobile/virtual/authorize?"];
     NSString* params = [[QuadPayURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
     return [base stringByAppendingString:params];
 }
 
 + (NSString *) buildCheckoutURL:(QuadPayCheckoutDetails*) details {
-    NSString* base = [[QuadPay sharedInstance] getBaseUrl];
+    NSString* base = [[Zip sharedInstance] getBaseUrl];
     base = [base stringByAppendingString:@"mobile/authorize?"];
     NSString* params = [[QuadPayURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
     return [base stringByAppendingString:params];
@@ -28,7 +28,7 @@
     if (details == NULL) {
         @throw [NSException exceptionWithName:@"DetailsNullException" reason:@"Checkout details cannot be null" userInfo:NULL];
     }
-    NSString* merchantId = [[QuadPay sharedInstance] merchantId];
+    NSString* merchantId = [[Zip sharedInstance] merchantId];
     NSString * base = [NSString stringWithFormat:@"MerchantId=%@&Order.Amount=%@&Metadata.platform=%s", merchantId, details.amount, "iOS"];
     if (details.merchantReference) {
         base = [base stringByAppendingString:[NSString stringWithFormat:@"&merchantReference=%@", details.merchantReference]];

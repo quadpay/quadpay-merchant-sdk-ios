@@ -9,9 +9,9 @@
 import Foundation
 
 #if QUADPAY_SDK_DEVELOPMENT
-let configPath = Bundle.qpResource.path(forResource: "QuadPaySDKDevelopment", ofType: "plist")
+let configPath = Bundle.qpResource.path(forResource: "ZipSDKDevelopment", ofType: "plist")
 #else
-let configPath = Bundle.qpResource.path(forResource: "QuadPaySDKProduction", ofType: "plist")
+let configPath = Bundle.qpResource.path(forResource: "ZipSDKProduction", ofType: "plist")
 #endif
 
 
@@ -27,10 +27,10 @@ enum Configuration {
     
     private static let infoDictionary: NSDictionary = {
         guard let configFilePath = configPath else {
-            fatalError("QuadPaySDK Configuration file not found")
+            fatalError("ZipSDK Configuration file not found")
         }
         guard let dict = NSDictionary(contentsOfFile: configFilePath) else {
-            fatalError("QuadPaySDK Configuration invalid")
+            fatalError("ZipSDK Configuration invalid")
         }
         return dict
     }()
@@ -49,11 +49,11 @@ enum Configuration {
     
     static let quadPayJSUrl: URL = {
         guard let quadpayJSUrlString = Configuration.infoDictionary[Keys.PList.quadPayJSUrl] as? String else{
-            fatalError("Quadpay JS URL is missing")
+            fatalError("ZipSDK JS URL is missing")
         }
         
         guard let url = URL(string: quadpayJSUrlString) else {
-            fatalError("Quadpay JS URL is invalid")
+            fatalError("ZipSDK JS URL is invalid")
         }
         
         return url

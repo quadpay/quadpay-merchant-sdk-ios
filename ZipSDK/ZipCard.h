@@ -6,14 +6,14 @@
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
-#ifndef QuadPayCard_h
-#define QuadPayCard_h
+#ifndef ZipCard_h
+#define ZipCard_h
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayCard : NSObject
+@interface ZipCard : NSObject
 
 /**
  Card CVC. Required

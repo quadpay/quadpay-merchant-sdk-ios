@@ -6,14 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QuadPay.h"
+#import "Zip.h"
 
-static QuadPay *__sharedInstance = nil;
+static Zip *__sharedInstance = nil;
 
-@implementation QuadPay
+@implementation Zip
 
 + (id)sharedInstance {
-    static QuadPay *sharedInstance = nil;
+    static Zip *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
@@ -22,7 +22,7 @@ static QuadPay *__sharedInstance = nil;
 }
 
 - (void)initialize:(NSString *)merchantId environment:(NSString* )environment locale:(NSString *)locale {
-    QuadPay* instance = [QuadPay sharedInstance];
+    Zip* instance = [Zip sharedInstance];
     instance.merchantId = merchantId;
     instance.environment = environment;
     instance.locale = locale;

@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import <QuadPaySDK/QuadPaySDK.h>
+#import <ZipSDK/QuadPaySDK.h>
 
 @interface SecondViewController () <QuadPayVirtualCheckoutDelegate>
 
@@ -55,7 +55,7 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull QuadPayCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer {
+- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull ZipCard *)card cardholder:(nonnull QuadPayCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer {
     NSLog(@"%@", [NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
@@ -78,7 +78,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)showCheckoutSuccessAlert:(QuadPayCard*) card cardholder:(QuadPayCardholder*) cardholder customer:(QuadPayCustomer*) customer {
+- (void)showCheckoutSuccessAlert:(ZipCard*) card cardholder:(QuadPayCardholder*) cardholder customer:(QuadPayCustomer*) customer {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Succeeded"
                                                                    message:[NSString stringWithFormat:
                                                                             @"QuadPay checkout succeeded, card issued: %@", card.number]

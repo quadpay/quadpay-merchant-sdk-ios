@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "251EC4882469D64300679E88"
-               BuildableName = "QuadPaySDK.framework"
-               BlueprintName = "QuadPaySDK"
-               ReferencedContainer = "container:QuadPaySDK.xcodeproj">
+               BuildableName = "ZipSDK.framework"
+               BlueprintName = "ZipSDK"
+               ReferencedContainer = "container:ZipSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "251EC4912469D64300679E88"
-               BuildableName = "QuadPaySDKTests.xctest"
-               BlueprintName = "QuadPaySDKTests"
-               ReferencedContainer = "container:QuadPaySDK.xcodeproj">
+               BuildableName = "ZipSDKTests.xctest"
+               BlueprintName = "ZipSDKTests"
+               ReferencedContainer = "container:ZipSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "251EC4882469D64300679E88"
-            BuildableName = "QuadPaySDK.framework"
-            BlueprintName = "QuadPaySDK"
-            ReferencedContainer = "container:QuadPaySDK.xcodeproj">
+            BuildableName = "ZipSDK.framework"
+            BlueprintName = "ZipSDK"
+            ReferencedContainer = "container:ZipSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

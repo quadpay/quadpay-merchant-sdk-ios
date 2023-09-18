@@ -8,7 +8,7 @@
 #define VirtualCheckoutSuccessfulMessage_h
 
 #import <Foundation/Foundation.h>
-#import "QuadPayCard.h"
+#import "ZipCard.h"
 #import "QuadPayCardholder.h"
 #import "QuadPayCustomer.h"
 
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The card details for the order
 */
-@property (nonatomic, copy, nonnull) QuadPayCard* card;
+@property (nonatomic, copy, nonnull) ZipCard* card;
 
 /**
  The card holder details for the order

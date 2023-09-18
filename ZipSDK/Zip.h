@@ -5,14 +5,14 @@
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
-#ifndef QuadPay_h
-#define QuadPay_h
+#ifndef Zip_h
+#define Zip_h
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPay : NSObject
+@interface Zip : NSObject
 
 @property (nonatomic, copy, nonnull) NSString* merchantId;
 @property (nonatomic, copy, nonnull) NSString* environment;
@@ -28,4 +28,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#endif /* QuadPay_h */
+#endif /* Zip_h */

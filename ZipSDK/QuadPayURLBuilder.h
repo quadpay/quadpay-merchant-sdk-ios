@@ -7,7 +7,7 @@
 
 #ifndef QuadPayURLBuilder_h
 #define QuadPayURLBuilder_h
-#import "QuadPay.h"
+#import "Zip.h"
 #import "QuadPayCheckoutDetails.h"
 
 @interface QuadPayURLBuilder : NSObject

@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QuadPayCard.h"
+#import "ZipCard.h"
 
-@implementation QuadPayCard
+@implementation ZipCard
 
 - (NSString*)toString {
   return [NSString stringWithFormat:@"%@, %@, %@, %@",
