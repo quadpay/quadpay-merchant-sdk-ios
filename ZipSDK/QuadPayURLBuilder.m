@@ -10,21 +10,21 @@
 
 @implementation  QuadPayURLBuilder
 
-+ (NSString *) buildVirtualCheckoutURL:(QuadPayCheckoutDetails*) details {
++ (NSString *) buildVirtualCheckoutURL:(ZipCheckoutDetails*) details {
     NSString* base = [[Zip sharedInstance] getBaseUrl];
     base = [base stringByAppendingString:@"mobile/virtual/authorize?"];
     NSString* params = [[QuadPayURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
     return [base stringByAppendingString:params];
 }
 
-+ (NSString *) buildCheckoutURL:(QuadPayCheckoutDetails*) details {
++ (NSString *) buildCheckoutURL:(ZipCheckoutDetails*) details {
     NSString* base = [[Zip sharedInstance] getBaseUrl];
     base = [base stringByAppendingString:@"mobile/authorize?"];
     NSString* params = [[QuadPayURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
     return [base stringByAppendingString:params];
 }
 
-+ (NSString *) assembleParams:(QuadPayCheckoutDetails*) details {
++ (NSString *) assembleParams:(ZipCheckoutDetails*) details {
     if (details == NULL) {
         @throw [NSException exceptionWithName:@"DetailsNullException" reason:@"Checkout details cannot be null" userInfo:NULL];
     }

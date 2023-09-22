@@ -5,12 +5,12 @@
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
-#ifndef QuadPayCheckoutDetails_h
-#define QuadPayCheckoutDetails_h
+#ifndef ZipCheckoutDetails_h
+#define ZipCheckoutDetails_h
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayCheckoutDetails : NSObject
+@interface ZipCheckoutDetails : NSObject
 
 /**
  Order Amount. Required

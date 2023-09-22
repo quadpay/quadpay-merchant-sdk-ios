@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
-- (void)setDetails:(QuadPayCheckoutDetails*)newDetails
+- (void)setDetails:(ZipCheckoutDetails*)newDetails
 NS_SWIFT_NAME(setDetails(details:));
 
-+ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate details:(QuadPayCheckoutDetails*) details
++ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
 NS_SWIFT_NAME(start(delegate:details:));
 
 @end

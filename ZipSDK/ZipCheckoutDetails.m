@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "ZipCheckoutDetails.h"
 
-@implementation QuadPayCheckoutDetails
+@implementation ZipCheckoutDetails
 
 
 @end

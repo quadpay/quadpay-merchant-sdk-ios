@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
 
-- (void)setDetails:(QuadPayCheckoutDetails*)newDetails
+- (void)setDetails:(ZipCheckoutDetails*)newDetails
 NS_SWIFT_NAME(setDetails(details:));
 
-+ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(QuadPayCheckoutDetails*) details
++ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
 NS_SWIFT_NAME(start(delegate:details:));
 
 @end

@@ -5,7 +5,7 @@
 @end
 
 @implementation QuadPayCheckoutViewController {
-    QuadPayCheckoutDetails* details;
+    ZipCheckoutDetails* details;
 }
 
 - (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
@@ -17,13 +17,13 @@
     return self;
 }
 
-+ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(QuadPayCheckoutDetails *)details {
++ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
     QuadPayCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
     [vc setDetails:details];
     return vc;
 }
 
-- (void)setDetails:(QuadPayCheckoutDetails *)newDetails {
+- (void)setDetails:(ZipCheckoutDetails *)newDetails {
     details = newDetails;
 }
 

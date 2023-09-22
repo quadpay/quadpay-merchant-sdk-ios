@@ -5,17 +5,17 @@
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
-#ifndef QuadPayURLBuilder_h
-#define QuadPayURLBuilder_h
+#ifndef ZipURLBuilder_h
+#define ZipURLBuilder_h
 #import "Zip.h"
 #import "ZipCheckoutDetails.h"
 
 @interface QuadPayURLBuilder : NSObject
 
-+(NSString *) buildVirtualCheckoutURL:(QuadPayCheckoutDetails*) details;
-+(NSString *) buildCheckoutURL:(QuadPayCheckoutDetails*) details;
++(NSString *) buildVirtualCheckoutURL:(ZipCheckoutDetails*) details;
++(NSString *) buildCheckoutURL:(ZipCheckoutDetails*) details;
 
-+(NSString *) assembleParams:(QuadPayCheckoutDetails*) details;
++(NSString *) assembleParams:(ZipCheckoutDetails*) details;
 
 @end
 
