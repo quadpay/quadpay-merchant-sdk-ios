@@ -3,7 +3,7 @@
 #import "QuadPayMessageReceiverDelegate.h"
 #import "ZipCard.h"
 #import "ZipCardholder.h"
-#import "QuadPayCheckoutDetails.h"
+#import "ZipCheckoutDetails.h"
 #import "CheckoutSuccessfulMessage.h"
 #import "ExceptionMessage.h"
 #import "CheckoutCancelledMessage.h"
