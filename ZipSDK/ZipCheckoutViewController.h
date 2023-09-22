@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayCheckoutViewController : QuadPayWebViewController <QuadPayMessageReceiverDelegate>
+@interface ZipCheckoutViewController : QuadPayWebViewController <QuadPayMessageReceiverDelegate>
 
 @property (nonatomic, weak) id<QuadPayCheckoutDelegate> delegate;
 
@@ -30,7 +30,7 @@ NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 - (void)setDetails:(ZipCheckoutDetails*)newDetails
 NS_SWIFT_NAME(setDetails(details:));
 
-+ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
++ (ZipCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
 NS_SWIFT_NAME(start(delegate:details:));
 
 @end

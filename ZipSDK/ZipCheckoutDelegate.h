@@ -1,16 +1,16 @@
 #import "QuadPayCustomer.h"
 
-@class QuadPayCheckoutViewController;
+@class ZipCheckoutViewController;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol QuadPayCheckoutDelegate <NSObject>
 
-- (void)checkoutSuccessful:(QuadPayCheckoutViewController*)viewController orderId:(NSString *) orderId customer:(QuadPayCustomer *) customer;
+- (void)checkoutSuccessful:(ZipCheckoutViewController*)viewController orderId:(NSString *) orderId customer:(QuadPayCustomer *) customer;
 
-- (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController reason:(NSString *)reason;
+- (void)checkoutCancelled:(ZipCheckoutViewController*)viewController reason:(NSString *)reason;
 
-- (void)didFailWithError:(QuadPayCheckoutViewController*)viewController error:(NSString *)error;
+- (void)didFailWithError:(ZipCheckoutViewController*)viewController error:(NSString *)error;
 
 @end
 

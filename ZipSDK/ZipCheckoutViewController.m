@@ -1,10 +1,10 @@
-#import "QuadPayCheckoutViewController.h"
+#import "ZipCheckoutViewController.h"
 
-@interface QuadPayCheckoutViewController ()
+@interface ZipCheckoutViewController ()
 
 @end
 
-@implementation QuadPayCheckoutViewController {
+@implementation ZipCheckoutViewController {
     ZipCheckoutDetails* details;
 }
 
@@ -17,8 +17,8 @@
     return self;
 }
 
-+ (QuadPayCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
-    QuadPayCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
++ (ZipCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
+    ZipCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
     [vc setDetails:details];
     return vc;
 }

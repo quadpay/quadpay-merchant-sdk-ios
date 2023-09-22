@@ -40,16 +40,16 @@
     details.customerEmail = @"sdk_example@quadpay.com";
     details.checkoutFlow = @"express";
 
-    QuadPayCheckoutViewController* view = [QuadPayCheckoutViewController startCheckout:self details:details];
+    ZipCheckoutViewController* view = [ZipCheckoutViewController startCheckout:self details:details];
     [self presentViewController:view animated:YES completion:nil];
 }
 
-- (void)didFailWithError:(QuadPayCheckoutViewController*)viewController error:(nonnull NSString *)error {
+- (void)didFailWithError:(ZipCheckoutViewController*)viewController error:(nonnull NSString *)error {
     [viewController dismissViewControllerAnimated:true completion:^ {}];
     NSLog(@"%@", [NSString stringWithFormat:@"QuadPay checkout encountered an error %@", error]);
 }
 
-- (void)checkoutCancelled:(QuadPayCheckoutViewController*)viewController reason:(NSString *)reason {
+- (void)checkoutCancelled:(ZipCheckoutViewController*)viewController reason:(NSString *)reason {
     NSLog(@"%@", [NSString stringWithFormat:@"User cancelled QuadPay checkout with reason %@", reason]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
@@ -59,7 +59,7 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayCheckoutViewController*)viewController orderId:(NSString*)orderId {
+- (void) checkoutSuccessful:(ZipCheckoutViewController*)viewController orderId:(NSString*)orderId {
     NSLog(@"%@", [NSString stringWithFormat:@"Confirmation orderId %@", orderId]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
@@ -69,7 +69,7 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayCheckoutViewController*)viewController orderId:(NSString*)orderId customer:(QuadPayCustomer*)customer {
+- (void) checkoutSuccessful:(ZipCheckoutViewController*)viewController orderId:(NSString*)orderId customer:(QuadPayCustomer*)customer {
     NSLog(@"%@", [NSString stringWithFormat:@"Confirmation orderId %@, customer: %@", orderId, [customer toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*

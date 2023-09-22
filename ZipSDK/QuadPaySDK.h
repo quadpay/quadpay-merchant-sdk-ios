@@ -17,7 +17,7 @@ FOUNDATION_EXPORT const unsigned char QuadPaySDKVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <QuadPaySDK/PublicHeader.h>
 #import <ZipSDK/Zip.h>
 #import <ZipSDK/QuadPayVirtualCheckoutViewController.h>
-#import <ZipSDK/QuadPayCheckoutViewController.h>
+#import <ZipSDK/ZipCheckoutViewController.h>
 #import <ZipSDK/QuadPayVirtualCheckoutDelegate.h>
 #import <ZipSDK/ZipCheckoutDelegate.h>
 #import <ZipSDK/ZipCard.h>
