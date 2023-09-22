@@ -1,6 +1,6 @@
 #import "QuadPayWebViewController.h"
 #import "ZipCheckoutDelegate.h"
-#import "QuadPayMessageReceiverDelegate.h"
+#import "ZipMessageReceiverDelegate.h"
 #import "ZipCard.h"
 #import "ZipCardholder.h"
 #import "ZipCheckoutDetails.h"
@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZipCheckoutViewController : QuadPayWebViewController <QuadPayMessageReceiverDelegate>
+@interface ZipCheckoutViewController : QuadPayWebViewController <ZipMessageReceiverDelegate>
 
 @property (nonatomic, weak) id<QuadPayCheckoutDelegate> delegate;
 

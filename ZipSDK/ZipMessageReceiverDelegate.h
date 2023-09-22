@@ -2,7 +2,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol QuadPayMessageReceiverDelegate <NSObject>
+@protocol ZipMessageReceiverDelegate <NSObject>
 
 - (void)viewController:(UIViewController *)viewController didReceiveScriptMessage:(nonnull NSDictionary *)message;
 

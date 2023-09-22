@@ -1,14 +1,14 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-#import "QuadPayMessageReceiverDelegate.h"
+#import "ZipMessageReceiverDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QuadPayWebViewController : UIViewController <WKNavigationDelegate, WKUIDelegate>
 
 @property (nonatomic, strong, readonly) WKWebView *webView;
-@property (nonatomic, weak) id<QuadPayMessageReceiverDelegate> messageDelegate;
+@property (nonatomic, weak) id<ZipMessageReceiverDelegate> messageDelegate;
 
 - (void)loadErrorPage:(NSError *)error;
 
