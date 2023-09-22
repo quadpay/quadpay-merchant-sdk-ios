@@ -1,5 +1,5 @@
 #import "QuadPayWebViewController.h"
-#import "QuadPayCheckoutDelegate.h"
+#import "ZipCheckoutDelegate.h"
 #import "QuadPayMessageReceiverDelegate.h"
 #import "ZipCard.h"
 #import "ZipCardholder.h"
