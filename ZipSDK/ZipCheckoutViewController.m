@@ -35,7 +35,7 @@
                                                                              target:self
                                                                              action:@selector(dismiss)];
 
-    NSString* urlString = [QuadPayURLBuilder buildCheckoutURL:details];
+    NSString* urlString = [ZipURLBuilder buildCheckoutURL:details];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];

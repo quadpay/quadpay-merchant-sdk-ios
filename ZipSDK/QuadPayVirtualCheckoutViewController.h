@@ -5,7 +5,7 @@
 #import "ZipCard.h"
 #import "ZipCardholder.h"
 #import "ZipCheckoutDetails.h"
-#import "QuadPayURLBuilder.h"
+#import "ZipURLBuilder.h"
 #import "ExceptionMessage.h"
 #import "VirtualCheckoutSuccessfulMessage.h"
 #import "CheckoutCancelledMessage.h"

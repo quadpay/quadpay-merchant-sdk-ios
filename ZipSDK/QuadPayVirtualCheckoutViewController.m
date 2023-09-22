@@ -76,7 +76,7 @@
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(dismiss)];
-    NSString* urlString = [QuadPayURLBuilder buildVirtualCheckoutURL:details];
+    NSString* urlString = [ZipURLBuilder buildVirtualCheckoutURL:details];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];

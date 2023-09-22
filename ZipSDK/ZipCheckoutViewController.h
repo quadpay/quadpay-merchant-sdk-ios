@@ -7,7 +7,7 @@
 #import "CheckoutSuccessfulMessage.h"
 #import "ExceptionMessage.h"
 #import "CheckoutCancelledMessage.h"
-#import "QuadPayURLBuilder.h"
+#import "ZipURLBuilder.h"
 
 @protocol QuadPayCheckoutDelegate;
 

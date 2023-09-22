@@ -6,21 +6,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QuadPayURLBuilder.h"
+#import "ZipURLBuilder.h"
 
-@implementation  QuadPayURLBuilder
+@implementation  ZipURLBuilder
 
 + (NSString *) buildVirtualCheckoutURL:(ZipCheckoutDetails*) details {
     NSString* base = [[Zip sharedInstance] getBaseUrl];
     base = [base stringByAppendingString:@"mobile/virtual/authorize?"];
-    NSString* params = [[QuadPayURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
+    NSString* params = [[ZipURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
     return [base stringByAppendingString:params];
 }
 
 + (NSString *) buildCheckoutURL:(ZipCheckoutDetails*) details {
     NSString* base = [[Zip sharedInstance] getBaseUrl];
     base = [base stringByAppendingString:@"mobile/authorize?"];
-    NSString* params = [[QuadPayURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
+    NSString* params = [[ZipURLBuilder assembleParams:details] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
     return [base stringByAppendingString:params];
 }
 
