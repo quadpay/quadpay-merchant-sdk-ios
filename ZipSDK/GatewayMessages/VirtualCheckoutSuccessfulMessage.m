@@ -24,7 +24,7 @@
         NSString* orderId = [[dict objectForKey:@"message"] objectForKey:@"orderId"];
         _card = [[ZipCard alloc] initWithDict:cardData];
         _cardholder = [[ZipCardholder alloc] initWithDict:cardholderData];
-        _customer = [[QuadPayCustomer alloc] initWithDict:customerData];
+        _customer = [[ZipCustomer alloc] initWithDict:customerData];
         _orderId = orderId;
     }
     return self;

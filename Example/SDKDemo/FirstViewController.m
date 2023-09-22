@@ -69,7 +69,7 @@
     }];
 }
 
-- (void) checkoutSuccessful:(ZipCheckoutViewController*)viewController orderId:(NSString*)orderId customer:(QuadPayCustomer*)customer {
+- (void) checkoutSuccessful:(ZipCheckoutViewController*)viewController orderId:(NSString*)orderId customer:(ZipCustomer*)customer {
     NSLog(@"%@", [NSString stringWithFormat:@"Confirmation orderId %@, customer: %@", orderId, [customer toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*

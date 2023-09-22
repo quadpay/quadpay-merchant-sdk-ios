@@ -1,6 +1,6 @@
 #import "ZipCardholder.h"
 #import "ZipCard.h"
-#import "QuadPayCustomer.h"
+#import "ZipCustomer.h"
 
 @class QuadPayVirtualCheckoutViewController;
 
@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol QuadPayVirtualCheckoutDelegate <NSObject>
 
-- (void)checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(ZipCard *)card cardholder:(ZipCardholder *)cardholder customer:(QuadPayCustomer *)customer orderId:(NSString *)orderId;
+- (void)checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(ZipCard *)card cardholder:(ZipCardholder *)cardholder customer:(ZipCustomer *)customer orderId:(NSString *)orderId;
 
 - (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason;
 

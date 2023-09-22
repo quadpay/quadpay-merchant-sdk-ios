@@ -55,7 +55,7 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull ZipCard *)card cardholder:(nonnull ZipCardholder *)cardholder customer:(nonnull QuadPayCustomer *)customer {
+- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull ZipCard *)card cardholder:(nonnull ZipCardholder *)cardholder customer:(nonnull ZipCustomer *)customer {
     NSLog(@"%@", [NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
@@ -78,7 +78,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)showCheckoutSuccessAlert:(ZipCard*) card cardholder:(ZipCardholder*) cardholder customer:(QuadPayCustomer*) customer {
+- (void)showCheckoutSuccessAlert:(ZipCard*) card cardholder:(ZipCardholder*) cardholder customer:(ZipCustomer*) customer {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Succeeded"
                                                                    message:[NSString stringWithFormat:
                                                                             @"QuadPay checkout succeeded, card issued: %@", card.number]

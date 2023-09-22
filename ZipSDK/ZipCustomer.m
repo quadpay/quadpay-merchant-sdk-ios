@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QuadPayCustomer.h"
+#import "ZipCustomer.h"
 
-@implementation QuadPayCustomer
+@implementation ZipCustomer
 
 - (NSString*)toString {
   return [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@, %@, %@, %@, %@",

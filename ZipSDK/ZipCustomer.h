@@ -5,14 +5,14 @@
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
-#ifndef QuadPayCustomer_h
-#define QuadPayCustomer_h
+#ifndef ZipCustomer_h
+#define ZipCustomer_h
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayCustomer : NSObject
+@interface ZipCustomer : NSObject
 
 /**
  Customer's first name. Required
@@ -83,4 +83,4 @@ NS_SWIFT_NAME(toString());
 
 NS_ASSUME_NONNULL_END
 
-#endif /* QuadPayCustomer_h */
+#endif /* ZipCustomer_h */

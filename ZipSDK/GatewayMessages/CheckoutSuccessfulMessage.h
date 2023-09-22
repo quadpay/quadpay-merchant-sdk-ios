@@ -8,7 +8,7 @@
 #define CheckoutSuccessfulMessage_h
 
 #import <Foundation/Foundation.h>
-#import "QuadPayCustomer.h"
+#import "ZipCustomer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The QuadPay customer data
 */
-@property (nonatomic, copy, nonnull) QuadPayCustomer* customer;
+@property (nonatomic, copy, nonnull) ZipCustomer* customer;
 
 /**
  Initializer. See properties for more details.

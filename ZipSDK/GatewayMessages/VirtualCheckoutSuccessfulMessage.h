@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "ZipCard.h"
 #import "ZipCardholder.h"
-#import "QuadPayCustomer.h"
+#import "ZipCustomer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The Zip customer data
 */
-@property (nonatomic, copy, nonnull) QuadPayCustomer* customer;
+@property (nonatomic, copy, nonnull) ZipCustomer* customer;
 
 /**
  The Zip OrderId
