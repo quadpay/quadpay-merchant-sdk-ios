@@ -6,14 +6,14 @@
 //  Copyright © 2020 QuadPay. All rights reserved.
 //
 
-#ifndef QuadPayCardholder_h
-#define QuadPayCardholder_h
+#ifndef ZipCardholder_h
+#define ZipCardholder_h
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayCardholder : NSObject
+@interface ZipCardholder : NSObject
 
 /**
  Cardholder's name as printed on card. Required

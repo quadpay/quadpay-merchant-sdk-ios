@@ -23,7 +23,7 @@
         NSDictionary* customerData = [[dict objectForKey:@"message"] objectForKey:@"customer"];
         NSString* orderId = [[dict objectForKey:@"message"] objectForKey:@"orderId"];
         _card = [[ZipCard alloc] initWithDict:cardData];
-        _cardholder = [[QuadPayCardholder alloc] initWithDict:cardholderData];
+        _cardholder = [[ZipCardholder alloc] initWithDict:cardholderData];
         _customer = [[QuadPayCustomer alloc] initWithDict:customerData];
         _orderId = orderId;
     }

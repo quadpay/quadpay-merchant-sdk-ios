@@ -21,6 +21,6 @@ FOUNDATION_EXPORT const unsigned char QuadPaySDKVersionString[];
 #import <ZipSDK/QuadPayVirtualCheckoutDelegate.h>
 #import <ZipSDK/QuadPayCheckoutDelegate.h>
 #import <ZipSDK/ZipCard.h>
-#import <ZipSDK/QuadPayCardholder.h>
+#import <ZipSDK/ZipCardholder.h>
 #import <ZipSDK/QuadPayCheckoutDetails.h>
 #import <ZipSDK/ExceptionMessage.h>
