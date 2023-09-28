@@ -9,7 +9,7 @@
 #import "SecondViewController.h"
 #import <ZipSDK/QuadPaySDK.h>
 
-@interface SecondViewController () <QuadPayVirtualCheckoutDelegate>
+@interface SecondViewController () <ZipVirtualCheckoutDelegate>
 
 @end
 
@@ -36,16 +36,16 @@
     details.customerEmail = @"sdk_example@quadpay.com";
     details.checkoutFlow = @"express";
 
-    QuadPayVirtualCheckoutViewController* view = [QuadPayVirtualCheckoutViewController startCheckout:self details:details];
+    ZipVirtualCheckoutViewController* view = [ZipVirtualCheckoutViewController startCheckout:self details:details];
     [self presentViewController:view animated:YES completion:nil];
 }
 
-- (void)didFailWithError:(QuadPayVirtualCheckoutViewController*)viewController error:(nonnull NSString *)error {
+- (void)didFailWithError:(ZipVirtualCheckoutViewController*)viewController error:(nonnull NSString *)error {
     [viewController dismissViewControllerAnimated:true completion:^ {}];
     NSLog(@"%@", [NSString stringWithFormat:@"QuadPay checkout encountered an error %@", error]);
 }
 
-- (void)checkoutCancelled:(QuadPayVirtualCheckoutViewController*)viewController reason:(NSString *)reason {
+- (void)checkoutCancelled:(ZipVirtualCheckoutViewController*)viewController reason:(NSString *)reason {
     NSLog(@"%@", [NSString stringWithFormat:@"User cancelled QuadPay checkout with reason %@", reason]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*
@@ -55,7 +55,7 @@
     }];
 }
 
-- (void) checkoutSuccessful:(QuadPayVirtualCheckoutViewController*)viewController card:(nonnull ZipCard *)card cardholder:(nonnull ZipCardholder *)cardholder customer:(nonnull ZipCustomer *)customer {
+- (void) checkoutSuccessful:(ZipVirtualCheckoutViewController*)viewController card:(nonnull ZipCard *)card cardholder:(nonnull ZipCardholder *)cardholder customer:(nonnull ZipCustomer *)customer {
     NSLog(@"%@", [NSString stringWithFormat:@"Card: %@ Issued for %@", [card toString], [cardholder toString]]);
     [viewController dismissViewControllerAnimated:true completion:^ {
         /*

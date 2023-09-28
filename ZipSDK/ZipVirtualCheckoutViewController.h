@@ -1,6 +1,6 @@
 #import "Zip.h"
 #import "QuadPayWebViewController.h"
-#import "QuadPayVirtualCheckoutDelegate.h"
+#import "ZipVirtualCheckoutDelegate.h"
 #import "ZipMessageReceiverDelegate.h"
 #import "ZipCard.h"
 #import "ZipCardholder.h"
@@ -10,13 +10,13 @@
 #import "VirtualCheckoutSuccessfulMessage.h"
 #import "CheckoutCancelledMessage.h"
 
-@protocol QuadPayVirtualCheckoutDelegate;
+@protocol ZipVirtualCheckoutDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuadPayVirtualCheckoutViewController : QuadPayWebViewController <ZipMessageReceiverDelegate>
+@interface ZipVirtualCheckoutViewController : QuadPayWebViewController <ZipMessageReceiverDelegate>
 
-@property (nonatomic, weak) id<QuadPayVirtualCheckoutDelegate> delegate;
+@property (nonatomic, weak) id<ZipVirtualCheckoutDelegate> delegate;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
@@ -24,13 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
                          bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
-- (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
+- (instancetype)initWithDelegate:(id<ZipVirtualCheckoutDelegate>)delegate
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
 - (void)setDetails:(ZipCheckoutDetails*)newDetails
 NS_SWIFT_NAME(setDetails(details:));
 
-+ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
++ (ZipVirtualCheckoutViewController *)startCheckout:(id<ZipVirtualCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
 NS_SWIFT_NAME(start(delegate:details:));
 
 @end

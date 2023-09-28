@@ -1,14 +1,14 @@
-#import "QuadPayVirtualCheckoutViewController.h"
+#import "ZipVirtualCheckoutViewController.h"
 
-@interface QuadPayVirtualCheckoutViewController ()
+@interface ZipVirtualCheckoutViewController ()
 
 @end
 
-@implementation QuadPayVirtualCheckoutViewController {
+@implementation ZipVirtualCheckoutViewController {
     ZipCheckoutDetails* details;
 }
 
-- (instancetype)initWithDelegate:(id<QuadPayVirtualCheckoutDelegate>)delegate
+- (instancetype)initWithDelegate:(id<ZipVirtualCheckoutDelegate>)delegate
 {
     if (self = [super initWithNibName:nil bundle:nil]) {
         _delegate = delegate;
@@ -17,8 +17,8 @@
     return self;
 }
 
-+ (QuadPayVirtualCheckoutViewController *)startCheckout:(id<QuadPayVirtualCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
-    QuadPayVirtualCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
++ (ZipVirtualCheckoutViewController *)startCheckout:(id<ZipVirtualCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
+    ZipVirtualCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
     [vc setDetails:details];
     return vc;
 }
