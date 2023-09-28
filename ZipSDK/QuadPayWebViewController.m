@@ -1,12 +1,12 @@
-#import "QuadPayWebViewController.h"
+#import "ZipWebViewController.h"
 
-@interface QuadPayWebViewController () <WKScriptMessageHandler>
+@interface ZipWebViewController () <WKScriptMessageHandler>
 
 @property (nonatomic, strong, readwrite) WKWebView *webView;
 
 @end
 
-@implementation QuadPayWebViewController
+@implementation ZipWebViewController
 
 - (void)viewDidLoad
 {
