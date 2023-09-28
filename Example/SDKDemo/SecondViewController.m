@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import <ZipSDK/QuadPaySDK.h>
+#import <ZipSDK/ZipSDK.h>
 
 @interface SecondViewController () <ZipVirtualCheckoutDelegate>
 

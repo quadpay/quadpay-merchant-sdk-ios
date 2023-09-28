@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <ZipSDK/QuadPaySDK.h>
+#import <ZipSDK/ZipSDK.h>
 
 @interface AppDelegate ()
 
