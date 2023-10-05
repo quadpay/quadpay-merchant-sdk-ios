@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import QuadPaySDK
+import ZipSDK
 
 final class WidgetViewContoller : UIViewController {
      

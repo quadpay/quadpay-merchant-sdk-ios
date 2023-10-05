@@ -7,7 +7,7 @@ target 'SDKDemo' do
 
   # Pods for SDKDemo
 
-  pod 'QuadPaySDK',  :path => '../'
+  pod 'ZipSDK',  :path => '../'
 
   target 'SDKDemoTests' do
     inherit! :search_paths
@@ -22,7 +22,7 @@ end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    if target.name == 'QuadPaySDK'
+    if target.name == 'ZipSDK'
       target.build_configurations.each do |config|
         if config.name == 'Debug'
           config.build_settings['SWIFT_ACTIVE_COMPILATION_CONDITIONS'] = 'QUADPAY_SDK_DEVELOPMENT'
