@@ -4,7 +4,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol QuadPayCheckoutDelegate <NSObject>
+@protocol ZipCheckoutDelegate <NSObject>
 
 - (void)checkoutSuccessful:(ZipCheckoutViewController*)viewController orderId:(NSString *) orderId customer:(ZipCustomer *) customer;
 

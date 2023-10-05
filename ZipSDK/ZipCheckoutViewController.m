@@ -8,7 +8,7 @@
     ZipCheckoutDetails* details;
 }
 
-- (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
+- (instancetype)initWithDelegate:(id<ZipCheckoutDelegate>)delegate
 {
     if (self = [super initWithNibName:nil bundle:nil]) {
         _delegate = delegate;
@@ -17,7 +17,7 @@
     return self;
 }
 
-+ (ZipCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
++ (ZipCheckoutViewController *)startCheckout:(id<ZipCheckoutDelegate>)delegate details:(ZipCheckoutDetails *)details {
     ZipCheckoutViewController* vc = [[self alloc] initWithDelegate:delegate];
     [vc setDetails:details];
     return vc;

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZipCheckoutViewController : ZipWebViewController <ZipMessageReceiverDelegate>
 
-@property (nonatomic, weak) id<QuadPayCheckoutDelegate> delegate;
+@property (nonatomic, weak) id<ZipCheckoutDelegate> delegate;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
@@ -23,14 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
                          bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
-- (instancetype)initWithDelegate:(id<QuadPayCheckoutDelegate>)delegate
+- (instancetype)initWithDelegate:(id<ZipCheckoutDelegate>)delegate
 NS_SWIFT_NAME(init(delegate:)) NS_DESIGNATED_INITIALIZER;
 
 
 - (void)setDetails:(ZipCheckoutDetails*)newDetails
 NS_SWIFT_NAME(setDetails(details:));
 
-+ (ZipCheckoutViewController *)startCheckout:(id<QuadPayCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
++ (ZipCheckoutViewController *)startCheckout:(id<ZipCheckoutDelegate>)delegate details:(ZipCheckoutDetails*) details
 NS_SWIFT_NAME(start(delegate:details:));
 
 @end
