@@ -9,7 +9,7 @@
 #import "FirstViewController.h"
 #import <ZipSDK/ZipSDK.h>
 
-@interface FirstViewController () <QuadPayCheckoutDelegate>
+@interface FirstViewController () <ZipCheckoutDelegate>
 
 @end
 
