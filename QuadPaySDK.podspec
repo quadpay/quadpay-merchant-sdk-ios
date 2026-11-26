@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage					= 'https://github.com/quadpay/quadpay-merchant-sdk-ios'
   s.license						= { :type => "mit", :file => "LICENSE" }
   s.source						= { :git => 'https://github.com/quadpay/quadpay-merchant-sdk-ios.git', :tag => s.version.to_s }
-  s.ios.deployment_target		= '13.0'
+  s.ios.deployment_target		= '15.6'
   s.source_files				    = 'QuadPaySDK/**/*.{h,m,swift}'
   s.resource_bundles        = {'QuadPaySDK' => ['QuadPaySDK/*.xcassets','QuadPaySDK/www', 'QuadPaySDK/Configuration/*.plist', 'QuadPaySDK/Font'] } 
   s.requires_arc            = true

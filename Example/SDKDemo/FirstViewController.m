@@ -39,6 +39,7 @@
     details.customerLastName = @"Payman";
     details.customerEmail = @"sdk_example@quadpay.com";
     details.checkoutFlow = @"express";
+    details.merchantReference = [[NSUUID UUID] UUIDString];
 
     QuadPayCheckoutViewController* view = [QuadPayCheckoutViewController startCheckout:self details:details];
     [self presentViewController:view animated:YES completion:nil];
