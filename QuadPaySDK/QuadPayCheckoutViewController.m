@@ -107,10 +107,14 @@ if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
                 UIApplication *application = [UIApplication sharedApplication];
                 [application openURL:navigationAction.request.URL options:@{} completionHandler:nil];
                 decisionHandler(WKNavigationActionPolicyCancel);
+            } else {
+                decisionHandler(WKNavigationActionPolicyAllow);
             }
         } else {
             decisionHandler(WKNavigationActionPolicyAllow);
         }
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
 } else {
     decisionHandler(WKNavigationActionPolicyAllow);
@@ -123,6 +127,7 @@ if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
     if ([navigationResponse.response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse * response = (NSHTTPURLResponse *)navigationResponse.response;
         if (response.statusCode != 200) {
+            NSLog(@"QuadPay: cancelling load of %@ - unexpected HTTP status %ld", response.URL, (long)response.statusCode);
             decisionHandler(WKNavigationResponsePolicyCancel);
         } else {
             decisionHandler(WKNavigationResponsePolicyAllow);
